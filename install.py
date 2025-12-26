@@ -158,7 +158,6 @@ dashboard_settings = {
     # - Install from apt
     'apt_dependencies': [
         'influxdb', # for pm_dashboard
-        'lsof', # for pm_dashboard
     ],
     'python_source': {
         'pm_dashboard': f'git+{GIT_URL}pm_dashboard.git@1.3.x',

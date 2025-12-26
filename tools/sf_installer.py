@@ -103,7 +103,10 @@ class SF_Installer():
         "/usr/sbin/poweroff",
         "/usr/sbin/halt",
         "/usr/bin/systemctl",
-        "/usr/bin/vcgencmd",
+    ]
+
+    DEFAULT_GROUPS = [
+        'video',
     ]
 
     def __init__(self,
@@ -135,7 +138,7 @@ class SF_Installer():
             self.log_dir = log_dir
         self.log_file = f'{self.log_dir}/{self.name}.log'
 
-        self.add_groups = set()
+        self.add_groups = set(self.DEFAULT_GROUPS)
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()

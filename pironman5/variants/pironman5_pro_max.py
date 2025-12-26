@@ -29,6 +29,7 @@ class Pironman5ProMax:
     ]
     SYSTEM_DEFAULT_CONFIG = {
         'data_interval': 1,
+        'enable_history': True,
         "rgb_color": "#ff3dbe",
         "rgb_brightness": 50,
         "rgb_style": "breathing",
