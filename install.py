@@ -4,6 +4,11 @@ from tools.sf_installer import SF_Installer
 from pironman5.version import __version__
 from pironman5.variants import NAME, DT_OVERLAYS, PERIPHERALS
 
+PM_AUTO_VERSION = '1.4.4'
+DASHBOARD_VERSION = '1.3.x'
+SF_RPI_STATUS_VERSION = '1.1.7'
+PIPOWER5_VERSION = 'main'
+
 GITHUB_URL = 'https://github.com/sunfounder/'
 GITEE_URL = 'https://gitee.com/sunfounder/'
 
@@ -52,8 +57,8 @@ settings = {
     # - Install python source code from git
     'python_source': {
         'pironman5': './',
-        'pm_auto': f'git+{GIT_URL}pm_auto.git@1.4.4',
-        'sf_rpi_status': f'git+{GIT_URL}sf_rpi_status.git@1.1.7',
+        'pm_auto': f'git+{GIT_URL}pm_auto.git@{PM_AUTO_VERSION}',
+        'sf_rpi_status': f'git+{GIT_URL}sf_rpi_status.git@{SF_RPI_STATUS_VERSION}',
     },
 
     # create symbolic links from venv/bin/ to /usr/local/bin/
@@ -160,7 +165,7 @@ dashboard_settings = {
         'influxdb', # for pm_dashboard
     ],
     'python_source': {
-        'pm_dashboard': f'git+{GIT_URL}pm_dashboard.git@1.3.x',
+        'pm_dashboard': f'git+{GIT_URL}pm_dashboard.git@{DASHBOARD_VERSION}',
     },
 }
 
@@ -168,7 +173,7 @@ pipower5_settings = {
     # Install python packages from source
     'add_groups': ['i2c'],
     'python_source': {
-        'pipower5': f'git+{GIT_URL}pipower5.git@main',
+        'pipower5': f'git+{GIT_URL}pipower5.git@{PIPOWER5_VERSION}',
         'spc': f'git+{GIT_URL}spc.git',
     },
     # Add symbolic links
