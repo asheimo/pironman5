@@ -1,0 +1,166 @@
+
+.. note::
+
+    Hello, welcome to the SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts Community on Facebook! Dive deeper into Raspberry Pi, Arduino, and ESP32 with fellow enthusiasts.
+
+    **Why Join?**
+
+    - **Expert Support**: Solve post-sale issues and technical challenges with help from our community and team.
+    - **Learn & Share**: Exchange tips and tutorials to enhance your skills.
+    - **Exclusive Previews**: Get early access to new product announcements and sneak peeks.
+    - **Special Discounts**: Enjoy exclusive discounts on our newest products.
+    - **Festive Promotions and Giveaways**: Take part in giveaways and holiday promotions.
+
+    👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
+
+.. _promax_view_control_dashboard:
+
+View and Control from Dashboard
+=========================================
+
+Once you have successfully installed the ``pironman5`` module, the ``pironman5.service`` will start automatically upon reboot.
+
+Now you can open the monitoring page in your browser to see the information about your Raspberry Pi, configure the RGB, and control the fan, etc. The page link is: ``http://<ip>:34001``. 
+
+.. image:: img/dashboard_prm5promax.png
+  :width: 90%
+
+
+This page has **Dashboard**, **History**, **Log**, and a **Settings** page.
+
+
+.. image:: img/dashboard_tab.png
+  :width: 90%
+  
+Dashboard
+-----------------------
+
+There are multiple cards to view the relevant status of the Raspberry Pi, including:
+
+* **Temperature**: View the Raspberry Pi's CPU & GPU temperature and the PWM fan speed. **GPIO Fan State** indicates the status of the two side RGB fans. At the current temperature, the two RGB fans are off.
+
+  .. image:: img/dashboard_temp.png
+    :align: center
+    
+
+* **Storage**: Displays the storage capacity of a Raspberry Pi, showing various disk partitions with their used and available space.
+
+  .. image:: img/dashboard_storage.png
+    :align: center
+    
+
+* **Memory**: Shows the Raspberry Pi's RAM usage and percentage.
+
+  .. image:: img/dashboard_memory.png
+    :align: center
+    
+
+* **Network**: Displays the current network connection type, upload, and download speeds.
+
+  .. image:: img/dashboard_network.png
+    :align: center
+    
+
+* **Processor**: Illustrates the Raspberry Pi's CPU performance, including the status of its four cores, operating frequencies, and CPU usage percentage.
+
+  .. image:: img/dashboard_processor.png
+    :align: center
+    
+
+History
+--------------
+
+The History page allows you to view historical data. Check the data you want to view in the left sidebar, then select the time range to see the data for that period, and you can also click to download it.
+
+.. image:: img/dashboard_history1.png
+  :width: 90%
+  
+.. image:: img/dashboard_history2.png
+  :width: 90%
+
+Log
+------------
+
+The Log page is used to view the logs of the currently running Pironman5 service. The Pironman5 service includes multiple sub-services, each with its own log. Select the log you want to view, and you can see the log data on the right. If it is blank, it may mean there is no log content.
+
+* Each log has a fixed size of 10MB. When it exceeds this size, a second log will be created.
+* The number of logs for the same service is limited to 10. If the number exceeds this limit, the oldest log will be automatically deleted.
+* There are filter tools above the log area on the right. You can select the log level, filter by keywords, and use several convenient tools, including **Line Wrap**, **Auto Scroll** and **Auto Update**.
+* Logs can also be downloaded locally.
+
+.. image:: img/dashboard_log1.png
+  :width: 90%
+  
+.. image:: img/dashboard_log2.png
+  :width: 90%
+
+
+.. Settings
+.. -----------------
+
+.. There is a settings menu in the **upper right corner** of the page where you can customize the settings according to your preferences. After making modifications, the changes will be saved automatically. If needed, you can click the CLEAR button at the bottom to clear the historical data.
+
+.. .. image:: img/dashboard_setting_darkmode.png
+..   :width: 600
+
+.. * **Dark Mode**: Toggle between light and dark mode themes. The theme option is saved in the browser cache. Changing the browser or clearing the cache will revert to the default light theme.
+.. * **Show Unmounted Disk**: Whether to show unmounted disks in the dashboard.
+.. * **Show All Cores**: Whether to show all cores in the dashboard.
+.. * **Temperature Unit**: Set the temperature unit displayed by the system.
+
+.. **About OLED Screen**
+
+.. .. image:: img/dashboard_setting_oled.png
+..   :width: 600
+
+.. * **OLED Enable**: Whether to enable OLED.
+.. * **OLED Disk**: Set OLED disk.
+.. * **OLED Network Interface**: 
+
+..   * **all**: Toggle the display between the Ethernet IP and Wi-Fi IP in sequence.
+..   * **eth0**: Display only the Ethernet IP
+..   * **wlan0**: Display only the Wi-Fi IP
+
+.. * **OLED Rotation**: Set OLED rotation.
+.. * **OLED Sleep Timeout**: Set OLED sleep timeout.
+
+.. **About RGB LEDs**
+
+.. .. image:: img/RGB_LEDS.jpg
+..   :width: 600
+
+.. * **RGB Enable**: Whether to enable RGB LEDS
+.. * **RGB Color**: Set the color of the RGB LEDs.
+.. * **RGB Brightness**: You can adjust the brightness of the RGB LEDs with a slider.
+.. * **RGB Style**: Choose the RGB LEDs display mode. Options include **Solid**, **Breathing**, **Flow**, **Flow_reverse**, **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**.
+
+..   .. note::
+
+..      If you set the **RGB Style** to **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**, you will not be able to set the color.
+
+.. * **RGB Speed**: Set the speed of the RGB LED changes.
+
+.. **About RGB Fans**
+
+.. .. image:: img/dashboard_setting_fan.png
+..   :width: 600
+
+
+.. * **Fan LED**: Set the mode of the RGB fans.
+
+..     * **Off**: Turn off the RGB.
+..     * **On**: Turn on the RGB.
+..     * **Follow**: Turn on the RGB automatically based on the fan's work state. 
+
+.. * **GPIO Fan Mode**: You can set the operating mode of the two RGB fans. These modes determine the conditions under which the RGB fans will activate.
+
+..     * **Quiet**: The RGB fans will activate at 70°C.
+..     * **Balanced**: The RGB fans will activate at 67.5°C.
+..     * **Cool**: The RGB fans will activate at 60°C.
+..     * **Performance**: The RGB fans will activate at 50°C.
+..     * **Always On**: The RGB fans will always be on.
+
+.. For instance, if set to **Performance** mode, the RGB fans will activate at 50°C.
+
+.. After saving, if the CPU temperature exceeds 50°C, you will see the side RGB fans will start spinning.
+
