@@ -9,23 +9,6 @@ DASHBOARD_VERSION = '1.3.x'
 SF_RPI_STATUS_VERSION = '1.1.7'
 PIPOWER5_VERSION = 'main'
 
-GITHUB_URL = 'https://github.com/sunfounder/'
-GITEE_URL = 'https://gitee.com/sunfounder/'
-
-# Test if github url reachable
-import requests
-try:
-    requests.get(GITHUB_URL)
-    GIT_URL = GITHUB_URL
-except requests.exceptions.RequestException:
-    print(f"Error: {GITHUB_URL} is not reachable")
-    try:
-        requests.get(GITEE_URL)
-        GIT_URL = GITEE_URL
-    except requests.exceptions.RequestException:
-        print(f"Error: {GITEE_URL} is not reachable")
-        exit(1)
-
 settings = {
     # - Setup venv options if needed, default to []
     'venv_options': [
@@ -57,8 +40,8 @@ settings = {
     # - Install python source code from git
     'python_source': {
         'pironman5': './',
-        'pm_auto': f'git+{GIT_URL}pm_auto.git@{PM_AUTO_VERSION}',
-        'sf_rpi_status': f'git+{GIT_URL}sf_rpi_status.git@{SF_RPI_STATUS_VERSION}',
+        'pm_auto': f'git+https://github.com/sunfounder/pm_auto.git@{PM_AUTO_VERSION}',
+        'sf_rpi_status': f'git+https://github.com/sunfounder/sf_rpi_status.git@{SF_RPI_STATUS_VERSION}',
     },
 
     # create symbolic links from venv/bin/ to /usr/local/bin/
@@ -165,7 +148,7 @@ dashboard_settings = {
         'influxdb', # for pm_dashboard
     ],
     'python_source': {
-        'pm_dashboard': f'git+{GIT_URL}pm_dashboard.git@{DASHBOARD_VERSION}',
+        'pm_dashboard': f'git+https://github.com/sunfounder/pm_dashboard.git@{DASHBOARD_VERSION}',
     },
 }
 
@@ -173,8 +156,8 @@ pipower5_settings = {
     # Install python packages from source
     'add_groups': ['i2c'],
     'python_source': {
-        'pipower5': f'git+{GIT_URL}pipower5.git@{PIPOWER5_VERSION}',
-        'spc': f'git+{GIT_URL}spc.git',
+        'pipower5': f'git+https://github.com/sunfounder/pipower5.git@{PIPOWER5_VERSION}',
+        'spc': f'git+https://github.com/sunfounder/spc.git',
     },
     # Add symbolic links
     'symlinks': [
@@ -186,7 +169,7 @@ pipower5_settings = {
     ],
     # - Copy device tree overlay to /boot/overlays
     'dtoverlays': [
-        f'{GIT_URL}raw/refs/heads/main/sunfounder-pipower5.dtbo'
+        f'https://github.com/sunfounder/raw/refs/heads/main/sunfounder-pipower5.dtbo'
     ],
 }
 

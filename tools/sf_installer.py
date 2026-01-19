@@ -85,6 +85,13 @@ class ConfigTxt(object):
 
 class SF_Installer():
     WORK_DIR = '/opt/{name}'
+    GIT_URL = None
+    MAIN_GIT_URL = 'https://github.com/sunfounder/'
+    BACKUP_GIT_URLS = [
+        'https://github.com/sunfounder/', 
+        'https://gitee.com/sunfounder/',
+    ]
+
     APT_DEPENDENCIES = [
         'python3-pip',
         'python3-venv',
@@ -95,6 +102,7 @@ class SF_Installer():
         'pip',
         'setuptools',
         'build',
+        'requests',
     ]
 
     SUDOER_PERMISSION = [
@@ -189,6 +197,20 @@ class SF_Installer():
         self.custom_install = lambda: None
 
         self.version = self.get_version()
+
+    def check_git_url(self):
+        # Test if github url reachable
+        import requests
+        for url in self.BACKUP_GIT_URLS:
+            try:
+                requests.get(url)
+                self.GIT_URL = url
+            except requests.exceptions.RequestException:
+                print(f"Error: {url} is not reachable")
+                continue
+        else:
+            print(f"Error: None of the git urls are reachable")
+            exit(1)
 
     def get_version(self):
         version_file = f'{self.name}/version.py'
@@ -458,8 +480,7 @@ class SF_Installer():
             return
         self.print_title("Install Python source packages...")
         for package, url in self.python_source.items():
-            if self.args.gitee:
-                url = url.replace('github.com', 'gitee.com')
+            url = url.replace(self.MAIN_GIT_URL, self.GIT_URL)
             self.install_python_source(package, url)
 
     def create_symlinks(self):
@@ -525,6 +546,7 @@ class SF_Installer():
         for overlay in self.dtoverlays:
             # If is online dtoverlay, download it first
             if overlay.startswith('http'):
+                overlay = overlay.replace(self.MAIN_GIT_URL, self.GIT_URL)
                 self.do(f'Download dtoverlay {overlay}', f'wget {overlay}')
                 overlay = overlay.split('/')[-1]
                 self.do(f'Move dtoverlay {overlay}', f'mv {overlay} {overlays_path}/')
@@ -626,6 +648,7 @@ class SF_Installer():
         self.install_apt_dep()
         self.create_working_dir()
         self.install_pip_dep()
+        self.check_git_url()
         self.install_py_src_pkgs()
         self.create_symlinks()
         self.setup_auto_start()
