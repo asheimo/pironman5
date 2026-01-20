@@ -29,18 +29,24 @@ class Pironman5ProMax:
     ]
     SYSTEM_DEFAULT_CONFIG = {
         'data_interval': 1,
+        'debug_level': 'INFO',
+        "temperature_unit": "C",
+        'database_retention_days': 30,
+        "default_dashboard_page": "small",
         'enable_history': True,
+
         "rgb_color": "#ff3dbe",
         "rgb_brightness": 50,
         "rgb_style": "breathing",
         "rgb_speed": 50,
         "rgb_enable": True,
         "rgb_led_count": 18,
-        "temperature_unit": "C",
+                        # Front 4 LED      CPU FAN LED   HAT_REAR LED   REAR UPPER FAN       REAR_BOTTOM_FAN
+        "rgb_position": [17, 16, 15, 14,   7, 6, 5, 4,   13, 12,         11, 10, 9, 8,        3, 2, 1, 0],
+
         "oled_enable": True,
         "oled_rotation": 0,
         'oled_sleep_timeout': 10,
-        "default_dashboard_page": "small",
         'oled_pages': [
             'mix',
             'performance',

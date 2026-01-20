@@ -4,8 +4,8 @@ from tools.sf_installer import SF_Installer
 from pironman5.version import __version__
 from pironman5.variants import NAME, DT_OVERLAYS, PERIPHERALS
 
-PM_AUTO_VERSION = '1.4.4'
-DASHBOARD_VERSION = '1.3.x'
+PM_AUTO_VERSION = '1.4.5'
+DASHBOARD_VERSION = '1.3.16'
 SF_RPI_STATUS_VERSION = '1.1.7'
 PIPOWER5_VERSION = 'main'
 
