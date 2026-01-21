@@ -4,6 +4,8 @@ import sys
 import time
 import threading
 import os
+import glob
+import importlib
 
 class ConfigTxt(object):
     DEFAULT_BOOT_FILE = "/boot/firmware/config.txt"
@@ -162,7 +164,6 @@ class SF_Installer():
 
         self.parser = argparse.ArgumentParser(description=description)
         self.parser.add_argument('--uninstall', action='store_true', help='Uninstall')
-        self.parser.add_argument('--gitee', action='store_true', help='Use gitee')
         self.parser.add_argument('--no-dep',
                                  action='store_true',
                                  help='Do not install dependencies')
@@ -197,20 +198,6 @@ class SF_Installer():
         self.custom_install = lambda: None
 
         self.version = self.get_version()
-
-    def check_git_url(self):
-        # Test if github url reachable
-        import requests
-        for url in self.BACKUP_GIT_URLS:
-            try:
-                requests.get(url)
-                self.GIT_URL = url
-            except requests.exceptions.RequestException:
-                print(f"Error: {url} is not reachable")
-                continue
-        else:
-            print(f"Error: None of the git urls are reachable")
-            exit(1)
 
     def get_version(self):
         version_file = f'{self.name}/version.py'
@@ -325,16 +312,10 @@ class SF_Installer():
                 )
 
     def print_title(self, title, end='\n', flush=False):
-        if not self.args.plain_text:
-            print(f"\n\033[1;34m{title}\033[0m", end=end, flush=flush)
-        else:
-            print(f"\n{title}", end=end, flush=flush)
-
-    def print_error(self, msg, end='\n', flush=False):
         if self.args.plain_text:
-            print(f'\r[✗] {msg}', end=end, flush=flush)
+            print(f"\n{title}", end=end, flush=flush)
         else:
-            print(f'\r\033[1;35m[✗]\033[0m {msg}', end=end, flush=flush)   
+            print(f"\n\033[1;34m{title}\033[0m", end=end, flush=flush)
 
     @property
     def SUCCESS(self):
@@ -342,6 +323,13 @@ class SF_Installer():
             return "[✓]"
         else:
             return "\033[32m[✓]\033[0m"
+
+    @property
+    def WARNING(self):
+        if self.args.plain_text:
+            return "[⚠]"
+        else:
+            return "\033[1;33m[⚠]\033[0m"
 
     @property
     def SKIPPED(self):
@@ -359,7 +347,7 @@ class SF_Installer():
 
     def check_admin(self):
         if os.geteuid() != 0:
-            self.print_error('This script must be run as root')
+            print(f'{self.FAILED} This script must be run as root')
             sys.exit(1)
 
     def remove_work_dir(self):
@@ -471,9 +459,30 @@ class SF_Installer():
         deps = [ *self.PIP_DEPENDENCIES ]
         if self.custom_pip_dependencies is not None:
             deps += self.custom_pip_dependencies
+        deps = " ".join(deps)
+        # Install everything together make it faster
+        self.do(f'Install {deps}', f'{self.venv_pip} install --upgrade {deps}')
+        # for dep in deps:
+        #     self.do(f'Install {dep}', f'{self.venv_pip} install --upgrade {dep}')
 
-        for dep in deps:
-            self.do(f'Install {dep}', f'{self.venv_pip} install --upgrade {dep}')
+    def check_git_url(self):
+        self.print_title("Check git URL...")
+        # Test if github url reachable
+        venv_site_pkgs = f"{glob.glob(f'{self.venv_path}/lib/python*')[0]}/site-packages"
+        sys.path.insert(0, venv_site_pkgs)  # add to front of path
+        requests = importlib.import_module('requests')
+        for url in self.BACKUP_GIT_URLS:
+            try:
+                requests.get(url)
+                self.GIT_URL = url
+                print(f"{self.SUCCESS} Use {self.GIT_URL} as git URL")
+                return
+            except requests.exceptions.RequestException:
+                print(f"{self.WARNING} {url} is not reachable")
+                continue
+        else:
+            print(f"{self.FAILED} None of {self.BACKUP_GIT_URLS} is reachable")
+            exit(1)
 
     def install_py_src_pkgs(self):
         if len(self.python_source) == 0:
@@ -633,7 +642,7 @@ class SF_Installer():
                 self.print_title(f'Canceled')
                 return False
             else:
-                self.print_error("Please enter Y or N: ", end='')
+                print(f"{self.FAILED} Please enter Y or N: ", end='')
                 continue
 
     def cleanup(self):
