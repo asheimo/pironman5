@@ -352,12 +352,12 @@ class SF_Installer():
 
     def remove_work_dir(self):
         if not os.path.exists(self.work_dir):
-            print(f"{self.SKIPPED} Work directory {self.work_dir} already removed Skip")
+            print(f"{self.SKIPPED} Work directory {self.work_dir} already removed, skip")
             return
         self.do('Remove work directory', f'rm -r {self.work_dir}')
 
     def install_python_source(self, name, url='./'):
-        self.do(f'Uninstall {name} old package',
+        self.do(f'Uninstall old "{name}" package',
                 f'{self.venv_pip} uninstall -y {name}')
         self.do(f'Install {name} from source',
                 f'{self.venv_pip} install {url}')
@@ -366,32 +366,32 @@ class SF_Installer():
         _, users, _ = self.run_command(f'getent group {group}')
         users = users.strip().split(':')
         if user in users:
-            print(f"{self.SKIPPED} User {user} already in group {group} Skip")
+            print(f'{self.SKIPPED} User "{user}" is already in group "{group}", skip')
         else:
-            self.do(f'Add user {user} to group {group}', f'usermod -aG {group} {user}')
+            self.do(f'Add user "{user}" to group "{group}"', f'usermod -aG {group} {user}')
 
     # Install Steps:
 
     def setup_user(self):
         # Create group if not exist
         if self.run_command(f'getent group {self.user}')[0] == 0:
-            print(f"{self.SKIPPED} Group {self.user} already exist Skip")
+            print(f'{self.SKIPPED} Group "{self.user}" already exists, skip')
         else:
-            self.do(f'Create group {self.user}', f'groupadd -r {self.user}')
+            self.do(f'Create group "{self.user}"', f'groupadd -r {self.user}')
 
         # Create user if not exist
         if self.run_command(f'getent passwd {self.user}')[0] == 0:
-            print(f"{self.SKIPPED} User {self.user} already exist Skip")
+            print(f'{self.SKIPPED} User "{self.user}" already exists, skip')
         else:
-            self.do(f'Create user {self.user}', f'useradd -r -g {self.user} -s /sbin/nologin -d /opt/{self.user} -m {self.user}')
+            self.do(f'Create user "{self.user}"', f'useradd -r -g {self.user} -s /sbin/nologin -d /opt/{self.user} -m {self.user}')
 
         # Add current user to group
         current_user = self.get_current_username()
         self.add_user_to_group(current_user, self.user)
 
         # Add shutdown permission to user
-        self.do(f'Add shutdown permission to user {self.user}', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | sudo tee /etc/sudoers.d/{self.user}-shutdown > /dev/null')
-        self.do(f'Change sudoers file permission', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
+        self.do(f'Add shutdown permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | sudo tee /etc/sudoers.d/{self.user}-shutdown > /dev/null')
+        self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
 
         # Add gpio group to user
@@ -439,14 +439,14 @@ class SF_Installer():
     def create_working_dir(self):
         self.print_title("Create working directory...")
         self.do('Create work directory', f'mkdir -p {self.work_dir}')
-        self.do('Change work directory mode', f'chmod 775 {self.work_dir}')
-        self.do('Change work directory owner', f'chown -R {self.user}:{self.user} {self.work_dir}')
+        self.do(f'Change work directory mode to 775', f'chmod 775 {self.work_dir}')
+        self.do(f'Change work directory owner to "{self.user}"', f'chown -R {self.user}:{self.user} {self.work_dir}')
         self.do('Create log directory', f'mkdir -p {self.log_dir}')
-        self.do('Change log directory mode', f'chmod 775 {self.log_dir}')
-        self.do('Change log directory owner', f'chown -R {self.user}:{self.user} {self.log_dir}')
-        self.do(f'Create log file: {self.log_file}', f'touch {self.log_file}')
+        self.do(f'Change log directory mode to 775', f'chmod 775 {self.log_dir}')
+        self.do(f'Change log directory owner to "{self.user}"', f'chown -R {self.user}:{self.user} {self.log_dir}')
+        self.do(f'Create log file: "{self.log_file}"', f'touch {self.log_file}')
         self.do(f'Change log file mode to 664', f'chmod 664 {self.log_file}')
-        self.do(f'Change log file owner to {self.user}', f'chown {self.user}:{self.user} {self.log_file}')
+        self.do(f'Change log file owner to "{self.user}"', f'chown {self.user}:{self.user} {self.log_file}')
         if os.path.exists(self.venv_path):
             self.do('Remove old virtual environment', f'rm -r {self.venv_path}')
         self.do('Create virtual environment', f'python3 -m venv {self.venv_path} {" ".join(self.venv_options)}')
@@ -475,14 +475,14 @@ class SF_Installer():
             try:
                 requests.get(url)
                 self.GIT_URL = url
-                print(f"{self.SUCCESS} Use {self.GIT_URL} as git URL")
+                print(f'{self.SUCCESS} Use "{self.GIT_URL}" as git URL')
                 return
             except requests.exceptions.RequestException:
-                print(f"{self.WARNING} {url} is not reachable")
+                print(f'{self.WARNING} "{url}" is not reachable')
                 continue
         else:
-            print(f"{self.FAILED} None of {self.BACKUP_GIT_URLS} is reachable")
-            exit(1)
+            print(f'{self.FAILED} None of these URLs is reachable: {self.BACKUP_GIT_URLS}')
+            sys.exit(1)
 
     def install_py_src_pkgs(self):
         if len(self.python_source) == 0:
@@ -528,7 +528,7 @@ class SF_Installer():
             return
         self.print_title("Probe modules...")
         for module in self.modules:
-            self.do(f'add module: {module}',
+            self.do(f'Add module: "{module}"',
                 f'sh -c "echo {module} >> /etc/modules-load.d/modules.conf"'
             )
 
@@ -569,7 +569,7 @@ class SF_Installer():
 
     def change_work_dir_owner(self):
         self.print_title("Fix work directory permission...")
-        self.do('Add excution permission to directory', f'chmod +x {self.work_dir}')
+        self.do('Add execution permission to directory', f'chmod +x {self.work_dir}')
         self.do(f'Change work directory owner to {self.user}', f'chown -R {self.user}:{self.user} {self.work_dir}')
 
     # Uninstall Steps:
@@ -597,7 +597,7 @@ class SF_Installer():
             self.do('Remove binary file', f'rm -f /usr/local/bin/{bin}')
         for service in self.service_files:
             if not os.path.exists(f'/etc/systemd/system/{service}'):
-                self.errors.append(f"{self.SKIPPED} Service file {service} not found Skip")
+                self.errors.append(f"{self.SKIPPED} Service file {service} not found, skip")
                 continue
             self.do('Stop service', f'systemctl stop {service}')
             self.do('Disable service', f'systemctl disable {service}')
@@ -622,7 +622,7 @@ class SF_Installer():
             if overlay.startswith('http'):
                 overlay = overlay.split('/')[-1]
             if not os.path.exists(f'{overlays_path}/{overlay}'):
-                self.errors.append(f"{self.SKIPPED} Device tree overlay {overlay} not found Skip")
+                self.errors.append(f"{self.SKIPPED} Device tree overlay {overlay} not found, skip")
                 continue
             self.do(f'Remove dtoverlay {overlay}', f'rm {overlays_path}/{overlay}')
             self.need_reboot = True
