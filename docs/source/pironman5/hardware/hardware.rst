@@ -28,7 +28,7 @@ This chapter is a detailed description of all the components in Pironman, as wel
     hdmi_adapter
     nvme_pip
     microsd_extender
-    power_switch_conventor
+    power_switch_convertor
     tower_cooler
     oled_screen
     fans

@@ -76,7 +76,7 @@ The onboard power supply is activated by the switch signal from the PCIe interfa
 **LED**  
 Each interface has independent power status indicators (PWR) and state indicators (STA).
 
-Power Switch Conventor
+Power Switch Convertor
 -------------------------------
 
 

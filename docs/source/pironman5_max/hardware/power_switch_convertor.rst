@@ -12,7 +12,7 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Power Switch Conventor
+Power Switch Convertor
 ==============================
 
 This is a module that expands the Raspberry Pi 5 power switch to the outside. 

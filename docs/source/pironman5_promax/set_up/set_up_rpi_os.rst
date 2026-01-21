@@ -72,11 +72,7 @@ Downloading and Installing the ``pironman5`` Module
    Upon reboot, the ``pironman5.service`` will start automatically. Here are the primary configurations for Pironman 5 Pro MAX:
    
    * The OLED screen displays CPU, RAM, Disk Usage, CPU Temperature, and the Raspberry Pi's IP Address.
-
-   .. note:: The OLED screen may turn off automatically after a period of inactivity to save power. You can gently tap the case to trigger the vibration sensor and wake the screen.
-
    * Four WS2812 RGB LEDs will light up in blue with a breathing mode.
-   * The RGB fans are set to **Always On** mode by default. For information on adjusting activation temperatures, see :ref:`cc_control_fan_promax`.
 
 #. You can use the ``systemctl`` tool to ``start``, ``stop``, ``restart``, or check the ``status`` of ``pironman5.service``.
 
