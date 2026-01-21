@@ -12,10 +12,12 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
-Installing the OS on a Micro SD Card
+
+
+Installing the Batocera OS 
 =============================================
 
-If you are using a Micro SD card, you can follow the tutorial below to install the system onto your Micro SD card.
+Follow the tutorial below to install the system onto your Micro SD card.
 
 
 **Required Components**
