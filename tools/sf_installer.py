@@ -334,9 +334,9 @@ class SF_Installer():
     @property
     def SKIPPED(self):
         if self.args.plain_text:
-            return "[✓]"
+            return "[→]"
         else:
-            return "\033[1;33m[✓]\033[0m"
+            return "\033[1;33m[→]\033[0m"
 
     @property
     def FAILED(self):
