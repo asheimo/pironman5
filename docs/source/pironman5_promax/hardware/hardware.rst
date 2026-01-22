@@ -33,3 +33,4 @@ This chapter is a detailed description of all the components in Pironman, as wel
     fans
     cpn_camera_module
     screen
+    usb_micphone

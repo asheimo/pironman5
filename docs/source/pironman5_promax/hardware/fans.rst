@@ -50,7 +50,7 @@ In the Pironman 5 Pro MAX, the PWM fan is a critical component for maintaining o
 
 **Fan Specifications**
 
-.. todo .. image:: img/size_fan.png
+.. image:: img/size_fan.png
 
 * **Extermal dimension**: 40*40*10MM
 * **Rated Input power**: 5V/0.106A
@@ -93,6 +93,9 @@ Tower Cooler
 ----------------------------
 
 The Pro MAX, the tower cooler is a high-performance cooling solution designed to keep your Raspberry Pi 5 at optimal temperatures during demanding tasks. It features a large aluminum heat sink and a fan that can be controlled via PWM to adjust cooling performance as needed. The tower cooler is compatible with the Raspberry Pi 5 and can be easily installed using the included screws and mounting bracket.
+
+
+.. image:: img/size_tower_cooler.png
 
 **Warning**
 

@@ -67,10 +67,9 @@ Features
 * **Build Quality**: Precision CNC aluminum body with tempered dark acrylic windows, designed for durability and sophisticated aesthetics.
 
 
-.. todo
 
-.. **Dimensional Drawing**
+**Dimensional Drawing**
 
-.. .. image:: img/pironman5_dimension.png
-..     :width: 800
+.. image:: img/pironman5_promax_dimension.png
+    :width: 800
 

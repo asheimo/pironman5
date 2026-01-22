@@ -194,7 +194,9 @@ rst_epilog += """
     <a href="https://www.sunfounder.com/products/pironman-5-max" target="_blank">Pironman 5 Max</a>
 
 
-    
+.. |link_pironman5_promax| raw:: html
+
+    <a href="https://www.sunfounder.com/products/pironman-5-pro-max" target="_blank">Pironman 5 Pro Max (Coming soon)</a>
 
 
 .. |link_raspberry_pi_imager| raw:: html

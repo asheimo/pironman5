@@ -213,8 +213,6 @@ If the problem persists after performing the above steps, please send an email t
       :width: 600
       :align: center
 
-   .. todo 兼容系统更新下
-
    If you have installed an unsupported OS, follow the guide to install a compatible operating system: :ref:`install_the_os_promax`.
 
 #. Run the command ``sudo raspi-config`` to open the configuration menu. Navigate to **3 Interfacing Options** -> **I3 SPI** -> **YES**, then click **OK** and **Finish** to enable SPI. After enabling SPI, restart the Pironman 5.

@@ -18,13 +18,13 @@
 Pironman 5 Pro MAX
 ================================================================================
 
+.. todo : add link to pironman5_promax
+
 Thanks for choosing our |link_pironman5_promax|.
 
-.. todo link_pironman5_promax: 
-
-.. todo .. image:: img/pironman5_promax.jpg
-..     :width: 400
-..     :align: center
+.. image:: img/Pironman-5-Pro-Max.png
+    :width: 400
+    :align: center
 
 Elevate your Raspberry Pi 5 experience with the |link_pironman5_promax|, our new flagship high-performance aluminum chassis. Designed for ultimate cooling, expansion, and a complete desktop-like experience, it's perfect for demanding applications like NAS, AI development, media centers, and advanced projects.
 

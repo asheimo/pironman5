@@ -17,15 +17,14 @@
 3. Installing the Operating System
 =======================================
 
-.. todo 兼容系统测试
 
-.. .. note::
+.. note::
 
-..     You need to install an OS that supports Raspberry Pi 5. Please use the latest Raspberry Pi Imager tool for system installation. The currently tested systems are:
+    You need to install an OS that supports Raspberry Pi 5. Please use the latest Raspberry Pi Imager tool for system installation. The currently tested systems are:
 
-..    .. image:: img/compitable_os.png
-..         :width: 500
-..         :align: center
+   .. image:: img/compitable_os.png
+        :width: 500
+        :align: center
 
 In this chapter, you will learn how to install the operating systems. All the installation steps depend on the |link_rpi_imager|, which you need to install first.
 
