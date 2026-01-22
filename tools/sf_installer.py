@@ -390,15 +390,17 @@ class SF_Installer():
                 ["stat", "-c", "%G", target_device],
                 capture_output=True,
                 text=True,
-                check=True  # 命令执行失败时抛出异常
+                check=True  # Check if command failed
             )
             
-            # 清理输出（去除换行符）
+            # Get group name from command output
             group_name = result.stdout.strip()
             
-            if not group_name:  # 空结果兜底
-                raise ValueError("获取到空的组名")
-            
+            # Check if group is root (high risk)
+            if group_name == "root":
+                print(f"{self.WARNING} Device {target_device} belongs to root group (high risk)")
+                return ""
+
             return group_name
             
             print(f"{self.SUCCESS} Get device group: {target_device} -> {group_name}")
