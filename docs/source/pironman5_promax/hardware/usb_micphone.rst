@@ -1,4 +1,6 @@
-USB Micphone
+USB Microphone
 ===================================
+
+.. todo
 
 coming soon...

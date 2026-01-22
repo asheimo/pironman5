@@ -22,7 +22,7 @@ This chapter is a detailed description of all the components in Pironman, as wel
 
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     
     features
     io_board
