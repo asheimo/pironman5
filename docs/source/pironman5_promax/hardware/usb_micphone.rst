@@ -1,7 +1,7 @@
 Mini USB Microphone
 ===================================
 
-.. image:: images/mini_usb_micphone.png
+.. image:: img/mini_usb_micphone.png
    :width: 300
 
 **Description**
