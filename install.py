@@ -76,10 +76,14 @@ settings = {
 
 
 ws2812_settings = {
+    'run_scripts_before_install': [
+        "install_lgpio.sh",
+    ],
     'add_groups': ['spi', 'gpio'],
     'pip_dependencies': [
         'adafruit-circuitpython-neopixel-spi',
         'Adafruit-Blinka==8.59.0',
+        'rpi.lgpio',
     ],
 }
 
