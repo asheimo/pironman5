@@ -7,6 +7,8 @@ import json
 
 from ._constants import CONFIG_PATH
 
+URL = "http://localhost:34001"
+
 def check_desktop_environment() -> bool:
     """
     Check if the current environment is a desktop environment (prevent failure in SSH/pure console environments)
@@ -60,15 +62,22 @@ def find_available_browsers() -> List[str]:
     
     return available
 
-def get_browser_fullscreen_args(browser: str) -> List[str]:
+def get_url() -> str:
     """
-    Return fullscreen arguments corresponding to different browsers
+    Get the URL to open in the browser
     """
     config = None
     with open(CONFIG_PATH, 'r') as f:
         config = json.load(f)
     dashboard_page = config['system']['default_dashboard_page']
-    target_url = f"http://127.0.0.1:34001/{dashboard_page}"
+    url = f"{URL}/{dashboard_page}"
+    return url
+
+def get_browser_fullscreen_args(browser: str) -> List[str]:
+    """
+    Return fullscreen arguments corresponding to different browsers
+    """
+    url = get_url()
     
     # Chrome/Chromium fullscreen arguments
     if "chrome" in browser or "chromium" in browser:
@@ -82,7 +91,7 @@ def get_browser_fullscreen_args(browser: str) -> List[str]:
             "--new-window",                      # Open in a new window
             "--no-first-run",                    # Skip first-run setup
             "--no-default-browser-check",        # Skip default browser check
-            target_url
+            url
         ]
     # Firefox fullscreen arguments
     elif "firefox" in browser:
@@ -91,10 +100,10 @@ def get_browser_fullscreen_args(browser: str) -> List[str]:
             # "-kiosk",                       # Kiosk fullscreen mode
             "--password-manager=disabled",  # Disable password manager
             "-new-window",                  # Open in a new window
-            target_url
+            url
         ]
     else:
-        return [browser, target_url]
+        return [browser, url]
 
 def launch_browser() -> bool:
     """
