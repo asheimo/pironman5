@@ -44,52 +44,61 @@ Open the terminal and enter the following commands:
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. Open your browser and visit your Portainer address: ``http://<your-rpi-ip-address>:9443`` .
 
-.. note::
+3. Restart your Raspberry Pi. (Then complete the following steps **IMMEDIATELY**.)
 
-   By default, you may see a warning that the site is using a self-signed SSL/TLS certificate not issued by a known Certificate Authority (CA). Most web browsers will display such a warning.  
-   In this case, you can safely ignore it, accept the risk, and proceed.
+
+
+4. After your Raspberry Pi boots up, open a web browser and visit your Portainer address: ``http://<your-rpi-ip-address>:9443`` .
+
+
+
+5. By default, you may see a warning that the site is using a self-signed SSL/TLS certificate not issued by a known Certificate Authority (CA). Most web browsers will display such a warning. In this case, you can safely ignore it, accept the risk, and proceed.
 
    .. image:: img/home_server_app/private_save.png
 
 
-4. On your first login, you will be asked to set an administrator password.
+#. On your first login, you will be asked to set an administrator password.
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. After creating the admin account, you will enter the Portainer interface. From the left navigation bar, go to **Setting -> General**, find **App Templates**, and enter the following URL into the field:  
-   ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#. After creating the admin account, you will enter the Portainer interface. From the left navigation bar, go to **Setting -> General**, find **App Templates**, and enter the following URL into the field: ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. Click **Save Application Settings**. The setup will take about 10 seconds to complete.
+#. Click **Save Application Settings**. The setup will take about 10 seconds to complete.
 
 
 **Install Plex**
 
-1. From the left navigation bar, click **Home -> local -> Templates -> Application**. In the top-right search bar, type *plex* and select it.
 
-   .. image:: img/home_server_app/ptn_temp_plex.png
+1. From the left navigation bar, click **Home -> local**.
 
-2. Set the network mode to **host**.
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2. Go **Templates -> Application**. In the upper-right search bar, type *nextcloud* and click it.
+
+   .. image:: img/home_server_app/ptn_temp_nextcloud.png
+
+
+#. Set the network mode to **host**.
 
    .. image:: img/home_server_app/ptn_plex_network_host.png
 
-3. Expand **Show advanced options**.
+#. Expand **Show advanced options**.
 
    .. image:: img/home_server_app/ptn_plex_ad_option1.png
 
-4. In the **volume mapping** section, configure the storage paths for your media files and grant Plex read/write permissions. The default paths are ``/portainer/TV`` and ``/portainer/Movies``, both with read/write access enabled.
+#. In the **volume mapping** section, configure the storage paths for your media files and grant Plex read/write permissions. The default paths are ``/portainer/TV`` and ``/portainer/Movies``, both with read/write access enabled.
 
    .. image:: img/home_server_app/ptn_plex_ad_option2.png
 
-5. Click **Deploy** and wait for Plex to finish installing.
+#. Click **Deploy** and wait for Plex to finish installing.
 
 
 **Configure Plex Server**
 
-1. Open your browser and enter: ``http://<your_ip>:32400/`` . You should now see the Plex interface.
+1. Open your browser and enter: ``http://<your_ip>:32400/web`` . You should now see the Plex interface.
 
    .. image:: img/home_server_app/plex_visit.png
 

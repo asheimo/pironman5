@@ -47,43 +47,53 @@ Open the terminal and enter the following commands:
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. Open your browser and visit your portainer address: ``http://<your-rpi-ip-address>:9443`` .
 
-.. note::
+ 
+3. Restart your Raspberry Pi. (Then complete the following steps **IMMEDIATELY**.)
 
-   By default, you will see a warning that the site is using a self-signed SSL/TLS certificate not issued by a known Certificate Authority (CA). Most web browsers will display a warning about such certificates.  
-   In this case, you can safely ignore the warning, accept the risk, and continue.
+
+
+4. After your Raspberry Pi boots up, open a web browser and visit your Portainer address: ``https://<your-rpi-ip-address>:9443`` .
+
+5. By default, you will see a warning that the site is using a self-signed SSL/TLS certificate not issued by a known Certificate Authority (CA). Most web browsers will display a warning about such certificates. In this case, you can safely ignore the warning, accept the risk, and continue.
 
    .. image:: img/home_server_app/private_save.png
 
 
-4. On the first login, you will need to set an admin password.
+#. On the first login, you will need to set an admin password.
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. After registering the admin account, you will enter the Portainer interface. From the left navigation bar, click **Setting -> General**, find **App Templates**, and enter the following URL in the field: ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#. After registering the admin account, you will enter the Portainer interface. From the left navigation bar, click **Setting -> General**, find **App Templates**, and enter the following URL in the field: ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. Click **Save Application Settings**. The setup will take around 10 seconds to complete.
+#. Click **Save Application Settings**. The setup will take around 10 seconds to complete.
 
 
 **Install NextCloud**
 
-1. From the left navigation bar, click **Home -> local -> Templates -> Application**. In the upper-right search bar, type *nextcloud* and click it.
+
+1. From the left navigation bar, click **Home -> local**
+
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2. Go **Templates -> Application**. In the upper-right search bar, type *nextcloud* and click it.
 
    .. image:: img/home_server_app/ptn_temp_nextcloud.png
 
-2. Click **Deploy the stack**, and wait for the deployment to complete. This usually takes about two minutes.
+3. Click **Deploy the stack**, and wait for the deployment to complete. This usually takes about two minutes.
 
    .. image:: img/home_server_app/ptn_temp_deploy.png
 
-Once completed, NextCloud will be installed.
+4. Once completed, NextCloud will be installed.
+
+   .. image:: img/home_server_app/ptn_temp_nextcloud_deploy_finish.png
 
 
 **Using NextCloud**
 
-1. Open your browser and visit your NextCloud address: ``http://<your-rpi-ip-address>:32768`` .
+1. Open your browser and visit your NextCloud address: ``https://<your-rpi-ip-address>:32768`` .
 
 .. note::
 
