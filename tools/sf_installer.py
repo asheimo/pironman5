@@ -6,6 +6,9 @@ import threading
 import os
 import glob
 import importlib
+import subprocess
+
+
 
 class ConfigTxt(object):
     DEFAULT_BOOT_FILE = "/boot/firmware/config.txt"
@@ -258,7 +261,6 @@ class SF_Installer():
         return user
 
     def run_command(self, cmd=""):
-        import subprocess
         p = subprocess.Popen(cmd,
                              shell=True,
                              executable="/bin/bash",
@@ -362,6 +364,54 @@ class SF_Installer():
         self.do(f'Install {name} from source',
                 f'{self.venv_pip} install {url}')
 
+    def get_device_group(self, device: str) -> str:
+        """
+        Get group name of device file.
+        
+        Args:
+            device: Device file name (e.g. "i2c", "spi").
+        
+        Returns:
+            Group name of device file.
+        
+        """
+        try:
+            # get device file path
+            device_files = sorted(glob.glob(f"/dev/{device}*"))
+            if not device_files:
+                print(f"{self.WARNING} Can not find '/dev/{device}*' device file")
+                return ""
+            
+            # Get first device file (avoid multiple devices)
+            target_device = device_files[0]
+            
+            # Get device file's stat info (includes group ID)
+            result = subprocess.run(
+                ["stat", "-c", "%G", target_device],
+                capture_output=True,
+                text=True,
+                check=True  # 命令执行失败时抛出异常
+            )
+            
+            # 清理输出（去除换行符）
+            group_name = result.stdout.strip()
+            
+            if not group_name:  # 空结果兜底
+                raise ValueError("获取到空的组名")
+            
+            return group_name
+            
+            print(f"{self.SUCCESS} Get device group: {target_device} -> {group_name}")
+            return group_name
+        
+        except PermissionError:
+            print(f"{self.WARNING} Can not access device file '{target_device}'")
+            return ""
+        except Exception as e:
+            # 捕获所有其他异常（如pwd模块找不到组ID、文件被删除等）
+            print(f"{self.WARNING} Get device group failed - {str(e)}")
+            return ""
+
     def add_user_to_group(self, user, group):
         _, users, _ = self.run_command(f'getent group {group}')
         users = users.strip().split(':')
@@ -394,9 +444,17 @@ class SF_Installer():
         self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
 
-        # Add gpio group to user
-        for group in self.add_groups:
-            self.add_user_to_group(self.user, group)
+        # Add custom groups to user
+        groups = set()
+        for device in self.add_groups:
+            group_name = self.get_device_group(device)
+            if group_name == "":
+                print(f"{self.FAILED} Can not get group name of device '{device}', skip")
+                continue
+            groups.add(group_name)
+
+        for group_name in groups:
+            self.add_user_to_group(self.user, group_name)
 
     def wait_for_dpkg(self):
         os.system('bash scripts/wait_for_dpkg.sh')
