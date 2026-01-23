@@ -24,6 +24,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-$(uname -r) -y
 
 echo "Installing PiPower 5 driver"
 
+rm -rf driver.zip driver/
 wget https://github.com/sunfounder/pipower5/releases/download/1.2.1/driver.zip
 unzip driver.zip
 cd driver
