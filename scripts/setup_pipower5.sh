@@ -17,9 +17,9 @@ if [ $# -ge 1 ] && [ "$1" == "--uninstall" ]; then
     exit 0
 fi
 
-apt-get update
-apt-get install wget unzip
-apt-get install linux-headers-$(uname -r) -y
+DEBIAN_FRONTEND=noninteractive apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install wget unzip -y
+DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-$(uname -r) -y
 
 
 echo "Installing PiPower 5 driver"
@@ -43,3 +43,15 @@ if [ -d /opt/pipower5/email_templates ]; then
 fi
 mv email_templates/ /opt/pipower5/email_templates/
 rm -rf email_templates.zip email_templates/
+
+# create pipower5 user
+if ! id -u pipower5 > /dev/null 2>&1; then
+    useradd -m pipower5
+fi
+#create udev rules
+if [ ! -d /etc/udev/rules.d ]; then
+    mkdir /etc/udev/rules.d
+fi
+if [ ! -f /etc/udev/rules.d/99-pipower5.rules ]; then
+    echo 'SUBSYSTEM=="pipower5", KERNEL=="pipower5", MODE="0660", GROUP="pipower5"' > /etc/udev/rules.d/99-pipower5.rules
+fi

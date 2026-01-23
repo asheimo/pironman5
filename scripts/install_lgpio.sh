@@ -13,7 +13,7 @@ fi
 
 # 2. Try to install via package manager first (fastest & cleanest)
 echo "- Attempting to install via apt..."
-if apt-get install -y liblgpio-dev python3-lgpio 2>/dev/null; then
+if DEBIAN_FRONTEND=noninteractive apt-get install -y liblgpio-dev python3-lgpio 2>/dev/null; then
     echo "✓ LGPIO installed successfully via apt."
     exit 0
 else
@@ -22,8 +22,8 @@ fi
 
 # 3. Install build dependencies
 echo "- Installing build dependencies..."
-apt-get update
-apt-get install -y swig python3-dev python3-setuptools unzip wget make gcc
+DEBIAN_FRONTEND=noninteractive apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y swig python3-dev python3-setuptools unzip wget make gcc
 
 # 4. Download and extract source
 echo "- Downloading LGPIO source..."

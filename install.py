@@ -4,8 +4,8 @@ from tools.sf_installer import SF_Installer
 from pironman5.version import __version__
 from pironman5.variants import NAME, DT_OVERLAYS, PERIPHERALS
 
-PM_AUTO_VERSION = '1.4.5'
-DASHBOARD_VERSION = '1.3.16'
+PM_AUTO_VERSION = '1.4.x'
+DASHBOARD_VERSION = '1.3.x'
 SF_RPI_STATUS_VERSION = '1.1.7'
 PIPOWER5_VERSION = 'main'
 
@@ -147,11 +147,7 @@ dashboard_settings = {
     ],
     # - Before install scripts, default to []
     'run_scripts_before_install': [
-        "setup_influxdb.sh",
-    ],
-    # - Install from apt
-    'apt_dependencies': [
-        'influxdb', # for pm_dashboard
+        "install_influxdb.sh",
     ],
     'python_source': {
         'pm_dashboard': f'git+https://github.com/sunfounder/pm_dashboard.git@{DASHBOARD_VERSION}',
@@ -160,7 +156,7 @@ dashboard_settings = {
 
 pipower5_settings = {
     # Install python packages from source
-    'devices': ['i2c'],
+    'devices': ['i2c', 'pipower5'],
     'python_source': {
         'pipower5': f'git+https://github.com/sunfounder/pipower5.git@{PIPOWER5_VERSION}',
         'spc': f'git+https://github.com/sunfounder/spc.git',
