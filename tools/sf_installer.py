@@ -118,7 +118,7 @@ class SF_Installer():
         "/usr/bin/systemctl",
     ]
 
-    DEFAULT_GROUPS = [
+    DEFAULT_DEVICES = [
         'video',
     ]
 
@@ -151,7 +151,7 @@ class SF_Installer():
             self.log_dir = log_dir
         self.log_file = f'{self.log_dir}/{self.name}.log'
 
-        self.add_groups = set(self.DEFAULT_GROUPS)
+        self.devices = set(self.DEFAULT_DEVICES)
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()
@@ -211,8 +211,8 @@ class SF_Installer():
                         return line.split('=')[1].strip().strip("'")
 
     def update_settings(self, settings):
-        if 'add_groups' in settings:
-            self.add_groups.update(settings['add_groups'])
+        if 'devices' in settings:
+            self.devices.update(settings['devices'])
         if 'build_dependencies' in settings:
             self.build_dependencies.update(settings['build_dependencies'])
         if 'run_scripts_before_install' in settings:
@@ -393,6 +393,7 @@ class SF_Installer():
 
     def setup_user(self):
         # Create group if not exist
+        self.print_title(f"Setup user {self.user}...")
         if self.run_command(f'getent group {self.user}')[0] == 0:
             print(f'{self.SKIPPED} Group "{self.user}" already exists, skip')
         else:
@@ -413,13 +414,14 @@ class SF_Installer():
         self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
 
-        # Add custom groups to user
+    def grant_device_permission(self):
+        # Add device groups to user
         groups = set()
-        for group in self.add_groups:
-            if not self.is_group_exist(group):
-                print(f"{self.WARNING} Group '{group}' does not exist, use default group 'dialout'")
-                group = 'dialout'
-            groups.add(group)
+        for device in self.devices:
+            if not self.is_group_exist(device):
+                print(f"{self.WARNING} Device '{device}' does not exist, use default device 'dialout'")
+                device = 'dialout'
+            groups.add(device)
 
         for group_name in groups:
             self.add_user_to_group(self.user, group_name)
@@ -678,6 +680,7 @@ class SF_Installer():
         self.print_title(f"Installing {self.friendly_name} {self.version}")
         self.wait_for_dpkg()
         self.setup_user()
+        self.grant_device_permission()
         self.install_build_dep()
         self.run_scripts_before_install()
         self.install_apt_dep()
