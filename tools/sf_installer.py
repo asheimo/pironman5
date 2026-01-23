@@ -6,6 +6,9 @@ import threading
 import os
 import glob
 import importlib
+import subprocess
+import grp
+
 
 class ConfigTxt(object):
     DEFAULT_BOOT_FILE = "/boot/firmware/config.txt"
@@ -115,7 +118,7 @@ class SF_Installer():
         "/usr/bin/systemctl",
     ]
 
-    DEFAULT_GROUPS = [
+    DEFAULT_DEVICES = [
         'video',
     ]
 
@@ -148,7 +151,7 @@ class SF_Installer():
             self.log_dir = log_dir
         self.log_file = f'{self.log_dir}/{self.name}.log'
 
-        self.add_groups = set(self.DEFAULT_GROUPS)
+        self.devices = set(self.DEFAULT_DEVICES)
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()
@@ -208,8 +211,8 @@ class SF_Installer():
                         return line.split('=')[1].strip().strip("'")
 
     def update_settings(self, settings):
-        if 'add_groups' in settings:
-            self.add_groups.update(settings['add_groups'])
+        if 'devices' in settings:
+            self.devices.update(settings['devices'])
         if 'build_dependencies' in settings:
             self.build_dependencies.update(settings['build_dependencies'])
         if 'run_scripts_before_install' in settings:
@@ -258,7 +261,6 @@ class SF_Installer():
         return user
 
     def run_command(self, cmd=""):
-        import subprocess
         p = subprocess.Popen(cmd,
                              shell=True,
                              executable="/bin/bash",
@@ -362,6 +364,23 @@ class SF_Installer():
         self.do(f'Install {name} from source',
                 f'{self.venv_pip} install {url}')
 
+    def is_group_exist(self, group: str) -> bool:
+        """
+        Check if group exists.
+        
+        Args:
+            group: Group name.
+        
+        Returns:
+            True if group exists, False otherwise.
+        
+        """
+        try:
+            grp.getgrnam(group)
+            return True
+        except KeyError:
+            return False
+
     def add_user_to_group(self, user, group):
         _, users, _ = self.run_command(f'getent group {group}')
         users = users.strip().split(':')
@@ -374,6 +393,7 @@ class SF_Installer():
 
     def setup_user(self):
         # Create group if not exist
+        self.print_title(f"Setup user {self.user}...")
         if self.run_command(f'getent group {self.user}')[0] == 0:
             print(f'{self.SKIPPED} Group "{self.user}" already exists, skip')
         else:
@@ -394,9 +414,17 @@ class SF_Installer():
         self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
 
-        # Add gpio group to user
-        for group in self.add_groups:
-            self.add_user_to_group(self.user, group)
+    def grant_device_permission(self):
+        # Add device groups to user
+        groups = set()
+        for device in self.devices:
+            if not self.is_group_exist(device):
+                print(f"{self.WARNING} Device '{device}' does not exist, use default device 'dialout'")
+                device = 'dialout'
+            groups.add(device)
+
+        for group_name in groups:
+            self.add_user_to_group(self.user, group_name)
 
     def wait_for_dpkg(self):
         os.system('bash scripts/wait_for_dpkg.sh')
@@ -652,6 +680,7 @@ class SF_Installer():
         self.print_title(f"Installing {self.friendly_name} {self.version}")
         self.wait_for_dpkg()
         self.setup_user()
+        self.grant_device_permission()
         self.install_build_dep()
         self.run_scripts_before_install()
         self.install_apt_dep()

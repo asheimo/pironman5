@@ -15,7 +15,7 @@ settings = {
         '--system-site-packages',
     ],
 
-    'add_groups': [],
+    'devices': [],
 
     # - Build required apt dependencies, default to []
     # 'build_dependencies': [
@@ -76,15 +76,20 @@ settings = {
 
 
 ws2812_settings = {
-    'add_groups': ['spi', 'gpio'],
+    'run_scripts_before_install': [
+        "install_lgpio.sh",
+        "fix_kali_gpio_spi.sh",
+    ],
+    'devices': ['spi', 'gpio'],
     'pip_dependencies': [
         'adafruit-circuitpython-neopixel-spi',
         'Adafruit-Blinka==8.59.0',
+        'rpi.lgpio',
     ],
 }
 
 oled_settings = {
-    'add_groups': ['i2c'],
+    'devices': ['i2c'],
     'apt_dependencies': [
         'libjpeg-dev', # for Pillow on 32 bit OS
         'libfreetype6-dev', # for Pillow on 32 bit OS
@@ -105,8 +110,9 @@ gpio_settings = {
     # - Before install scripts, default to []
     'run_scripts_before_install': [
         "install_lgpio.sh",
+        "fix_kali_gpio_spi.sh",
     ],
-    'add_groups': ['gpio'],
+    'devices': ['gpio'],
     # - Install from apt
     'apt_dependencies': [
         'python3-gpiozero', # for pm_auto fan control
@@ -120,14 +126,14 @@ gpio_settings = {
 }
 
 pi5_power_button_settings = {
-    'add_groups': ['input'],
+    'devices': ['input'],
     'pip_dependencies': [
         'evdev',
     ],
 }
 
 rgb_matrix_settings = {
-    'add_groups': ['i2c'],
+    'devices': ['i2c'],
     'pip_dependencies': [
         'smbus2',
         'numpy',
@@ -154,7 +160,7 @@ dashboard_settings = {
 
 pipower5_settings = {
     # Install python packages from source
-    'add_groups': ['i2c'],
+    'devices': ['i2c'],
     'python_source': {
         'pipower5': f'git+https://github.com/sunfounder/pipower5.git@{PIPOWER5_VERSION}',
         'spc': f'git+https://github.com/sunfounder/spc.git',
