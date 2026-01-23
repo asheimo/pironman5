@@ -124,7 +124,7 @@ gpio_settings = {
 }
 
 pi5_power_button_settings = {
-    'add_groups': ['input/event'],
+    'add_groups': ['input'],
     'pip_dependencies': [
         'evdev',
     ],

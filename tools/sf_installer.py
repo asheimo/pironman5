@@ -7,7 +7,7 @@ import os
 import glob
 import importlib
 import subprocess
-
+import grp
 
 
 class ConfigTxt(object):
@@ -364,55 +364,22 @@ class SF_Installer():
         self.do(f'Install {name} from source',
                 f'{self.venv_pip} install {url}')
 
-    def get_device_group(self, device: str) -> str:
+    def is_group_exist(self, group: str) -> bool:
         """
-        Get group name of device file.
+        Check if group exists.
         
         Args:
-            device: Device file name (e.g. "i2c", "spi").
+            group: Group name.
         
         Returns:
-            Group name of device file.
+            True if group exists, False otherwise.
         
         """
         try:
-            # get device file path
-            device_files = sorted(glob.glob(f"/dev/{device}*"))
-            if not device_files:
-                print(f"{self.WARNING} Can not find '/dev/{device}*' device file")
-                return ""
-            
-            # Get first device file (avoid multiple devices)
-            target_device = device_files[0]
-            
-            # Get device file's stat info (includes group ID)
-            result = subprocess.run(
-                ["stat", "-c", "%G", target_device],
-                capture_output=True,
-                text=True,
-                check=True  # Check if command failed
-            )
-            
-            # Get group name from command output
-            group_name = result.stdout.strip()
-            
-            # Check if group is root (high risk)
-            if group_name == "root":
-                print(f"{self.WARNING} Device {target_device} belongs to root group (high risk)")
-                return ""
-
-            return group_name
-            
-            print(f"{self.SUCCESS} Get device group: {target_device} -> {group_name}")
-            return group_name
-        
-        except PermissionError:
-            print(f"{self.WARNING} Can not access device file '{target_device}'")
-            return ""
-        except Exception as e:
-            # 捕获所有其他异常（如pwd模块找不到组ID、文件被删除等）
-            print(f"{self.WARNING} Get device group failed - {str(e)}")
-            return ""
+            grp.getgrnam(group)
+            return True
+        except KeyError:
+            return False
 
     def add_user_to_group(self, user, group):
         _, users, _ = self.run_command(f'getent group {group}')
@@ -448,12 +415,11 @@ class SF_Installer():
 
         # Add custom groups to user
         groups = set()
-        for device in self.add_groups:
-            group_name = self.get_device_group(device)
-            if group_name == "":
-                print(f"{self.FAILED} Can not get group name of device '{device}', skip")
-                continue
-            groups.add(group_name)
+        for group in self.add_groups:
+            if not self.is_group_exist(group):
+                print(f"{self.WARNING} Group '{group}' does not exist, use default group 'dialout'")
+                group = 'dialout'
+            groups.add(group)
 
         for group_name in groups:
             self.add_user_to_group(self.user, group_name)
