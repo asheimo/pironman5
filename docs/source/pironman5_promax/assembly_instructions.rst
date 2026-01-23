@@ -27,10 +27,3 @@ Before assembling the Pironman, please first verify that all parts and component
 
 * :download:`[PDF]Component List and Assembly of Pironman 5 Pro MAX <Pironman5ProMAX.pdf>`
 
-
-.. **Video Tutorial**
-
-
-.. .. raw:: html
-
-..     <iframe width="700" height="500" src="https://www.youtube.com/embed/Iucf51zInWQ?si=Rveb_L7FIGCq1N5C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
