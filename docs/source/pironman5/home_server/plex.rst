@@ -12,26 +12,23 @@
 
     👉 Bereit, mit uns zu entdecken und zu erschaffen? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
 
-
-Setting up Plex
+Konfiguration von Plex
 =======================================
 
-Plex ist eine leistungsstarke Media-Server-Plattform, mit der du deine Filme, TV-Sendungen, Musik und Fotos auf mehreren Geräten organisieren, streamen und abrufen kannst.  
-Wenn du Plex auf der Pironman5-Serie mit Raspberry Pi einrichtest, kannst du ein erschwingliches und energieeffizientes Heim-Mediencenter schaffen, das rund um die Uhr läuft.  
-Die kompakte Größe, der geringe Stromverbrauch und die Flexibilität des Raspberry Pi machen ihn zu einer ausgezeichneten Wahl für das Hosten von Plex und verwandeln deinen Pi in ein persönliches Entertainment-Hub, das über dein Heimnetzwerk oder sogar aus der Ferne zugänglich ist.
-
+Plex ist eine leistungsstarke Medien-Server-Plattform, die es Ihnen ermöglicht, Ihre Filme, TV-Serien, Musik und Fotos auf mehreren Geräten zu organisieren, zu streamen und darauf zuzugreifen.
+Durch die Einrichtung von Plex auf der Raspberry Pi-gesteuerten Pironman5-Serie können Sie ein kostengünstiges, energieeffizientes und rund um die Uhr laufendes Heim-Medienzentrum einrichten.
+Die kompakte Größe, der niedrige Energieverbrauch und die Flexibilität des Raspberry Pi machen ihn zu einer hervorragenden Wahl für das Hosten von Plex und verwandeln Ihren Pi in einen persönlichen Unterhaltungs-Hub, auf den Sie über Ihr Heimnetzwerk oder sogar aus der Ferne zugreifen können.
 
 **Vorbereitung**
 
-* MicroSD-Karte (16GB+, Class 10 empfohlen)  
-* Offizielles Raspberry Pi Betriebssystem Raspberry Pi OS (oder Raspberry Pi OS Lite)  
-* Stabile Netzwerkverbindung (verkabeltes Ethernet empfohlen)  
-* Externe Festplatte oder USB-Stick (für erweiterten Speicherplatz)  
-
+* MicroSD-Karte (16 GB+, Klasse 10 empfohlen)
+* Offizielles Raspberry Pi OS (oder Raspberry Pi OS Lite)
+* Stabile Netzwerkverbindung (verkabelte Ethernet-Verbindung empfohlen)
+* Externe Festplatte oder USB-Stick (für erweiterten Speicher)
 
 **Portainer installieren**
 
-Öffne das Terminal und gib die folgenden Befehle ein:
+Öffnen Sie das Terminal und geben Sie die folgenden Befehle ein:
 
 1. Docker installieren
 
@@ -45,77 +42,76 @@ Die kompakte Größe, der geringe Stromverbrauch und die Flexibilität des Raspb
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. Öffne deinen Browser und rufe deine Portainer-Adresse auf: ``http://<your-rpi-ip-address>:9443`` .
+3. Starten Sie Ihren Raspberry Pi neu. (Führen Sie dann die folgenden Schritte **SOFORT** aus.)
 
-.. note::
+4. Nachdem Ihr Raspberry Pi gestartet ist, öffnen Sie einen Webbrowser und besuchen Sie Ihre Portainer-Adresse: ``http://<Ihre-RPi-IP-Adresse>:9443``.
 
-   Standardmäßig kann es sein, dass du eine Warnung siehst, dass die Seite ein selbstsigniertes SSL/TLS-Zertifikat verwendet, das nicht von einer bekannten Zertifizierungsstelle (CA) ausgestellt wurde. Die meisten Webbrowser zeigen eine solche Warnung an.  
-   In diesem Fall kannst du die Warnung sicher ignorieren, das Risiko akzeptieren und fortfahren.
+5. Standardmäßig sehen Sie eine Warnung, dass die Website ein selbstsigniertes SSL/TLS-Zertifikat verwendet, das nicht von einer anerkannten Zertifizierungsstelle (CA) ausgestellt wurde. Die meisten Browser zeigen eine solche Warnung an. In diesem Fall können Sie sie gefahrlos ignorieren, das Risiko akzeptieren und fortfahren.
 
    .. image:: img/home_server_app/private_save.png
 
-
-4. Beim ersten Login wirst du aufgefordert, ein Administrator-Passwort festzulegen.
+#. Bei Ihrer ersten Anmeldung müssen Sie ein Administratorkennwort festlegen.
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. Nachdem du das Admin-Konto erstellt hast, gelangst du in die Portainer-Oberfläche. Gehe in der linken Navigationsleiste zu **Setting -> General**, finde **App Templates**, und gib die folgende URL in das Feld ein:  
-   ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#. Nachdem Sie das Administratorkonto erstellt haben, gelangen Sie zur Portainer-Oberfläche. Gehen Sie in der linken Navigationsleiste zu **Settings (Einstellungen) -> General (Allgemein)**, suchen Sie **App Templates (Anwendungsvorlagen)** und geben Sie die folgende URL in das Feld ein: ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. Klicke auf **Save Application Settings**. Die Einrichtung dauert etwa 10 Sekunden.
-
+#. Klicken Sie auf **Save Application Settings (Anwendungseinstellungen speichern)**. Die Konfiguration dauert etwa 10 Sekunden.
 
 **Plex installieren**
 
-1. Klicke in der linken Navigationsleiste auf **Home -> local -> Templates -> Application**. Gib in der Suchleiste oben rechts *plex* ein und wähle es aus.
+1. Klicken Sie in der linken Navigationsleiste auf **Home (Startseite) -> local**.
+
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2. Gehen Sie zu **Templates (Vorlagen) -> Application (Anwendung)**. Geben Sie *plex* in die Suchleiste oben rechts ein und klicken Sie darauf.
 
    .. image:: img/home_server_app/ptn_temp_plex.png
 
-2. Stelle den Netzwerkmodus auf **host**.
+#. Setzen Sie den Netzwerkmodus auf **host (Host)**.
 
    .. image:: img/home_server_app/ptn_plex_network_host.png
 
-3. Erweitere **Show advanced options**.
+#. Klappen Sie **Show advanced options (Erweiterte Optionen anzeigen)** auf.
 
    .. image:: img/home_server_app/ptn_plex_ad_option1.png
 
-4. Konfiguriere im Abschnitt **volume mapping** die Speicherpfade für deine Mediendateien und gewähre Plex Lese-/Schreibrechte. Die Standardpfade sind ``/portainer/TV`` und ``/portainer/Movies``, beide mit aktiviertem Lese-/Schreibzugriff.
+#. Im Abschnitt **volume mapping (Volume-Zuordnung)** konfigurieren Sie die Speicherpfade für Ihre Mediendateien und erteilen Sie Plex Lese-/Schreibberechtigungen. Die Standardpfade sind ``/portainer/TV`` und ``/portainer/Movies``, beide mit aktiviertem Lese-/Schreibzugriff.
 
    .. image:: img/home_server_app/ptn_plex_ad_option2.png
 
-5. Klicke auf **Deploy** und warte, bis die Installation von Plex abgeschlossen ist.
+#. Klicken Sie auf **Deploy (Bereitstellen)** und warten Sie, bis die Installation von Plex abgeschlossen ist.
 
+**Plex-Server konfigurieren**
 
-**Plex Server konfigurieren**
-
-1. Öffne deinen Browser und gib ein: ``http://<your_ip>:32400/`` . Du solltest nun die Plex-Oberfläche sehen.
+1. Öffnen Sie Ihren Browser und geben Sie ein: ``http://<Ihre_IP>:32400/web`` . Sie sollten nun die Plex-Oberfläche sehen.
 
    .. image:: img/home_server_app/plex_visit.png
 
-2. Überspringe das Premium-Abonnement-Angebot.
+2. Überspringen Sie das Premium-Abonnement-Angebot.
 
-3. Als Nächstes siehst du den Bildschirm **Server Setup**. Du kannst *Allow me to access my media outside my home* aktivieren. Es wird jedoch empfohlen, dies zunächst deaktiviert zu lassen und es später bei Bedarf zu konfigurieren.
+3. Als nächstes sehen Sie den **Server Setup (Server-Einrichtungs)**-Bildschirm. Sie können *Allow me to access my media outside my home (Mir erlauben, auf meine Medien außerhalb meines Zuhauses zuzugreifen)* aktivieren. Es wird jedoch empfohlen, diese Option vorerst deaktiviert zu lassen und sie später bei Bedarf zu konfigurieren.
 
    .. image:: img/home_server_app/plex_server_setup1.png
 
-4. Danach wirst du aufgefordert, deine Medien zu organisieren. Du kannst *Skip* wählen und Medien später über die Einstellungen hinzufügen. Es wird jedoch empfohlen, direkt die Speicherpfade hinzuzufügen, die du zuvor im Volume Mapping von Portainer eingerichtet hast, sodass Plex deine Medien automatisch scannen und importieren kann.
+4. Anschließend werden Sie aufgefordert, Ihre Medien zu organisieren. Sie können *Skip (Überspringen)* wählen und Medien später über die Einstellungen hinzufügen. Es wird jedoch empfohlen, die Speicherpfade, die Sie in der Volume-Zuordnung von Portainer konfiguriert haben, direkt hinzuzufügen, damit Plex Ihre Medien automatisch scannen und importieren kann.
 
    .. image:: img/home_server_app/plex_server_setup2.png
 
-5. Wähle den Typ deiner Medienbibliothek, gib deiner Bibliothek einen Namen und wähle die Sprache.
+5. Wählen Sie den Typ Ihrer Medienbibliothek aus, geben Sie Ihrer Bibliothek einen Namen und wählen Sie die Sprache.
 
    .. image:: img/home_server_app/plex_server_setup2_add_lib1.png
 
-6. Füge Ordner hinzu. Suche die zuvor eingerichteten Medienspeicherpfade und klicke auf **Add Library**.
+6. Fügen Sie Ordner hinzu. Navigieren Sie zu den zuvor definierten Speicherpfaden Ihrer Medien und klicken Sie auf **Add Library (Bibliothek hinzufügen)**.
 
    .. image:: img/home_server_app/plex_server_setup2_add_lib2.png
 
-7. Klicke auf **Finish**. Dein Raspberry Pi Plex-Server ist nun vollständig konfiguriert.
+7. Klicken Sie auf **Finish (Beenden)**. Ihr Plex-Server auf dem Raspberry Pi ist nun vollständig eingerichtet.
 
    .. image:: img/home_server_app/plex_server_setup3.png
 
-8. Du solltest nun deine Mediendateien auf der Plex-Server-Startseite sehen.
+8. Sie sollten nun Ihre Mediendateien auf der Startseite des Plex-Servers angezeigt sehen.
 
    .. image:: img/home_server_app/plex_index.png

@@ -29,7 +29,7 @@ In diesem Kapitel findest du eine detaillierte Beschreibung aller Komponenten de
     hdmi_adapter
     nvme_pip
     microsd_extender
-    power_switch_conventor
+    power_switch_convertor
     tower_cooler
     oled_screen
     fans
