@@ -47,50 +47,52 @@ Ouvre le terminal et entre les commandes suivantes :
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. Ouvre ton navigateur et visite ton adresse Portainer : ``http://<your-rpi-ip-address>:9443`` .
+3. Redémarre ton Raspberry Pi. (Puis effectue les étapes suivantes **IMMÉDIATEMENT**.)
 
-.. note::
+4. Après le démarrage de ton Raspberry Pi, ouvre un navigateur web et visite ton adresse Portainer : ``https://<adresse-ip-de-ton-rpi>:9443`` .
 
-   Par défaut, tu verras un avertissement indiquant que le site utilise un certificat SSL/TLS auto-signé qui n’a pas été émis par une Autorité de Certification (CA) reconnue.  
-   La plupart des navigateurs afficheront un tel avertissement.  
-   Dans ce cas, tu peux l’ignorer sans risque, accepter et continuer.
+5. Par défaut, tu verras un avertissement indiquant que le site utilise un certificat SSL/TLS auto-signé qui n’a pas été émis par une Autorité de Certification (CA) reconnue. La plupart des navigateurs afficheront un tel avertissement. Dans ce cas, tu peux ignorer l’avertissement sans risque, accepter le risque et continuer.
 
    .. image:: img/home_server_app/private_save.png
 
-
-4. Lors de la première connexion, tu devras définir un mot de passe administrateur.
+#. Lors de la première connexion, tu devras définir un mot de passe administrateur.
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. Après avoir enregistré le compte administrateur, tu accéderas à l’interface de Portainer. Depuis la barre de navigation à gauche, clique sur **Setting -> General**, trouve **App Templates**, et entre l’URL suivante dans le champ : ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#. Après l’enregistrement du compte administrateur, tu accéderas à l’interface de Portainer. Depuis la barre de navigation de gauche, clique sur **Settings (Paramètres) -> General (Général)**, trouve **App Templates (Modèles d’application)**, et entre l’URL suivante dans le champ : ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. Clique sur **Save Application Settings**. La configuration prendra environ 10 secondes.
+#. Clique sur **Save Application Settings (Enregistrer les paramètres de l’application)**. La configuration prendra environ 10 secondes.
 
 
 **Installer NextCloud**
 
-1. Dans la barre de navigation de gauche, clique sur **Home -> local -> Templates -> Application**. Dans la barre de recherche en haut à droite, tape *nextcloud* et clique dessus.
+1. Dans la barre de navigation de gauche, clique sur **Home (Accueil) -> local**
+
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2. Rends-toi dans **Templates (Modèles) -> Application**. Dans la barre de recherche en haut à droite, tape *nextcloud* et clique dessus.
 
    .. image:: img/home_server_app/ptn_temp_nextcloud.png
 
-2. Clique sur **Deploy the stack**, et attends que le déploiement soit terminé. Cela prend généralement environ deux minutes.
+3. Clique sur **Deploy the stack (Déployer la pile)**, et attends que le déploiement se termine. Cela prend généralement environ deux minutes.
 
    .. image:: img/home_server_app/ptn_temp_deploy.png
 
-Une fois terminé, NextCloud sera installé.
+4. Une fois terminé, NextCloud sera installé.
+
+   .. image:: img/home_server_app/ptn_temp_nextcloud_deploy_finish.png
 
 
 **Utiliser NextCloud**
 
-1. Ouvre ton navigateur et visite ton adresse NextCloud : ``http://<your-rpi-ip-address>:32768`` .
+1. Ouvre ton navigateur et visite ton adresse NextCloud : ``https://<adresse-ip-de-ton-rpi>:32768`` .
 
 .. note::
 
-   De la même manière, tu verras un avertissement indiquant que le site utilise un certificat SSL/TLS auto-signé qui n’a pas été émis par une Autorité de Certification (CA) reconnue.  
-   La plupart des navigateurs afficheront un tel avertissement.  
-   Dans ce cas, tu peux l’ignorer sans risque, accepter et continuer.
+   De la même manière, tu verras un avertissement indiquant que le site utilise un certificat SSL/TLS auto-signé qui n’a pas été émis par une Autorité de Certification (CA) reconnue. La plupart des navigateurs afficheront un tel avertissement.  
+   Dans ce cas, tu peux ignorer l’avertissement sans risque, accepter le risque et continuer.
 
    .. image:: img/home_server_app/private_save.png
 

@@ -28,7 +28,7 @@ Ce chapitre propose une description détaillée de tous les composants du Pironm
     hdmi_adapter
     nvme_pip
     microsd_extender
-    power_switch_conventor
+    power_switch_convertor
     tower_cooler
     oled_screen
     fans
