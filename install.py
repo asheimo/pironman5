@@ -141,6 +141,7 @@ rgb_matrix_settings = {
 }
 
 dashboard_settings = {
+    'devices': ['influxdb'],
     # - Build required apt dependencies, default to []
     'build_dependencies': [
         'curl', # for influxdb key download
