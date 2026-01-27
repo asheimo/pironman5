@@ -12,7 +12,7 @@
 
     👉 Pronto a esplorare e creare con noi? Clicca [|link_sf_facebook|] e unisciti oggi stesso!
 
-.. _install_to_sd_home_bridge:
+.. _install_to_sd_home_bridge_max:
 
 Installazione del sistema operativo su una scheda Micro SD
 ====================================================================

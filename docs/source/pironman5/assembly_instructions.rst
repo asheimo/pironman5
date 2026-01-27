@@ -33,7 +33,14 @@ Se utilizzi un NVMe SSD, segui questo video per assemblare e configurare il Piro
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/tCKTgAeWIjc?si=xbmsWGBvCWefX01T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/tCKTgAeWIjc?si=xbmsWGBvCWefX01T" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
 **Guida Completa all'Assemblaggio e Avvio: Pironman 5 con Micro SD Card**
 
@@ -41,5 +48,12 @@ Se utilizzi una Micro SD card, segui questo video per assemblare e configurare i
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://www.youtube.com/embed/-5rTwJ0oMVM?si=je5SaLccHzjjEhuD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/-5rTwJ0oMVM?si=je5SaLccHzjjEhuD" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
 
