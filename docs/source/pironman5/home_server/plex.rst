@@ -16,109 +16,103 @@
 Plex の設定
 =======================================
 
-Plex は強力な家庭用の映像音声配信サーバーであり、映画、連続ドラマ、音楽、写真を整理し、配信し、複数の端末から利用できるようにします。  
-Raspberry Pi を搭載した Pironman5 シリーズに Plex を導入することで、安価で省電力な家庭用映像音声センターを 24 時間体制で構築できます。  
-Raspberry Pi の小型さ、低消費電力、柔軟性は Plex を運用するのに最適であり、自宅内の通信網や外部からでも利用できる個人用の娯楽拠点に変えることができます。
-
+Plexは、あなたの映画、テレビ番組、音楽、写真を整理、ストリーミング、複数デバイスからアクセスできる強力なメディアサーバープラットフォームです。
+Raspberry Piを基盤とするPironman5シリーズ上にPlexを設定することで、手頃な価格で低消費電力、24時間365日稼働の家庭用メディアセンターを作成できます。
+Raspberry Piのコンパクトサイズ、低消費電力、柔軟性はPlexをホストするのに優れた選択肢であり、あなたのPiを家庭内ネットワークから、またはリモートでさえアクセス可能な個人用エンターテインメントハブへと変えます。
 
 **準備**
 
-* MicroSD カード（16GB 以上、Class 10 推奨）  
-* 正規の Raspberry Pi OS（または Raspberry Pi OS Lite）  
-* 安定した通信網（有線接続推奨）  
-* 外付け記憶装置または USB 記憶装置（追加の保存領域用）  
+*  マイクロSDカード（16GB以上、クラス10を推奨）
+*  Raspberry Pi OS 公式システム（またはRaspberry Pi OS Lite）
+*  安定したネットワーク接続（有線Ethernet接続を推奨）
+*  外付けハードディスクドライブまたはUSBメモリ（ストレージ拡張用）
 
+**Portainer のインストール**
 
-**Portainer を導入**
+ターミナルを開き、以下のコマンドを入力します：
 
-端末を開き、次の命令を入力します：
-
-1. Docker を導入
+1.  Dockerをインストールする
 
 .. code-block:: bash
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_docker.sh | sudo bash
 
-2. Portainer を導入
+2.  Portainerをインストールする
 
 .. code-block:: bash
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. 通信閲覧ソフトを開き、Portainer の所在に移動します: ``http://<your-rpi-ip-address>:9443`` .
+3.  Raspberry Piを再起動します。（その後、 **直ちに** 以下の手順を実行してください。）
 
-.. note::
+4.  Raspberry Piの起動後、ウェブブラウザを開き、あなたのRaspberry PiのアドレスでPortainerにアクセスします： ``http://<あなたのRPIのIPアドレス>:9443`` 。
 
-   標準では、この所在は自署名の証明書を用いているため、認証局によって発行されていないという注意が表示されます。  
-   多くの通信閲覧ソフトはこのような証明について警告を示します。  
-   この場合、注意を無視し、危険を承知で進んでも問題はありません。
+5.  デフォルトでは、サイトが認証局（CA）によって発行されていない自己署名済みのSSL/TLS証明書を使用しているという警告が表示される場合があります。ほとんどのブラウザはこのような警告を表示します。この場合、警告は安全に無視し、リスクを受け入れて進むことができます。
 
    .. image:: img/home_server_app/private_save.png
 
-
-4. 最初の利用時に管理者の暗証を設定する必要があります。
+#.  初回ログイン時には、管理者パスワードを設定する必要があります。
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. 管理者の登録後、Portainer の画面に入ります。左側の案内欄から **Setting -> General** を押し、 **App Templates** を探して、次の所在を入力します:  
-   ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#.  管理者アカウントを登録後、Portainerのインターフェースにアクセスできます。左側のナビゲーションバーから **設定 -> 一般** をクリックし、 **アプリケーションテンプレート** を見つけて、以下のURLを入力欄に入力します： ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. **Save Application Settings** を押します。設定が完了するまでにおよそ十秒かかります。
+#.  **アプリケーション設定を保存** をクリックします。設定には約10秒かかります。
 
+**Plex のインストール**
 
-**Plex を導入**
+1.  左側のナビゲーションバーで、 **ホーム -> local** をクリックします。
 
-1. 左の案内欄から **Home -> local -> Templates -> Application** を押します。右上の探索欄に *plex* と入力し、それを選びます。
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2.  **テンプレート -> アプリケーション** に移動します。右上の検索バーに *plex* と入力してクリックします。
 
    .. image:: img/home_server_app/ptn_temp_plex.png
 
-2. 通信網の様式を **host** に設定します。
+#.  ネットワークモードを **host (ホスト)** に設定します。
 
    .. image:: img/home_server_app/ptn_plex_network_host.png
 
-3. **Show advanced options** を展開します。
+#.  **詳細オプションを表示** を展開します。
 
    .. image:: img/home_server_app/ptn_plex_ad_option1.png
 
-4. **volume mapping** の区画で、映像音声資料の所在を設定し、Plex に読込／書込の許可を与えます。  
-   標準の所在は ``/portainer/TV`` と ``/portainer/Movies`` であり、両方に読込／書込の権限が与えられています。
+#.  **ボリュームマッピング** セクションで、メディアファイルのストレージパスを設定し、Plexに読み書き権限を付与します。デフォルトのパスは ``/portainer/TV`` と ``/portainer/Movies`` で、両方とも読み書きアクセスが有効になっています。
 
    .. image:: img/home_server_app/ptn_plex_ad_option2.png
 
-5. **Deploy** を押し、Plex の導入が終わるのを待ちます。
-
+#.  **デプロイ** をクリックし、Plexのインストールが完了するまで待ちます。
 
 **Plex サーバーの設定**
 
-1. 通信閲覧ソフトを開き、所在を入力します: ``http://<your_ip>:32400/`` 。ここで Plex の画面が表示されるはずです。
+1.  ブラウザを開き、以下を入力します： ``http://<あなたのIPアドレス>:32400/web`` 。これでPlexのインターフェースが表示されるはずです。
 
    .. image:: img/home_server_app/plex_visit.png
 
-2. 有料契約の案内は飛ばします。
+2.  プレミアムサブスクリプションのオファーはスキップします。
 
-3. 次に **Server Setup** の画面が表示されます。*Allow me to access my media outside my home* を選ぶことができます。  
-   ただし、今のところは外しておき、必要に応じて後で設定するのが勧められます。
+3.  次に、 **サーバー設定** 画面が表示されます。 *自宅外からメディアにアクセスすることを許可する* にチェックを入れることができます。現時点では、このオプションはチェックを外したままにし、必要に応じて後で設定することを推奨します。
 
    .. image:: img/home_server_app/plex_server_setup1.png
 
-4. その後、映像音声を整理するよう求められます。*Skip* を選んで後で設定から追加してもよいですが、Portainer の volume mapping で設定した所在を直接追加し、Plex が自動で読み込みできるようにすることが勧められます。
+4.  次に、メディアの整理を求められます。 *スキップ* を選択して後から設定でメディアを追加することもできます。ただし、Portainerのボリュームマッピングで設定したストレージパスを直接追加することを推奨します。これにより、Plexが自動的にメディアをスキャンしてインポートできます。
 
    .. image:: img/home_server_app/plex_server_setup2.png
 
-5. 映像音声の種類を選び、名をつけ、言語を選びます。
+5.  メディアライブラリの種類を選択し、ライブラリに名前を付け、言語を選択します。
 
    .. image:: img/home_server_app/plex_server_setup2_add_lib1.png
 
-6. 資料の所在を追加します。先に設定した所在を選び、 **Add Library** を押します。
+6.  フォルダを追加します。前に定義したメディアのストレージパスを探し、 **ライブラリを追加** をクリックします。
 
    .. image:: img/home_server_app/plex_server_setup2_add_lib2.png
 
-7. **Finish** を押します。これで Raspberry Pi 上の Plex サーバーが完全に設定されました。
+7.  **完了** をクリックします。これで、Raspberry Pi上のPlexサーバーが完全に設定されました。
 
    .. image:: img/home_server_app/plex_server_setup3.png
 
-8. Plex サーバーの最初の画面に、あなたの映像音声資料が表示されるはずです。
+8.  これで、あなたのメディアファイルがPlexサーバーのホームページに表示されるはずです。
 
    .. image:: img/home_server_app/plex_index.png

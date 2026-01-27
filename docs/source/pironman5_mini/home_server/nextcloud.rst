@@ -16,88 +16,86 @@
 NextCloudPi の設定
 =======================================
 
-NextCloud は、Google Drive や Dropbox に似たオープンソースのプライベートクラウドストレージソリューションです。  
-ファイルの保存、ドキュメントの共有、写真の同期、カレンダーや連絡先の管理に利用できます。  
-パブリッククラウドサービスとは異なり、NextCloud はユーザーにデータの完全なコントロールを提供するため、プライバシーやデータセキュリティを重視する個人や小規模チームに最適です。
+NextCloudは、Google DriveやDropboxに似たオープンソースの個人用クラウドストレージソリューションです。
+ファイルの保存、ドキュメントの共有、写真の同期、カレンダーや連絡先の管理に使用できます。
+公開クラウドサービスとは異なり、NextCloudはユーザーにデータの完全なコントロールを提供するため、プライバシーとデータセキュリティを重視する個人や小規模チームに理想的なソリューションです。
 
-Raspberry Pi 搭載の Pironman5 シリーズは、低消費電力、コンパクトなサイズ、信頼性の高いパフォーマンスを提供し、家庭用プライベートクラウドサーバーとして最適な選択肢です。NextCloud と組み合わせることで、コスト効率の高い NAS システムとして利用できます。
-
+Raspberry Piを基盤とするPironman5シリーズは、低消費電力、コンパクトサイズ、そして信頼性の高い性能を備えており、家庭用の個人クラウドサーバーとして優れた選択肢となります。NextCloudと組み合わせることで、低コストのNASシステムとして機能します。
 
 **準備**
 
-* MicroSD カード (16GB 以上、Class 10 推奨)  
-* Raspberry Pi 公式システム Raspberry Pi OS (または Raspberry Pi OS Lite)  
-* 安定したネットワーク接続 (有線 Ethernet 推奨)  
-* 外付けハードドライブまたは USB メモリ (拡張ストレージ用)  
-
+*  マイクロSDカード（16GB以上、クラス10を推奨）
+*  Raspberry Pi OS 公式システム（またはRaspberry Pi OS Lite）
+*  安定したネットワーク接続（有線Ethernet接続を推奨）
+*  外付けハードディスクドライブまたはUSBメモリ（ストレージ拡張用）
 
 **Portainer のインストール**
 
-ターミナルを開き、次のコマンドを入力します：
+ターミナルを開き、以下のコマンドを入力します：
 
-1. Docker のインストール
+1.  Dockerをインストールする
 
 .. code-block:: bash
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_docker.sh | sudo bash
 
-2. Portainer のインストール
+2.  Portainerをインストールする
 
 .. code-block:: bash
 
    curl -sSL https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_portainer.sh | sudo bash
 
-3. ブラウザを開き、Portainer のアドレスにアクセスします: ``http://<your-rpi-ip-address>:9443`` .
+3.  Raspberry Piを再起動します。（その後、 **直ちに** 以下の手順を実行してください。）
 
-.. note::
+4.  Raspberry Piの起動後、ウェブブラウザを開き、あなたのRaspberry PiのアドレスでPortainerにアクセスします： ``https://<あなたのRPIのIPアドレス>:9443`` 。
 
-   デフォルトでは、サイトが自己署名 SSL/TLS 証明書を使用しているため、認証局 (CA) によって発行されていないという警告が表示されます。  
-   ほとんどのブラウザはこのような証明書について警告を表示します。  
-   この場合、警告を無視してリスクを受け入れ、続行して問題ありません。
+5.  デフォルトでは、サイトが認証局（CA）によって発行されていない自己署名済みのSSL/TLS証明書を使用しているという警告が表示されます。ほとんどのブラウザはこのような警告を表示します。この場合、警告は安全に無視し、リスクを受け入れて進むことができます。
 
    .. image:: img/home_server_app/private_save.png
 
-
-4. 初回ログイン時に管理者パスワードを設定する必要があります。
+#.  初回ログイン時には、管理者パスワードを設定する必要があります。
 
    .. image:: img/home_server_app/ptn_new_admin.png
 
-5. 管理者アカウントを登録すると、Portainer のインターフェイスに入ります。左側のナビゲーションバーから **Setting -> General** をクリックし、 **App Templates** を探して、次の URL を入力します: ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
+#.  管理者アカウントを登録後、Portainerのインターフェースにアクセスできます。左側のナビゲーションバーから **設定 -> 一般** をクリックし、 **アプリケーションテンプレート** を見つけて、以下のURLを入力欄に入力します： ``https://raw.githubusercontent.com/novaspirit/pi-hosted/refs/heads/master/template/portainer-v3-arm64.json``
 
    .. image:: img/home_server_app/ptn_app_url.png
 
-6. **Save Application Settings** をクリックします。設定の完了には約 10 秒かかります。
-
+#.  **アプリケーション設定を保存** をクリックします。設定には約10秒かかります。
 
 **NextCloud のインストール**
 
-1. 左側のナビゲーションバーから **Home -> local -> Templates -> Application** をクリックします。右上の検索バーに *nextcloud* と入力し、クリックします。
+1.  左側のナビゲーションバーで、 **ホーム -> local** をクリックします。
+
+   .. image:: img/home_server_app/ptn_home_local.png
+
+2.  **テンプレート -> アプリケーション** に移動します。右上の検索バーに *nextcloud* と入力してクリックします。
 
    .. image:: img/home_server_app/ptn_temp_nextcloud.png
 
-2. **Deploy the stack** をクリックし、デプロイが完了するまで待ちます。通常は約 2 分かかります。
+3.  **スタックをデプロイ** をクリックし、デプロイが完了するまで待ちます。通常、約2分かかります。
 
    .. image:: img/home_server_app/ptn_temp_deploy.png
 
-完了すると、NextCloud がインストールされます。
+4.  完了すると、NextCloudがインストールされます。
 
+   .. image:: img/home_server_app/ptn_temp_nextcloud_deploy_finish.png
 
 **NextCloud の使用**
 
-1. ブラウザを開き、NextCloud のアドレスにアクセスします: ``http://<your-rpi-ip-address>:32768`` .
+1.  ブラウザを開き、あなたのRaspberry PiのアドレスでNextCloudにアクセスします： ``https://<あなたのRPIのIPアドレス>:32768`` 。
 
 .. note::
 
-   同様に、サイトが自己署名 SSL/TLS 証明書を使用しているため、認証局 (CA) によって発行されていないという警告が表示されます。  
-   ほとんどのブラウザはこのような証明書について警告を表示します。  
-   この場合、警告を無視してリスクを受け入れ、続行して問題ありません。
+   同様に、サイトが認証局（CA）によって発行されていない自己署名済みのSSL/TLS証明書を使用しているという警告が表示されます。ほとんどのブラウザはこのような警告を表示します。
+   この場合、警告は安全に無視し、リスクを受け入れて進むことができます。
 
    .. image:: img/home_server_app/private_save.png
 
-2. 初回ログイン時に管理者パスワードを設定する必要があります。
+2.  初回ログイン時には、管理者パスワードを設定する必要があります。
 
    .. image:: img/home_server_app/nc_admin_install.png
 
-3. 登録後、NextCloud を使用開始できます。
+3.  登録後、NextCloudの使用を開始できます。
 
    .. image:: img/home_server_app/nc_dashboard.png
