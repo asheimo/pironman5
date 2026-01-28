@@ -11,7 +11,7 @@
 
    .. image:: img/pi5_j2.jpg
 
-* 在 Pironman 5 中，**电源开关扩展器**通过两个弹簧触点（Pogo Pin）将 **J2** 跳线口延伸至外部电源按钮。
+* 在 Pironman 5 中， **电源开关扩展器** 通过两个弹簧触点（Pogo Pin）将 **J2** 跳线口延伸至外部电源按钮。
 
    .. image:: img/power_switch_convertor.png
 

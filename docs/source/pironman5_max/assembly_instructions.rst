@@ -18,7 +18,14 @@
 
 .. raw:: html
 
-    <iframe width="700" height="500" src="https://player.bilibili.com/player.html?isOutside=true&aid=115009560584142&bvid=BV1F3bLzAEwx&cid=31625383546&p=1" title="Bilibili video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://player.bilibili.com/player.html?isOutside=true&aid=115009560584142&bvid=BV1F3bLzAEwx&cid=31625383546&p=1" 
+    title="Bilibili video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen></iframe>
 
 .. raw:: html
 

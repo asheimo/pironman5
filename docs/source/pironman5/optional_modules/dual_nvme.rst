@@ -7,7 +7,7 @@ Dual NVMe
 
 .. note::
 
-    Pironman 5 系列产品**不包含**双 NVMe 模块。  
+    Pironman 5 系列产品 **不包含** 双 NVMe 模块。  
     你需要自行准备，或通过我们的官方网站进行购买：
 
     * |link_dual_nvme|
@@ -20,4 +20,11 @@ Dual NVMe
 
 .. raw:: html
 
-    <iframe width="700" height="400" src="https://www.youtube.com/embed/HxOe-uJonhE?si=OWBMuf1Cf6jggjsw" title="YouTube 视频播放器" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="100%" 
+    style="aspect-ratio: 16/9; max-width: 100%;"
+    src="https://www.youtube.com/embed/HxOe-uJonhE?si=OWBMuf1Cf6jggjsw" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
