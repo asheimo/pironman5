@@ -24,7 +24,7 @@ settings = {
 
     # - Before install scripts, default to []
     'run_scripts_before_install': [
-        "remount_boot_for_umbrel.sh",
+        "umbrel_patch.sh",
     ],
 
     # - Install from apt
