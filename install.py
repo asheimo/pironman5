@@ -23,9 +23,9 @@ settings = {
     # ],
 
     # - Before install scripts, default to []
-    # 'run_scripts_before_install': [
-    #     "install_lgpio.sh",
-    # ],
+    'run_scripts_before_install': [
+        "remount_boot_for_umbrel.sh",
+    ],
 
     # - Install from apt
     'apt_dependencies': [

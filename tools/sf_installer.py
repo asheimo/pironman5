@@ -389,16 +389,6 @@ class SF_Installer():
         else:
             self.do(f'Add user "{user}" to group "{group}"', f'usermod -aG {group} {user}')
 
-    def is_umbrel_os(self) -> bool:
-        """
-        Check if the system is Umbrel OS.
-        
-        Returns:
-            True if the system is Umbrel OS, False otherwise.
-        
-        """
-        return os.path.exists('/home/umbrel/umbrel')
-
     # Install Steps:
 
     def setup_user(self):
@@ -575,9 +565,6 @@ class SF_Installer():
         if ('skip_dtoverlay' in self.args and self.args.skip_dtoverlay) or \
             len(self.dtoverlays) == 0:
             return
-        if self.is_umbrel_os():
-            print(f"{self.WARNING} Skip device tree overlay on Umbrel OS...")
-            return
         self.print_title("Copy device tree overlay...")
         POSSIBLE_OVERLAY_PATHS = [
             '/boot/overlays',
@@ -647,9 +634,6 @@ class SF_Installer():
 
     def remove_dtoverlay(self):
         if len(self.dtoverlays) == 0:
-            return
-        if self.is_umbrel_os():
-            print(f"{self.WARNING} Skip device tree overlay on Umbrel OS...")
             return
         
         self.print_title("Remove device tree overlay...")
