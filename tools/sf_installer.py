@@ -414,8 +414,8 @@ class SF_Installer():
         self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
 
-    def grant_device_permission(self):
-        # Add device groups to user
+    def add_user_to_groups(self):
+        # Add groups to user
         groups = set()
         for group_name in self.groups:
             if not self.is_group_exist(group_name):
@@ -683,7 +683,7 @@ class SF_Installer():
         self.run_scripts_before_install()
         self.install_apt_dep()
         self.setup_user()
-        self.grant_device_permission()
+        self.add_user_to_groups()
         self.create_working_dir()
         self.install_pip_dep()
         self.check_git_url()
