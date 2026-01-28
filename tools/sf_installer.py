@@ -118,7 +118,7 @@ class SF_Installer():
         "/usr/bin/systemctl",
     ]
 
-    DEFAULT_DEVICES = [
+    DEFAULT_GROUPS = [
         'video',
     ]
 
@@ -151,7 +151,7 @@ class SF_Installer():
             self.log_dir = log_dir
         self.log_file = f'{self.log_dir}/{self.name}.log'
 
-        self.devices = set(self.DEFAULT_DEVICES)
+        self.groups = set(self.DEFAULT_GROUPS)
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()
@@ -211,8 +211,8 @@ class SF_Installer():
                         return line.split('=')[1].strip().strip("'")
 
     def update_settings(self, settings):
-        if 'devices' in settings:
-            self.devices.update(settings['devices'])
+        if 'groups' in settings:
+            self.groups.update(settings['groups'])
         if 'build_dependencies' in settings:
             self.build_dependencies.update(settings['build_dependencies'])
         if 'run_scripts_before_install' in settings:
@@ -417,11 +417,11 @@ class SF_Installer():
     def grant_device_permission(self):
         # Add device groups to user
         groups = set()
-        for device in self.devices:
-            if not self.is_group_exist(device):
-                print(f"{self.WARNING} Device '{device}' does not exist, use default device 'dialout'")
-                device = 'dialout'
-            groups.add(device)
+        for group_name in self.groups:
+            if not self.is_group_exist(group_name):
+                print(f"{self.WARNING} Group '{group_name}' does not exist, use default group 'dialout'")
+                group_name = 'dialout'
+            groups.add(group_name)
 
         for group_name in groups:
             self.add_user_to_group(self.user, group_name)
@@ -679,11 +679,11 @@ class SF_Installer():
     def install(self):
         self.print_title(f"Installing {self.friendly_name} {self.version}")
         self.wait_for_dpkg()
-        self.setup_user()
-        self.grant_device_permission()
         self.install_build_dep()
         self.run_scripts_before_install()
         self.install_apt_dep()
+        self.setup_user()
+        self.grant_device_permission()
         self.create_working_dir()
         self.install_pip_dep()
         self.check_git_url()

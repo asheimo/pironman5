@@ -15,7 +15,7 @@ settings = {
         '--system-site-packages',
     ],
 
-    'devices': [],
+    'groups': [],
 
     # - Build required apt dependencies, default to []
     # 'build_dependencies': [
@@ -80,7 +80,7 @@ ws2812_settings = {
         "install_lgpio.sh",
         "fix_kali_gpio_spi.sh",
     ],
-    'devices': ['spi', 'gpio'],
+    'groups': ['spi', 'gpio'],
     'pip_dependencies': [
         'adafruit-circuitpython-neopixel-spi',
         'Adafruit-Blinka==8.59.0',
@@ -89,7 +89,7 @@ ws2812_settings = {
 }
 
 oled_settings = {
-    'devices': ['i2c'],
+    'groups': ['i2c'],
     'apt_dependencies': [
         'libjpeg-dev', # for Pillow on 32 bit OS
         'libfreetype6-dev', # for Pillow on 32 bit OS
@@ -112,7 +112,7 @@ gpio_settings = {
         "install_lgpio.sh",
         "fix_kali_gpio_spi.sh",
     ],
-    'devices': ['gpio'],
+    'groups': ['gpio'],
     # - Install from apt
     'apt_dependencies': [
         'python3-gpiozero', # for pm_auto fan control
@@ -126,14 +126,14 @@ gpio_settings = {
 }
 
 pi5_power_button_settings = {
-    'devices': ['input'],
+    'groups': ['input'],
     'pip_dependencies': [
         'evdev',
     ],
 }
 
 rgb_matrix_settings = {
-    'devices': ['i2c'],
+    'groups': ['i2c'],
     'pip_dependencies': [
         'smbus2',
         'numpy',
@@ -141,7 +141,7 @@ rgb_matrix_settings = {
 }
 
 dashboard_settings = {
-    'devices': ['influxdb'],
+    'groups': ['influxdb'],
     # - Build required apt dependencies, default to []
     'build_dependencies': [
         'curl', # for influxdb key download
@@ -157,7 +157,7 @@ dashboard_settings = {
 
 pipower5_settings = {
     # Install python packages from source
-    'devices': ['i2c', 'pipower5'],
+    'groups': ['i2c', 'pipower5'],
     'python_source': {
         'pipower5': f'git+https://github.com/sunfounder/pipower5.git@{PIPOWER5_VERSION}',
         'spc': f'git+https://github.com/sunfounder/spc.git',
