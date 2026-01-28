@@ -12,7 +12,25 @@ else
     echo "/boot is already mounted as read-write."
 fi
 
+# Create GPIO group if not exists
+if ! getent group gpio > /dev/null; then
+    echo "Creating gpio group"
+    groupadd -r gpio
+fi
+# create spi group if not exists
+if ! getent group spi > /dev/null; then
+    echo "Creating spi group"
+    groupadd -r spi
+fi
+# Set gpio and spi group ownership
+chown :gpio /dev/gpiochip*
+echo "Set gpio group ownership to gpio"
+chown :spi /dev/spidev*
+echo "Set spi group ownership to spi"
+
 # cp udev rule to /etc/udev/rules.d/
 cp ./bin/99-com.rules /etc/udev/rules.d/
 # reload udev rules
 udevadm control --reload-rules
+echo "udev rules reloaded."
+
