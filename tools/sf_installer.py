@@ -192,7 +192,7 @@ class SF_Installer():
         self.user = self.name
         self.errors = []
         self.is_running = False
-        self.need_reboot = False
+        self.need_reboot = True
         self.args = None
 
         self.venv_path = f'{self.work_dir}/venv'
