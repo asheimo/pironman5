@@ -5,7 +5,7 @@ if ! [ -d "/home/umbrel/umbrel" ]; then
 fi
 
 # Remount /boot if it's read-only
-if [ "$(mount | grep '/boot' | awk '{print $4}')" = "ro" ]; then
+if findmnt -n -o OPTIONS /boot | grep -q "ro"; then
     echo "Remount /boot as read-write..."
     mount -o remount,rw /boot
 else
