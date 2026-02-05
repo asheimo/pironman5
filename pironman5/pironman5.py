@@ -112,10 +112,15 @@ class Pironman5:
                                             config=self.config,
                                             log=log)
             self.pm_dashboard.set_read_data(self.pm_auto.read)
+            self.pm_dashboard.set_read_config(self.pm_auto.read_config)
             if 'send_email' in self.peripherals:
                 self.pm_dashboard.set_test_smtp(self.pm_auto.test_smtp)
             self.pm_dashboard.set_on_config_changed(self.update_config)
             self.pm_dashboard.set_on_restart_service(restart_service)
+
+    @log_error
+    def read_config(self):
+        return self.config
 
     @log_error
     def set_debug_level(self, level):
@@ -137,6 +142,10 @@ class Pironman5:
             patch['debug_level'] = level
         pm_auto_patch = self.pm_auto.update_config(config['system'])
         patch.update(pm_auto_patch)
+        if self.pm_dashboard:
+            dashboard_patch = self.pm_dashboard.update_config(config['system'])
+            patch.update(dashboard_patch)
+
         if len(patch) > 0:
             self.log.debug(f"Update config: {patch}")
             self.config['system'].update(patch)
