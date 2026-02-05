@@ -413,6 +413,7 @@ class SF_Installer():
         self.do(f'Add shutdown permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | sudo tee /etc/sudoers.d/{self.user}-shutdown > /dev/null')
         self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}-shutdown')
         self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}-shutdown')
+        self.do(f'Add ACL to allow user "{self.user}" access /media/{current_user}', f'setfacl -m u:{self.user}:x /media/{current_user}')
 
     def add_user_to_groups(self):
         # Add groups to user
