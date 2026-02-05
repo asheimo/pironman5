@@ -78,6 +78,7 @@ Elevate your Raspberry Pi 5 experience with the |link_pironman5_promax|, our new
     hardware/hardware
     optional_modules/optional_modules
     home_server/home_server
+    ai_interaction/ai_interaction
     compitable_nvme_ssd
     faq
 

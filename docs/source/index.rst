@@ -133,10 +133,7 @@ If you have any questions, please send an email to service@sunfounder.com and we
     pironman5/intro_pironman5
     pironman5_max/intro_pironman5_max
     pironman5_mini/intro_pironman5_mini
-
-
-.. 未上线
-.. pironman5_promax/intro_pironman5_promax
+    pironman5_promax/intro_pironman5_promax
 .. 
 
 
