@@ -49,6 +49,7 @@ class Pironman5Max:
         "rgb_speed": 50,
         "rgb_enable": True,
         "rgb_led_count": 4,
+        "rgb_led_count_min": 4,
         "temperature_unit": "C",
         "oled_enable": True,
         "oled_rotation": 0,

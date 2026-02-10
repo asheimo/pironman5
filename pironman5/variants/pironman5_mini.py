@@ -33,6 +33,7 @@ class Pironman5Mini:
         'temperature_unit': 'C',
         'rgb_enable': True,
         'rgb_led_count': 4,
+        'rgb_led_count_min': 4,
         'rgb_style': 'rainbow',
         'rgb_color': '#ff00ff',
         'rgb_brightness': 100,

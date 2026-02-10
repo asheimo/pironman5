@@ -57,6 +57,7 @@ class Pironman5:
         "rgb_style": "breathing",
         "rgb_speed": 50,
         "rgb_led_count": 4,
+        "rgb_led_count_min": 4,
         'gpio_fan_pin': 6,
         'gpio_fan_mode': 0,
     }

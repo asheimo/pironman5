@@ -75,6 +75,7 @@ class Pironman5UPS:
         ],
         'rgb_enable': True,
         'rgb_led_count': 23,
+        "rgb_led_count_min": 23,
         'rgb_style': 'breathing',
         'rgb_color': '#0a1aff',
         'rgb_speed': 50,
