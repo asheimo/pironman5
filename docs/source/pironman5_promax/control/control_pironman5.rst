@@ -33,3 +33,4 @@ You can monitor and control the Pironman 5 Pro MAX via commands, or by accessing
 
     control_with dashboard 
     control_with_commands
+    flip_mode
