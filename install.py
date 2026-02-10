@@ -5,7 +5,7 @@ from pironman5.version import __version__
 from pironman5.variants import NAME, DT_OVERLAYS, PERIPHERALS
 
 PM_AUTO_VERSION = '1.4.7'
-DASHBOARD_VERSION = '1.4.x'
+DASHBOARD_VERSION = '1.4.0'
 SF_RPI_STATUS_VERSION = '1.1.8'
 PIPOWER5_VERSION = 'main'
 
