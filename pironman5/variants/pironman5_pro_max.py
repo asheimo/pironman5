@@ -20,6 +20,7 @@ class Pironman5ProMax:
         'oled_page_disk',
         "clear_history",
         "delete_log_file",
+        'debug_level',
         "oled_sleep",
         "pi5_power_button",
 
@@ -41,6 +42,7 @@ class Pironman5ProMax:
         "rgb_speed": 50,
         "rgb_enable": True,
         "rgb_led_count": 18,
+        "rgb_led_count_min": 18,
                         # Front 4 LED      CPU FAN LED   HAT_REAR LED   REAR UPPER FAN       REAR_BOTTOM_FAN
         "rgb_position": [17, 16, 15, 14,   7, 6, 5, 4,   13, 12,         11, 10, 9, 8,        3, 2, 1, 0],
 
