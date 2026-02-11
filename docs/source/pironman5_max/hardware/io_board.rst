@@ -174,7 +174,7 @@ RGB Fan Pins
 
 The IO expansion board supports up to two 5V non-PWM fans. Both fans are controlled together. 
 
-**FAN1** and **FAN 2** are two sets of fan pins. You need to connect the fan's red wire to "+", and the black wire to "-".
+**J4** and **J5** are two sets of fan ports. You need to connect the fans here.
 
 .. image:: img/io_board_fan.png
 
