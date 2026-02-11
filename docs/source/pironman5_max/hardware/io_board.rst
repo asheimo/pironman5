@@ -169,7 +169,7 @@ RGB Fan Pins
 
 La placa de expansión IO admite hasta dos ventiladores de 5V sin control PWM, que se controlan de forma conjunta.
 
-**FAN1** y **FAN2** son los conectores para ventiladores. Conecta el cable rojo a "+" y el negro a "-".
+**J4** y **J5** son dos conjuntos de puertos para ventiladores. Debe conectar los ventiladores aquí.
 
 .. image:: img/io_board_fan.png
 
