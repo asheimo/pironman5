@@ -167,7 +167,7 @@ RGB-Lüfter-Pins
 
 Das IO-Erweiterungsboard unterstützt bis zu zwei 5V-Nicht-PWM-Lüfter. Beide Lüfter werden gemeinsam gesteuert.
 
-**FAN1** und **FAN 2** sind zwei Sätze von Lüfter-Pins. Du musst das rote Kabel des Lüfters an „+“ und das schwarze Kabel an „-“ anschließen.
+**J4** und **J5** sind zwei Lüfteranschlüsse. Hier müssen Sie die Lüfter anschließen.
 
 .. image:: img/io_board_fan.png
 
