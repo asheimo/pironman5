@@ -170,7 +170,7 @@ Pin ventole RGB
 
 La scheda di espansione IO supporta fino a due ventole non-PWM a 5V, controllate simultaneamente.
 
-**FAN1** e **FAN2** sono due set di pin. Collega il filo rosso della ventola a "+" e il filo nero a "-".
+**J4** e **J5** sono due set di porte per le ventole. È necessario collegare le ventole qui.
 
 .. image:: img/io_board_fan.png
 
