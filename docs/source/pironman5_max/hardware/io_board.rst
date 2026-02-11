@@ -171,7 +171,7 @@ Connecteurs ventilateurs RGB
 
 La carte d’extension IO prend en charge jusqu’à deux ventilateurs 5V non-PWM. Les deux ventilateurs sont contrôlés simultanément.
 
-**FAN1** et **FAN2** correspondent aux deux ensembles de broches. Connectez le fil rouge à « + » et le fil noir à « - ».
+**J4** et **J5** sont deux ensembles de ports pour ventilateurs. Vous devez y connecter les ventilateurs.
 
 .. image:: img/io_board_fan.png
 
