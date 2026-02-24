@@ -17,7 +17,7 @@
 .. _promax_omv_5_promax:
 
 
-Setting Up OpenMediaVault
+Setting up OpenMediaVault
 =====================================
 
 .. warning::

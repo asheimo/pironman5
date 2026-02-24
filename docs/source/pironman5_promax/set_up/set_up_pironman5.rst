@@ -30,10 +30,10 @@ You can then proceed to select the configuration tutorial based on your system.
     :maxdepth: 1
 
     set_up_rpi_os 
-    set_up_home_assistant
     set_up_umbrel
     set_up_batocera
 
+.. set_up_home_assistant
 
 **About Power Button**
 

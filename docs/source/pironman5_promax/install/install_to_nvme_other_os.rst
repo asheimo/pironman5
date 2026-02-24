@@ -51,7 +51,7 @@ If you are using an NVMe SSD and have an adapter to connect the NVMe SSD to your
 
       * For **Ubuntu**, click **Other general-purpose OS** → **Ubuntu**, then select  
         **Ubuntu Desktop 24.04 LTS (64-bit)** or **Ubuntu Server 24.04 LTS (64-bit)**.
-      * For **Kali Linux**, **Home Assistant**, and **Homebridge**, click  
+      * For **Kali Linux** and **Homebridge**, click  
         **Other specific-purpose OS**, then select the corresponding system.
 
    .. image:: img/imager_other_os.png
