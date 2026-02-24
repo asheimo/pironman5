@@ -69,6 +69,6 @@ class Pironman5Max:
         'vibration_switch_pull_up': False,
     }
     DT_OVERLAYS = [
-        'sunfounder-pironman5max.dtbo',
+        'sunfounder-pironman5.dtbo',
     ]
 
