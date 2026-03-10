@@ -41,15 +41,15 @@ Here's how to set it up:
 
 #. Go to |link_openai_platform| and log in. On the **API keys** page, click **Create new secret key**.
 
-   .. image:: img/llm_openai_create.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_openai_create.png
 
 #. Fill in the details (Owner, Name, Project, and permissions if needed), then click **Create secret key**.
 
-   .. image:: img/llm_openai_create_confirm.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_openai_create_confirm.png
 
 #. Once the key is created, copy it right away — you won't be able to see it again. If you lose it, you'll need to generate a new one.
 
-   .. image:: img/llm_openai_copy.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_openai_copy.png
 
 #. In your project folder (for example: ``/``), create a file called ``secret.py``:
 
@@ -70,11 +70,11 @@ Here's how to set it up:
 
 #. Before using the key, go to the **Billing** page in your OpenAI account, add your payment details, and top up a small amount of credits.  
 
-   .. image:: img/llm_openai_billing.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_openai_billing.png
 
 #. Then go to the **Limits** page to check which models are available for your account and copy the exact model ID to use in your code.  
 
-   .. image:: img/llm_openai_models.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_openai_models.png
 
 **Test with example code**
 
@@ -120,19 +120,19 @@ Gemini is Google's family of AI models. It's fast and great for general-purpose 
 
 #. Log in to |link_google_ai|, then go to the API Keys page.
 
-   .. image:: img/llm_gemini_get.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_gemini_get.png
 
 #. Click the **Create API key** button in the top-right corner.
 
-   .. image:: img/llm_gemini_create.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_gemini_create.png
 
 #. You can create a key for an existing project or a new one.
 
-   .. image:: img/llm_gemini_choose.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_gemini_choose.png
 
 #. Copy the generated API key.
 
-   .. image:: img/llm_gemini_copy.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_gemini_copy.png
 
 #. In your project folder:
 
@@ -153,7 +153,7 @@ Gemini is Google's family of AI models. It's fast and great for general-purpose 
 
 Go to the official |link_gemini_model| page, here you’ll see the list of models, their exact API IDs, and which use case each one is optimized for.
 
-   .. image:: img/llm_gemini_model.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_gemini_model.png
 
 **Test with example code**
 
@@ -212,7 +212,7 @@ Mainland China users can instead use the **Bailian (百炼)** console.
   #. Go to the **Key Management** page. On the **API Key** tab, click **Create API Key**.  
   #. After creation, copy your API Key and keep it safe.  
   
-    .. image:: img/llm_qwen_api_key.png
+    .. image:: /pironman5_promax/ai_interaction/img/llm_qwen_api_key.png
         :width: 800
   
   .. note::
@@ -225,15 +225,15 @@ Mainland China users can instead use the **Bailian (百炼)** console.
   #. Log in to |link_aliyun| (Bailian console) and complete account verification.  
   #. Select **Create API Key**. If prompted that model services are not activated, click **Activate**, agree to the terms, and claim your free quota. After activation, the **Create API Key** button will be enabled.  
   
-     .. image:: img/llm_qwen_aliyun_create.png
+     .. image:: /pironman5_promax/ai_interaction/img/llm_qwen_aliyun_create.png
   
   #. Click **Create API Key** again, check your account, and then click **Confirm**.  
   
-     .. image:: img/llm_qwen_aliyun_confirm.png
+     .. image:: /pironman5_promax/ai_interaction/img/llm_qwen_aliyun_confirm.png
   
   #. Once created, copy your API Key.  
   
-     .. image:: img/llm_qwen_aliyun_copy.png
+     .. image:: /pironman5_promax/ai_interaction/img/llm_qwen_aliyun_copy.png
 
 **Save your API Key**
 
@@ -293,15 +293,15 @@ Grok is xAI’s conversational AI, created by Elon Musk’s team. You can connec
 
 #. Go to the API Keys page, click **Create API key**.  
 
-   .. image:: img/llm_grok_create.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_grok_create.png
 
 #. Enter a name for the key, then click **Create API key**. 
 
-   .. image:: img/llm_grok_name.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_grok_name.png
 
 #. Copy the generated key and keep it safe. 
 
-   .. image:: img/llm_grok_copy.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_grok_copy.png
 
 #. In your project folder:
 
@@ -323,7 +323,7 @@ Grok is xAI’s conversational AI, created by Elon Musk’s team. You can connec
 
 Go to the Models page in the xAI console. Here you can see all the models available to your team, along with their exact API IDs — use these IDs in your code.
 
-   .. image:: img/llm_grok_model.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_grok_model.png
 
 **Test with example code**
 
@@ -368,11 +368,11 @@ DeepSeek is a Chinese LLM provider that offers affordable and capable models.
 
 #. In the top-right menu, select **API Keys → Create API Key**. 
 
-   .. image:: img/llm_deepseek_create.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_deepseek_create.png
 
 #. Enter a name, click **Create**, then copy the key.
 
-   .. image:: img/llm_deepseek_copy.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_deepseek_copy.png
 
 #. In your project folder:
 
@@ -392,7 +392,7 @@ DeepSeek is a Chinese LLM provider that offers affordable and capable models.
 
 You'll need to recharge your account first. Start with a small amount (like ¥10 RMB). 
 
-   .. image:: img/llm_deepseek_chognzhi.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_deepseek_chognzhi.png
 
 **Available models**
 
@@ -444,15 +444,15 @@ Doubao is ByteDance's AI model platform (Volcengine Ark).
 
 #. In the left menu, scroll down to **API Key Management → Create API Key**. 
 
-   .. image:: img/llm_doubao_create.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_create.png
 
 #. Choose a name and click **Create**.  
 
-   .. image:: img/llm_doubao_name.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_name.png
 
 #. Click the **Show API Key** icon and copy it. 
 
-   .. image:: img/llm_doubao_copy.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_copy.png
 
 #. In your project folder:
 
@@ -472,23 +472,23 @@ Doubao is ByteDance's AI model platform (Volcengine Ark).
 
 #. Go to the model marketplace and pick a model.  
 
-   .. image:: img/llm_doubao_model_select.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_model_select.png
 
 #. For example, choose **Doubao-seed-1.6**, then click **API 接入**. 
 
-   .. image:: img/llm_doubao_model.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_model.png
 
 #. Select your API Key and click **Use API**. 
 
-   .. image:: img/llm_doubao_use_api.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_use_api.png
 
 #. Click **Enable Model**. 
 
-   .. image:: img/llm_doubao_kaitong.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_kaitong.png
 
 #. Hover over the model ID to copy it. 
 
-   .. image:: img/llm_doubao_copy_id.png
+   .. image:: /pironman5_promax/ai_interaction/img/llm_doubao_copy_id.png
 
 **Test with example code**
 
