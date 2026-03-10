@@ -27,4 +27,5 @@ This chapter introduces how to turn a Raspberry Pi into a versatile home server.
    omv.rst 
    plex.rst
    home_assistant.rst
+   openclaw.rst
 
