@@ -146,7 +146,7 @@ To enable OpenClaw to operate the Pironman5 Pro MAX, we need to install the Piro
 
        mkdir -p ~/.openclaw/skills && rsync -av --delete ~/pironman5/skill/pironman5-promax-skill/ ~/.openclaw/skills/pironman5-promax-skill/
 
-3.  You can now operate the Pironman5 Pro MAX in ``openclaw tui``. Try sending commands in the TUI, such as attempting to turn on the LED lights on the case, change their color, or have the camera take a photo.
+3.  You can now operate the Pironman5 Pro MAX in ``openclaw tui``. Try sending commands in the TUI, such as attempting to turn on the LED lights on the case, change their color, or have the camera take a photo. You can even tell it that you have a DHT11 module connected to GPIO17 and let it tell you the temperature.
 
    .. note:: If OpenClaw is still unable to recognize the skill you imported, please remind it to rsync.
 
@@ -178,12 +178,109 @@ Then, run the following example:
 
 Reboot. Then you can use the voice features of the Pironman5 Pro MAX to interact with OpenClaw. Try saying "Hi Amy" to wake it up.
 
+---------------------------------------
 
+Operate Your System with Telegram
+---------------------------------------
+
+
+**Overview**
+
+Through OpenClaw, you can use popular messaging apps to operate your system (here, we use Telegram as an example). You can even let OpenClaw help you complete this configuration.
+
+Simply ask in ``openclaw tui``: *"I want to connect you to Telegram, what should I do?"*
+
+It will guide you through the process step by step, and you can follow its instructions to complete the setup.
+
+
+**Prerequisites**
+
+Before you begin, make sure you have:
+
+- A **Telegram account**
+- Network access to Telegram 
+- OpenClaw successfully running (verify with ``openclaw status``)
+
+**Step 1: Create a Telegram Bot**
+
+1. **Find @BotFather on Telegram** (the official bot creator)
+2. **Create a new bot**: Send the ``/newbot`` command
+3. **Follow the prompts**:
+
+   - Give your bot a name (e.g., ``My OpenClaw Helper``)
+   - Set a username for your bot (must end with ``_bot``, e.g., ``my_openclaw_bot``)
+
+4. **Upon success, you'll receive a message** containing your **Bot Token**, similar to:
+
+   .. code-block:: text
+
+      1234567890:ABCdefGHIjklMNOpqrsTUVwxyz
+
+   .. warning:: Guard this token like a password!
+
+**Step 2: Configure Telegram in OpenClaw**
+
+In ``openclaw tui``, directly say:
+
+> *"I want to connect my Telegram bot to OpenClaw. Here's my Bot Token: <your-token-here>. Please help me complete the configuration."*
+
+OpenClaw will automatically:
+
+- Install necessary dependencies (like ``node-telegram-bot-api``)
+- Create the Telegram gateway configuration file
+- Test if the connection is successful
+
+
+**Step 3: Test the Connection**
+
+1. Find your newly created bot on Telegram
+2. Send the ``/start`` command
+3. The bot should reply with a pairing code, send this code to the OpenClaw TUI (like ``Pairing code: ZAN4XI34``)
+4. Wait the configured correctly
+5. Try sending simple commands like "hello"
+6. If everything is configured correctly, you should see the response from your bot
+
+**Step 4: Enjoy!**
+
+After completing this configuration, you'll be able to:
+
+* Control your Raspberry Pi anytime, anywhere via Telegram
+* Execute commands remotely and check system status
+* Control physical devices by integrating with GPIO (like turning on LEDs)
+* Enjoy an intelligent interactive experience with your AI assistant
+
+
+**Security Configuration (Critical!)**
+
+To prevent strangers from controlling your system, be sure to implement the following security measures:
+
+.. list-table::
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Security Measure 
+     - Configuration Method 
+     - Description 
+   * - Restrict Users 
+     - Set ``allowedUsers`` in config 
+     - Only allow specific Telegram users 
+   * - Set Password 
+     - Add ``"password": "your-password"`` in config 
+     - Require password verification before commands 
+   * - Restrict Commands 
+     - Create command whitelist 
+     - Only allow specific predefined commands 
+   * - Audit Logs 
+     - Enable ``command-logger`` hook 
+     - Log all commands executed via Telegram 
+
+
+**Remember: Security first!** Always restrict users and command scope appropriately. If you encounter specific issues during configuration, feel free to ask for help.
 
 -------------------------------------
 
-**Troubleshooting**
-
+OpenClaw Troubleshooting 
+-------------------------------------
 
 Q. During installation, I get the error ``Error: systemctl is-enabled unavailable: Command failed: systemctl --user is-enabled openclaw-gateway.service``. What should I do?
 
