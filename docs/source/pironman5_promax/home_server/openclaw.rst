@@ -187,110 +187,111 @@ Reboot. Then you can use the voice features of the Pironman5 Pro MAX to interact
 
 Q. During installation, I get the error ``Error: systemctl is-enabled unavailable: Command failed: systemctl --user is-enabled openclaw-gateway.service``. What should I do?
 
-A. You can ignore this for now, but you might encounter issues in the next steps. Please refer to them one by one at that time.
+   You can ignore this for now, but you might encounter issues in the next steps. Please refer to them one by one at that time.
 
 
 Q. When I run ``openclaw tui``, I get the error ``-bash: openclaw: command not found``. What should I do?
 
-A. Execute the following command:
+   Execute the following command:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.bashrc
-       source ~/.bashrc
+      echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.bashrc
+      source ~/.bashrc
 
-    You should now be able to start the tui interface with ``openclaw tui``.
+   You should now be able to start the tui interface with ``openclaw tui``.
 
 
 
 Q. In ``openclaw tui``, I encounter ``not connected to gateway — message not sent`` or the message ``gateway disconnected: closed``.
 
-A. This is because your OpenClaw Gateway service is not started. Open another terminal and execute the following command to start the OpenClaw Gateway:
+   This is because your OpenClaw Gateway service is not started. Open another terminal and execute the following command to start the OpenClaw Gateway:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       openclaw gateway
+      openclaw gateway
 
-    Then restart ``openclaw tui``, and you can use it directly.
+   Then restart ``openclaw tui``, and you can use it directly.
+
 
 Q. I want to set the OpenClaw Gateway service to run in the background / start automatically on boot. How do I do that?
 
-A. Execute the following commands:
+   Normally, your OpenClaw Gateway service should start automatically on boot. If it doesn't, you can manually start it with the following command.
 
-    1. Create the ``~/.config/systemd/user`` directory:
+   1. Create the ``~/.config/systemd/user`` directory:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       mkdir -p ~/.config/systemd/user
-
-
-    2. Create the ``openclaw-gateway.service`` file:
-
-    .. code-block:: bash
-
-       cat > ~/.config/systemd/user/openclaw-gateway.service << EOF
-       [Unit]
-       Description=OpenClaw Gateway
-       After=network.target
-
-       [Service]
-       Type=simple
-       ExecStart=$HOME/.npm-global/bin/openclaw gateway run
-       Restart=on-failure
-       RestartSec=10
-       Environment="PATH=$HOME/.npm-global/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin"
-       Environment="NODE_ENV=production"
-
-       [Install]
-       WantedBy=default.target
-       EOF
+      mkdir -p ~/.config/systemd/user
 
 
-    3. Then reload the systemd configuration:
+   2. Create the ``openclaw-gateway.service`` file:
 
-    .. code-block:: bash
+   .. code-block:: bash
 
-       systemctl --user daemon-reload
+      cat > ~/.config/systemd/user/openclaw-gateway.service << EOF
+      [Unit]
+      Description=OpenClaw Gateway
+      After=network.target
 
-    4. Start the service:
+      [Service]
+      Type=simple
+      ExecStart=$HOME/.npm-global/bin/openclaw gateway run
+      Restart=on-failure
+      RestartSec=10
+      Environment="PATH=$HOME/.npm-global/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin"
+      Environment="NODE_ENV=production"
 
-    .. code-block:: bash
+      [Install]
+      WantedBy=default.target
+      EOF
 
-       systemctl --user start openclaw-gateway
 
-    At this point, restart ``openclaw tui``, and you can use it directly.
+   3. Then reload the systemd configuration:
 
-    5. Enable it to start on boot:
+   .. code-block:: bash
 
-    .. code-block:: bash
+      systemctl --user daemon-reload
 
-       systemctl --user enable openclaw-gateway
+   4. Start the service:
+
+   .. code-block:: bash
+
+      systemctl --user start openclaw-gateway
+
+   At this point, restart ``openclaw tui``, and you can use it directly.
+
+   5. Enable it to start on boot:
+
+   .. code-block:: bash
+
+      systemctl --user enable openclaw-gateway
 
 
 Q. My OpenClaw can not operate the system, what should I do?
 
-A. A newly installed OpenClaw may not have permission to operate your Raspberry Pi system by default; it can only chat. We need to manually configure the permissions.
+   A newly installed OpenClaw may not have permission to operate your Raspberry Pi system by default; it can only chat. We need to manually configure the permissions.
 
-    1.  Open the OpenClaw configuration file:
+   1.  Open the OpenClaw configuration file:
 
-        .. code-block:: bash
+      .. code-block:: bash
 
-        nano ~/.openclaw/openclaw.json
+      nano ~/.openclaw/openclaw.json
 
-    2.  Find the ``tools`` option and change the ``profile`` from ``message`` to ``coding``.
+   2.  Find the ``tools`` option and change the ``profile`` from ``message`` to ``coding``.
 
-        .. code-block:: json
+      .. code-block:: json
 
-        "tools": {
-            "profile": "coding"
-        },
+      "tools": {
+         "profile": "coding"
+      },
 
-    3.  Save and exit.
+   3.  Save and exit.
 
-    4.  Enter the following command in the terminal to restart the OpenClaw Gateway:
+   4.  Enter the following command in the terminal to restart the OpenClaw Gateway:
 
-        .. code-block:: bash
+      .. code-block:: bash
 
-        openclaw gateway restart
+      openclaw gateway restart
 
-    Now, OpenClaw should have read and write permissions and be able to operate your Raspberry Pi system.
+   Now, OpenClaw should have read and write permissions and be able to operate your Raspberry Pi system.
