@@ -276,15 +276,15 @@ Q. My OpenClaw can not operate the system, what should I do?
 
       .. code-block:: bash
 
-      nano ~/.openclaw/openclaw.json
+         nano ~/.openclaw/openclaw.json
 
    2.  Find the ``tools`` option and change the ``profile`` from ``message`` to ``coding``.
 
       .. code-block:: json
 
-      "tools": {
-         "profile": "coding"
-      },
+         "tools": {
+            "profile": "coding"
+         },
 
    3.  Save and exit.
 
@@ -292,6 +292,6 @@ Q. My OpenClaw can not operate the system, what should I do?
 
       .. code-block:: bash
 
-      openclaw gateway restart
+         openclaw gateway restart
 
    Now, OpenClaw should have read and write permissions and be able to operate your Raspberry Pi system.
