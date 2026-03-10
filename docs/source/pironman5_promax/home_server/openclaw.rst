@@ -180,6 +180,8 @@ Reboot. Then you can use the voice features of the Pironman5 Pro MAX to interact
 
 ---------------------------------------
 
+.. start_using_openclaw_telegram
+
 Operate Your System with Telegram
 ---------------------------------------
 
@@ -278,6 +280,10 @@ To prevent strangers from controlling your system, be sure to implement the foll
 **Remember: Security first!** Always restrict users and command scope appropriately. If you encounter specific issues during configuration, feel free to ask for help.
 
 -------------------------------------
+
+.. end_using_openclaw_telegram
+
+.. start_using_openclaw_faq
 
 OpenClaw Troubleshooting 
 -------------------------------------
@@ -392,3 +398,5 @@ Q. My OpenClaw can not operate the system, what should I do?
          openclaw gateway restart
 
    Now, OpenClaw should have read and write permissions and be able to operate your Raspberry Pi system.
+
+.. end_using_openclaw_faq
