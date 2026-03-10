@@ -22,6 +22,8 @@ Run the following installation command:
 
 .. code-block:: bash
 
+
+    sudo apt install portaudio19-dev
     sudo pip install --break git+https://github.com/sunfounder/sunfounder-voice-assistant.git
 
 

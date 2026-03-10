@@ -75,15 +75,15 @@ If you want to experience the power of OpenClaw as quickly as possible, use this
 
 8.  Go to |link_openai_platform| and log in. On the **API keys** page, click **Create new secret key**.
 
-    .. image:: img/llm_openai_create.png
+    .. image:: img/openclaw/llm_openai_create.png
 
 9.  Fill in the details (Owner, Name, Project, and permissions if needed), then click **Create secret key**.
 
-    .. image:: img/llm_openai_create_confirm.png
+    .. image:: img/openclaw/llm_openai_create_confirm.png
 
 10. Once the key is created, copy it right away — you won't be able to see it again. If you lose it, you'll need to generate a new one.
 
-    .. image:: img/llm_openai_copy.png
+    .. image:: img/openclaw/llm_openai_copy.png
 
 11. Paste the key into the OpenCLaw configuration.
 
