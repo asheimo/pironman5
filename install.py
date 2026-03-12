@@ -121,6 +121,9 @@ gpio_settings = {
     'pip_dependencies': [
         'rpi.lgpio',
     ],
+    'run_scripts_after_install': [
+        "change_rpi.gpio_to_rpi.lgpio.sh",
+    ],
 }
 
 pi5_power_button_settings = {

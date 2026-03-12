@@ -165,6 +165,7 @@ class SF_Installer():
         self.service_files = set()
         self.bin_files = set()
         self.dtoverlays = set()
+        self.after_install_scripts = set()
         self.venv_options = set()
 
         self.parser = argparse.ArgumentParser(description=description)
@@ -239,6 +240,8 @@ class SF_Installer():
             self.bin_files.update(settings['bin_files'])
         if 'dtoverlays' in settings:
             self.dtoverlays.update(settings['dtoverlays'])
+        if 'run_scripts_after_install' in settings:
+            self.after_install_scripts.update(settings['run_scripts_after_install'])
         if 'venv_options' in settings:
             self.venv_options.update(settings['venv_options'])
 
@@ -454,6 +457,13 @@ class SF_Installer():
         self.print_title("Run scripts before install...")
         for script in self.before_install_scripts:
             self.do(f'Run scripts before install: {script}', f'bash scripts/{script}')
+
+    def run_scripts_after_install(self):
+        if len(self.after_install_scripts) == 0:
+            return
+        self.print_title("Run scripts after install...")
+        for script in self.after_install_scripts:
+            self.do(f'Run scripts after install: {script}', f'bash scripts/{script}')
 
     def install_apt_dep(self):
         if ('no_dep' in self.args and self.args.no_dep) or \
@@ -709,6 +719,7 @@ class SF_Installer():
         self.copy_dtoverlay()
         self.custom_install()
         self.change_work_dir_owner()
+        self.run_scripts_after_install()
         self.print_title("Finished")
 
     def uninstall(self):
