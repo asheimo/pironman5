@@ -54,7 +54,7 @@ Se hai installato il sistema operativo Batocera.linux, puoi accedere da remoto a
 #. Dopo il riavvio, il servizio ``pironman5.service`` verrà avviato automaticamente. Ecco le principali configurazioni per Pironman 5:
    
    * Quattro LED RGB WS2812 si illumineranno di blu in modalità "breathing".
-   * * Le ventole RGB sono impostate di default sulla modalità **Always On**. Per temperature di attivazione differenti, vedi :ref:`cc_control_fan_mini`.
+   * * Le ventole RGB sono impostate di default sulla modalità **Bilanciata**. Per temperature di attivazione differenti, vedi :ref:`cc_control_fan_mini`.
 
 Ora puoi collegare il tuo Pironman 5 a uno schermo, a dei controller di gioco, a cuffie e molto altro, per immergerti completamente nel tuo mondo videoludico.
 
@@ -63,4 +63,4 @@ Ora puoi collegare il tuo Pironman 5 a uno schermo, a dei controller di gioco, a
 
    A questo punto, hai completato con successo la configurazione del Pironman 5 Mini ed è pronto per l’uso.
    
-   Per un controllo avanzato dei suoi componenti, fai riferimento a :ref:`control_commands_dashboard_mini`.
+   Per un controllo avanzato dei suoi componenti, fai riferimento a :ref:`view_control_commands_mini`.

@@ -229,6 +229,10 @@ Ad esempio, se impostato su modalità **1: Performance**, le ventole RGB si atti
   sudo pironman5 -gp 18
 
 
+**Informazioni sulla ventola principale**
+
+La ventola principale si collega a una porta PWM a 4 pin dedicata sul Raspberry Pi 5. La sua strategia di controllo predefinita è uno schema di regolazione intelligente della velocità multilivello gestito dal firmware, basato sulla temperatura della CPU. Ciò significa che quando si utilizza una ventola PWM ufficiale o compatibile e la si collega correttamente, il sistema regolerà automaticamente la velocità della ventola in base alle variazioni di temperatura della CPU (iniziando a funzionare oltre i 50 °C) senza alcun intervento manuale da parte dell'utente.
+
 Controllo dello Schermo OLED
 -----------------------------------
 

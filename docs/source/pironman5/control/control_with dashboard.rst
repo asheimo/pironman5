@@ -151,3 +151,8 @@ Dopo aver salvato, se la temperatura della CPU supera i 50°C, vedrai lo **Stato
 
 .. image:: img/dashboard_rgbfan_on.png
   :width: 300
+
+
+**Informazioni sulla ventola principale**
+
+La ventola principale si collega a una porta PWM a 4 pin dedicata sul Raspberry Pi 5. La sua strategia di controllo predefinita è uno schema di regolazione intelligente della velocità multilivello gestito dal firmware, basato sulla temperatura della CPU. Ciò significa che quando si utilizza una ventola PWM ufficiale o compatibile e la si collega correttamente, il sistema regolerà automaticamente la velocità della ventola in base alle variazioni di temperatura della CPU (iniziando a funzionare oltre i 50 °C) senza alcun intervento manuale da parte dell'utente.

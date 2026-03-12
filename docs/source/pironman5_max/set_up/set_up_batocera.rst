@@ -55,7 +55,7 @@ Se hai installato il sistema operativo Batocera.linux, puoi accedere da remoto t
 
    * Il display OLED mostrerà CPU, RAM, utilizzo del disco, temperatura della CPU e indirizzo IP del Raspberry Pi.
    * Quattro LED RGB WS2812 si accenderanno di blu con effetto respiro.
-   * Le ventole RGB sono impostate di default sulla modalità **Always On**. Per modificare la temperatura di attivazione, consulta :ref:`cc_control_fan_max`.
+   * Le ventole RGB sono impostate di default sulla modalità **Bilanciata**. Per modificare la temperatura di attivazione, consulta :ref:`cc_control_fan_max`.
 
 Ora puoi collegare Pironman 5 MAX a uno schermo, controller di gioco, cuffie e altri dispositivi per immergerti nel tuo mondo videoludico.
 
@@ -64,4 +64,4 @@ Ora puoi collegare Pironman 5 MAX a uno schermo, controller di gioco, cuffie e a
 
    A questo punto, hai completato con successo la configurazione del Pironman 5 MAX ed è pronto per l’uso.
    
-   Per un controllo avanzato dei suoi componenti, fai riferimento a :ref:`control_commands_dashboard_max`.
+   Per un controllo avanzato dei suoi componenti, fai riferimento a :ref:`max_view_control_commands`.
