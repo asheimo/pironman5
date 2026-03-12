@@ -63,4 +63,4 @@ Vous pouvez maintenant connecter le Pironman 5 MAX à un écran, des manettes de
 
    À ce stade, vous avez correctement configuré le Pironman 5 MAX, et il est prêt à être utilisé.
 
-   Pour un contrôle avancé de ses composants, veuillez vous référer à :ref:`control_commands_dashboard_max`.
+   Pour un contrôle avancé de ses composants, veuillez vous référer à :ref:`max_view_control_commands`.

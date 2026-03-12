@@ -160,3 +160,7 @@ Ajouter un commentaire Plus d'actions
 Par exemple, en mode **Performance**, les ventilateurs se déclenchent à 50°C.
 
 Après avoir enregistré, si la température du processeur dépasse 50°C, vous verrez que les ventilateurs RVB latéraux commenceront à tourner.
+
+**À propos du ventilateur principal**
+
+Le ventilateur principal se connecte à un port dédié pour ventilateur PWM à 4 broches sur le Raspberry Pi 5. Sa stratégie de contrôle par défaut est un système de régulation intelligent à plusieurs niveaux, géré par le firmware, qui ajuste la vitesse en fonction de la température du CPU. Cela signifie que lorsque vous utilisez un ventilateur PWM officiel ou compatible et que vous le connectez correctement, le système ajustera automatiquement la vitesse du ventilateur en fonction des changements de température du CPU (il commence à fonctionner au-dessus de 50°C), sans aucune intervention manuelle de votre part.
