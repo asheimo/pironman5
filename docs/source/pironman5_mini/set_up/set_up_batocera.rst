@@ -60,7 +60,7 @@ If you have installed the Batocera.linux OS, you can remotely log in to this sys
    
    .. note::
     
-     * The RGB fans are set to **Always On** mode by default. For different activation temperatures, see :ref:`cc_control_fan_mini`.
+     * The RGB fans are set to **Balanced** mode by default. For different activation temperatures, see :ref:`cc_control_fan_mini`.
 
 Now, you can connect the Pironman 5 to a screen, game controllers, headphones, and more to immerse yourself in your gaming world.
 
