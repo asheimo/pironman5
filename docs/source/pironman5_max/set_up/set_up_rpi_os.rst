@@ -3,6 +3,12 @@
 在 Raspberry Pi / Ubuntu / Kali / Homebridge OS 上的配置
 ===================================================================
 
+
+.. image:: img/pironman5_max.jpg
+    :width: 400
+    :align: center
+    
+
 如果你在 Raspberry Pi 上安装了 Raspberry Pi OS、Ubuntu、Kali Linux 或 Homebridge，则需要使用命令行来配置 Pironman 5 MAX。以下是详细教程。
 
 .. note::
