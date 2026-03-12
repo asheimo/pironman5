@@ -17,6 +17,11 @@
 Set Up on Raspberry Pi/Ubuntu/Kali/Homebridge OS
 ==================================================
 
+.. image:: img/pironman5_max.jpg
+    :width: 400
+    :align: center
+    
+
 If you have installed Raspberry Pi OS, Ubuntu, Kali Linux or Homebridge on your Raspberry Pi, you will need to configure the Pironman 5 MAX using the command line. Detailed tutorials can be found below:
 
 .. note::

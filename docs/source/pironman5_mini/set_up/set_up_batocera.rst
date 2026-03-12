@@ -17,6 +17,9 @@
 Seting up on Batocera.linux
 =========================================================
 
+
+
+
 If you have installed the Batocera.linux OS, you can remotely log in to this system via SSH and then follow the steps below to complete the configuration.
 
 #. Once the system boots up, use ssh to remotely connect to Pironman5. For Windows, you can open **Powershell**, and for Mac OS X and Linux, you can directly open **Terminal**.
@@ -66,4 +69,4 @@ Now, you can connect the Pironman 5 to a screen, game controllers, headphones, a
 
    At this point, you have successfully set up the Pironman 5 Mini, and it is ready to use.
    
-   For advanced control of its components, please refer to :ref:`control_commands_dashboard_mini`.
+   For advanced control of its components, please refer to :ref:`view_control_commands_mini`.

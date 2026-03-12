@@ -127,3 +127,7 @@ There is a settings menu in the upper right corner of the page.
 
 
 * **RGB Speed**: Set the speed of the RGB LED changes.
+
+**About Core Fan**
+
+The core fan connects to a dedicated 4-pin PWM fan port on the Raspberry Pi 5. Its default control strategy is a firmware-managed, multi-level intelligent speed adjustment scheme based on CPU temperature. This means that when you use an official or compatible PWM fan and connect it correctly, the system will automatically adjust the fan speed according to changes in CPU temperature (starting to operate above 50°C) without any manual intervention from you.

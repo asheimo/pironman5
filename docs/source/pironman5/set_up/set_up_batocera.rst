@@ -66,7 +66,7 @@ Now, you can connect the Pironman 5 to a screen, game controllers, headphones, a
 
    At this point, you have successfully set up the Pironman 5, and it is ready to use.
    
-   For advanced control of its components, please refer to :ref:`control_commands_dashboard_5`.
+   For advanced control of its components, please refer to :ref:`view_control_commands`.
 
 
 

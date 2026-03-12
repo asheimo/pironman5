@@ -233,6 +233,13 @@ The board features **6** WS2812B addressable RGB LEDs, offering extensive custom
 
 ..   The fan control pin is fixed in hardware. The ``-gp`` (GPIO pin) command from previous versions is **not applicable** to the Pironman 5 Pro Max, as fan control is handled via a dedicated circuit.
 
+**Fan**
+--------------------------------
+
+The core fan connects to a dedicated 4-pin PWM fan port on the Raspberry Pi 5. Its default control strategy is a firmware-managed, multi-level intelligent speed adjustment scheme based on CPU temperature. This means that when you use an official or compatible PWM fan and connect it correctly, the system will automatically adjust the fan speed according to changes in CPU temperature (starting to operate above 50°C) without any manual intervention from you.
+
+
+
 **Check the OLED Screen**
 -----------------------------------
 
