@@ -1,3 +1,5 @@
+.. start_hello_message 
+
 .. note::
 
     ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza tus conocimientos sobre Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
@@ -11,6 +13,8 @@
     - **Promociones y sorteos festivos**: Participa en sorteos y promociones durante las festividades.
 
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+
+.. end_hello_message 
 
 Pironman 5 Series - Carcasa Mini PC PCIe NVMe M.2 para Raspberry Pi 5
 ================================================================================

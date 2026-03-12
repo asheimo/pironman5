@@ -158,3 +158,7 @@ En la esquina superior derecha encontrarás el menú de ajustes, donde puedes pe
 Por ejemplo, si seleccionas el modo **Performance**, los ventiladores RGB se activarán a los 50 °C.
 
 Después de guardar, si la temperatura de la CPU supera los 50 °C, verá que los ventiladores RGB laterales comenzarán a girar.
+
+**Acerca del ventilador principal**
+
+El ventilador principal se conecta a un puerto dedicado para ventilador PWM de 4 pines en la Raspberry Pi 5. Su estrategia de control predeterminada es un sistema de regulación inteligente de velocidad de varios niveles, gestionado por el firmware, que se basa en la temperatura de la CPU. Esto significa que cuando utilizas un ventilador PWM oficial o compatible y lo conectas correctamente, el sistema ajustará automáticamente la velocidad del ventilador según los cambios en la temperatura de la CPU (comienza a funcionar por encima de los 50°C), sin necesidad de ninguna intervención manual por tu parte.
