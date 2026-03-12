@@ -55,7 +55,7 @@ Wenn du das Betriebssystem Batocera.linux installiert hast, kannst du dich über
 
    * Das OLED-Display zeigt CPU-, RAM- und Festplattenauslastung, CPU-Temperatur sowie die IP-Adresse des Raspberry Pi an.
    * Vier WS2812-RGB-LEDs leuchten blau im Atemmodus.
-   * Die RGB-Lüfter sind standardmäßig auf den Modus **Always On** eingestellt. Für andere Temperaturgrenzwerte siehe :ref:`cc_control_fan_max`.
+   * Die RGB-Lüfter sind standardmäßig auf den Modus **ausgewogen** eingestellt. Für andere Temperaturgrenzwerte siehe :ref:`cc_control_fan_max`.
 
 Jetzt kannst du den Pironman 5 MAX mit einem Bildschirm, Gamecontrollern, Kopfhörern und mehr verbinden und voll in deine Gamingwelt eintauchen.
 
@@ -65,4 +65,4 @@ Jetzt kannst du den Pironman 5 MAX mit einem Bildschirm, Gamecontrollern, Kopfh�
 
    Zu diesem Zeitpunkt haben Sie den Pironman 5 MAX erfolgreich eingerichtet, und er ist einsatzbereit.
    
-   Für die erweiterte Steuerung seiner Komponenten siehe bitte :ref:`control_commands_dashboard_max`.
+   Für die erweiterte Steuerung seiner Komponenten siehe bitte :ref:`max_view_control_commands`.

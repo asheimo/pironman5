@@ -1,3 +1,5 @@
+.. start_hello_message 
+
 .. note::  
 
     Hallo und herzlich willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie gemeinsam mit anderen Technikbegeisterten tiefer in die Welt von Raspberry Pi, Arduino und ESP32 ein.
@@ -11,6 +13,8 @@
     - **Feiertagsaktionen & Verlosungen**: Nehmen Sie an spannenden Verlosungen und saisonalen Aktionen teil.
 
     👉 Bereit, mit uns gemeinsam zu entdecken und zu gestalten? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
+
+.. end_hello_message 
 
 Pironman 5 Serie – NVMe M.2 SSD PCIe Mini-PC-Gehäuse für Raspberry Pi 5 
 ================================================================================

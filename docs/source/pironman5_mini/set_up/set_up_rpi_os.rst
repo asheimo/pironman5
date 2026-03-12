@@ -16,6 +16,11 @@
 Konfiguration unter Raspberry Pi OS/Ubuntu/Kali Linux/Homebridge
 ======================================================================
 
+
+.. image:: ../img/pironman5_mini_pic.jpg
+    :width: 400
+    :align: center
+
 Wenn du Raspberry Pi OS, Ubuntu, Kali Linux oder Homebridge auf deinem Raspberry Pi installiert hast, musst du den Pironman 5 Mini über die Befehlszeile konfigurieren. Nachfolgend findest du detaillierte Anleitungen.
 
 .. note::

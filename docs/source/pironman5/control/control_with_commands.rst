@@ -227,6 +227,10 @@ Wenn der Modus auf **1: Leistung** eingestellt ist, werden die RGB-Lüfter bei 5
 
   sudo pironman5 -gp 18
 
+**Über den Hauptlüfter**
+
+Der Hauptlüfter wird an einen dedizierten 4-Pin-PWM-Lüfteranschluss auf dem Raspberry Pi 5 angeschlossen. Seine Standard-Steuerungsstrategie ist ein firmwaregesteuertes, mehrstufiges intelligentes Drehzahlanpassungssystem, das auf der CPU-Temperatur basiert. Das bedeutet, dass das System bei Verwendung eines offiziellen oder kompatiblen PWM-Lüfters und korrektem Anschluss die Lüftergeschwindigkeit automatisch an die Änderungen der CPU-Temperatur anpasst (er beginnt oberhalb von 50°C zu arbeiten), ohne dass ein manueller Eingriff Ihrerseits erforderlich ist.
+
 
 Überprüfung des OLED-Bildschirms
 -----------------------------------
@@ -264,3 +268,4 @@ Oder überprüfen Sie, ob die i2c-Adresse des OLED 0x3C erkannt wird:
     mode2 -d /dev/lirc0
 
 * Nach Ausführung des Befehls drücken Sie eine Taste auf der Fernbedienung und der Code dieser Taste wird angezeigt.
+

@@ -55,7 +55,7 @@ Wenn Sie das Batocera.linux Betriebssystem installiert haben, können Sie sich p
 
    * Das OLED-Display zeigt CPU, RAM, Festplattennutzung, CPU-Temperatur und die IP-Adresse des Raspberry Pi an.
    * Vier WS2812 RGB-LEDs leuchten in einem blauen Atemmodus.
-   * Die RGB-Lüfter sind standardmäßig auf den Modus **Always On** eingestellt. Für andere Temperaturgrenzwerte siehe :ref:`cc_control_fan_max`.
+   * Die RGB-Lüfter sind standardmäßig auf den Modus **ausgewogen** eingestellt. Für andere Temperaturgrenzwerte siehe :ref:`cc_control_fan_max`.
 
 
 Nun können Sie den Pironman 5 mit einem Bildschirm, Gamecontrollern, Kopfhörern und vielem mehr verbinden, um in Ihre Gaming-Welt einzutauchen.
@@ -64,4 +64,4 @@ Nun können Sie den Pironman 5 mit einem Bildschirm, Gamecontrollern, Kopfhörer
 
    Zu diesem Zeitpunkt haben Sie den Pironman 5 erfolgreich eingerichtet, und er ist einsatzbereit.
    
-   Für die erweiterte Steuerung seiner Komponenten siehe bitte :ref:`control_commands_dashboard_5`.
+   Für die erweiterte Steuerung seiner Komponenten siehe bitte :ref:`view_control_commands`.
