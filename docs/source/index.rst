@@ -1,3 +1,5 @@
+.. start_hello_message 
+
 .. note::
 
     こんにちは！SunFounderの「Raspberry Pi・Arduino・ESP32愛好者向けFacebookコミュニティ」へようこそ。Raspberry Pi、Arduino、ESP32をより深く学び、仲間と一緒に楽しみましょう。
@@ -11,6 +13,8 @@
     - **季節イベントとプレゼント企画**：季節ごとのキャンペーンやプレゼント企画に参加できます。
 
     👉 一緒にものづくりを楽しみませんか？[|link_sf_facebook|] をクリックして今すぐ参加！
+
+.. end_hello_message 
 
 Pironman 5シリーズ - Raspberry Pi 5用 NVMe M.2 SSD対応PCIeミニPCケース
 ================================================================================

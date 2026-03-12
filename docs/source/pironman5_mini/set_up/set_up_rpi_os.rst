@@ -16,6 +16,10 @@
 Raspberry Pi OS／Ubuntu／Kali Linux／Homebridgeでのセットアップ
 ======================================================================
 
+.. image:: ../img/pironman5_mini_pic.jpg
+    :width: 400
+    :align: center
+
 Raspberry PiにRaspberry Pi OS、Ubuntu、Kali Linux、またはHomebridgeをインストールしている場合は、コマンドラインを使用してPironman 5 Miniを設定する必要があります。詳細なチュートリアルは以下を参照してください。
 
 .. note::
