@@ -114,13 +114,11 @@ gpio_settings = {
     ],
     'groups': ['gpio'],
     # - Install from apt
-    'apt_dependencies': [
-        'python3-gpiozero', # for pm_auto fan control
+    'uninstall_pip_dependencies': [
+        'RPi.GPIO',
     ],
     # - Install from pip
     'pip_dependencies': [
-        'gpiozero',
-        'gpiod',
         'rpi.lgpio',
     ],
 }

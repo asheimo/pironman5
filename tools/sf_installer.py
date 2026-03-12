@@ -156,6 +156,7 @@ class SF_Installer():
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()
+        self.custom_uninstall_pip_dependencies = set()
         self.custom_pip_dependencies = set()
         self.python_source = {}
         self.symlinks = set()
@@ -220,6 +221,8 @@ class SF_Installer():
             self.before_install_scripts.update(settings['run_scripts_before_install'])
         if 'apt_dependencies' in settings:
             self.custom_apt_dependencies.update(settings['apt_dependencies'])
+        if 'uninstall_pip_dependencies' in settings:
+            self.custom_uninstall_pip_dependencies.update(settings['uninstall_pip_dependencies'])
         if 'pip_dependencies' in settings:
             self.custom_pip_dependencies.update(settings['pip_dependencies'])
         if 'python_source' in settings:
@@ -480,6 +483,14 @@ class SF_Installer():
             self.do('Remove old virtual environment', f'rm -r {self.venv_path}')
         self.do('Create virtual environment', f'python3 -m venv {self.venv_path} {" ".join(self.venv_options)}')
 
+    def uninstall_pip_dep(self):
+        if ('no_dep' in self.args and self.args.no_dep) or \
+            len(self.custom_uninstall_pip_dependencies) == 0:
+            return
+        deps = " ".join(self.custom_uninstall_pip_dependencies)
+        self.print_title(f"Uninstall: {deps}")
+        self.do(f'Uninstall {deps}', f'{self.venv_pip} uninstall -y {deps}')
+
     def install_pip_dep(self):
         if ('no_dep' in self.args and self.args.no_dep) or \
             len(self.custom_pip_dependencies) == 0:
@@ -687,6 +698,7 @@ class SF_Installer():
         self.setup_user()
         self.add_user_to_groups()
         self.create_working_dir()
+        self.uninstall_pip_dep()
         self.install_pip_dep()
         self.check_git_url()
         self.install_py_src_pkgs()
