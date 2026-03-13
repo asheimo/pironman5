@@ -49,6 +49,8 @@ Pour éviter que le ventilateur RGB, alimenté par le GPIO du Raspberry Pi, rest
 
 #. Enregistrez les modifications. Il vous sera demandé de redémarrer afin que les nouveaux paramètres prennent effet.
 
+.. _mini_download_pironman5_module:
+
 Téléchargement et installation du module ``pironman5``
 -----------------------------------------------------------
 

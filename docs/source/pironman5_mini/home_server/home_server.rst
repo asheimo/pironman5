@@ -24,3 +24,5 @@ Ce chapitre explique comment transformer un Raspberry Pi en serveur domestique p
    nextcloud.rst 
    omv.rst 
    plex.rst
+   openclaw.rst
+   

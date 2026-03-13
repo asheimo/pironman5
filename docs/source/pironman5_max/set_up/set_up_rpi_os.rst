@@ -18,7 +18,7 @@ Configuration sur Raspberry Pi/Ubuntu/Kali/Homebridge OS
 ===================================================================
 
 
-.. image:: img/pironman5_max.jpg
+.. image:: ../img/pironman5_max.jpg
     :width: 400
     :align: center
     
