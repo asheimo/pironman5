@@ -20,7 +20,7 @@ View and Control from Dashboard
 
 Once you have successfully installed the ``pironman5`` module, the ``pironman5.service`` will start automatically upon reboot.
 
-Now you can open the monitoring page in your browser to see the information about your Raspberry Pi, configure the RGB, and control the fan, etc. The page link is: ``http://<ip>:34001``. 
+Now you can open the monitoring page in your browser to see the information about your Raspberry Pi, configure the RGB, etc. The page link is: ``http://<ip>:34001``. 
 
 .. image:: img/dashboard_prm5promax.png
   :width: 90%
@@ -37,7 +37,7 @@ Dashboard
 
 There are multiple cards to view the relevant status of the Raspberry Pi, including:
 
-* **Temperature**: View the Raspberry Pi's CPU & GPU temperature and the PWM fan speed. **GPIO Fan State** indicates the status of the two side RGB fans. At the current temperature, the two RGB fans are off.
+* **Temperature**: View the Raspberry Pi's CPU & GPU temperature.
 
   .. image:: img/dashboard_temp.png
     :align: center
@@ -139,31 +139,6 @@ The Log page is used to view the logs of the currently running Pironman5 service
 ..      If you set the **RGB Style** to **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**, you will not be able to set the color.
 
 .. * **RGB Speed**: Set the speed of the RGB LED changes.
-
-.. **About RGB Fans**
-
-.. .. image:: img/dashboard_setting_fan.png
-..   :width: 600
-
-
-.. * **Fan LED**: Set the mode of the RGB fans.
-
-..     * **Off**: Turn off the RGB.
-..     * **On**: Turn on the RGB.
-..     * **Follow**: Turn on the RGB automatically based on the fan's work state. 
-
-.. * **GPIO Fan Mode**: You can set the operating mode of the two RGB fans. These modes determine the conditions under which the RGB fans will activate.
-
-..     * **Quiet**: The RGB fans will activate at 70°C.
-..     * **Balanced**: The RGB fans will activate at 67.5°C.
-..     * **Cool**: The RGB fans will activate at 60°C.
-..     * **Performance**: The RGB fans will activate at 50°C.
-..     * **Always On**: The RGB fans will always be on.
-
-.. For instance, if set to **Performance** mode, the RGB fans will activate at 50°C.
-
-.. After saving, if the CPU temperature exceeds 50°C, you will see the side RGB fans will start spinning.
-
 
 .. **Fan**
 .. .. 
