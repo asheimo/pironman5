@@ -73,7 +73,7 @@ Check if the FPC cable of the OLED Screen is properly connected.
 
     .. code-block:: shell
 
-        cat /var/log/pironman5/pm_auto.oled.log
+        cat /var/log/pironman5/pironman5.log
 
 #. Alternatively, use the following command to check if the OLED's i2c address 0x3C is recognized:
     

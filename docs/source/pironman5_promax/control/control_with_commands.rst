@@ -144,7 +144,7 @@ Use ``pironman5`` or ``pironman5 -h`` for instructions.
 
 **Control RGB LEDs**
 ----------------------
-The board features **6** WS2812B addressable RGB LEDs, offering extensive customization. Users can control power, color, brightness, display modes, animation speed, and the number of active LEDs.
+The board features 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated into the RGB fans. Users can control power, color, brightness, display modes, animation speed, and the number of active LEDs.
 
 .. note::
 
@@ -194,7 +194,7 @@ The board features **6** WS2812B addressable RGB LEDs, offering extensive custom
 
   sudo pironman5 -rp 50
 
-* **Set LED Count**: The system defaults to controlling 6 LEDs (onboard). If you have extended the chain with additional external WS2812B LEDs, update the total count accordingly.
+* **Set LED Count**: The system defaults to controlling 18 LEDs. If you have extended the chain with additional external WS2812B LEDs, update the total count accordingly.
 
 .. code-block:: shell
 
@@ -258,7 +258,7 @@ If the OLED screen is blank:
 
     .. code-block:: shell
 
-      cat /var/log/pironman5/pm_auto.oled.log
+      cat /var/log/pironman5/pironman5.log
 
 3.  Verify the OLED is detected on the I2C bus (address `0x3C`):
 

@@ -148,7 +148,7 @@ If the OLED screen is not displaying or is displaying incorrectly, follow these 
 
    .. code-block:: shell
 
-      cat /var/log/pironman5/pm_auto.oled.log
+      cat /var/log/pironman5/pironman5.log
 
 7. NVMe PIP Module Not Working?
 ---------------------------------------
