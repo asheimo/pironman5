@@ -12,21 +12,20 @@
 
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
+.. start_compatible_nvme_ssd
+
 Compatible NVMe SSDs
 ========================
 
-Compatible NVMe SSDs
----------------------------
+**Recommended (Stable)**
+
+These SSD models have been tested and are generally stable with Raspberry Pi 5 and Pironman NVMe configurations.
 
 * ADATA Legend 700
 * ADATA Legend 800
 * AData XPG SX8200 Pro
 
 * Axe Memory Generic Drive
-
-* Crucial P2 M.2
-* Crucial P3 M.2
-* Crucial P3 Plus M.2
 
 * Inland PCIe NVMe SSD
 
@@ -68,11 +67,23 @@ Compatible NVMe SSDs
 * XPG SX8200 Pro
 
 
-Uncompatible NVMe SSD
---------------------------
+**Compatible (May Vary)**
 
-We recommend avoiding the following NVMe SSD drives which is equipped with a Phison controller due to their proven incompatibility:
+These models may work correctly in many setups, but some users have reported occasional compatibility or stability differences depending on workload or system configuration.
 
+
+* Crucial P2 M.2
+* Crucial P3 M.2
+
+
+
+**Not Recommended (Potential Instability)**
+
+These models or controllers may cause NVMe resets, I/O errors, or drive disconnects on Raspberry Pi 5 PCIe interfaces, and are therefore not recommended.
+
+* SSDs using Phison E27T / E21 controllers
+* Crucial P310 
+* Crucial P3 Plus M.2
 * Western Digital SN740
 * Western Digital Black SN770
 * WD Blue SN580 series
@@ -85,3 +96,5 @@ We recommend avoiding the following NVMe SSD drives which is equipped with a Phi
 * Kingston OM8SEP4256Q-A0
 * Transcend 110Q (TS500GMTE110Q)
 * Other NVMe SSD drivers equipped with the same Phison controller
+
+.. end_compatible_nvme_ssd

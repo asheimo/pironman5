@@ -26,3 +26,4 @@ This chapter introduces how to turn a Raspberry Pi into a versatile home server.
    nextcloud.rst 
    omv.rst 
    plex.rst
+   openclaw.rst

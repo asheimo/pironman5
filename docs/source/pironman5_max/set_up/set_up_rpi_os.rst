@@ -17,7 +17,7 @@
 Set Up on Raspberry Pi/Ubuntu/Kali/Homebridge OS
 ==================================================
 
-.. image:: ../img/pironman5_max.jpg
+.. image:: ../img/pironman5_max.jpg 
     :width: 400
     :align: center
     
@@ -50,6 +50,8 @@ To prevent the OLED screen and RGB fans, powered by the Raspberry Pi GPIO, from 
 
 #. Save the changes. You will be prompted to reboot for the new settings to take effect.
 
+
+.. _max_download_pironman5_module:
 
 Downloading and Installing the ``pironman5`` Module
 -----------------------------------------------------------

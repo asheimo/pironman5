@@ -47,6 +47,7 @@ To prevent the RGB fan, powered by the Raspberry Pi GPIO, from remaining active 
 #. Save the changes. You will be prompted to reboot for the new settings to take effect.
 
 
+.. _mini_download_pironman5_module:
 
 Downloading and Installing the ``pironman5`` Module
 -----------------------------------------------------------
