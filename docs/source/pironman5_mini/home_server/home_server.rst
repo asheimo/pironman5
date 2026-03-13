@@ -25,3 +25,4 @@ In diesem Kapitel erfahren Sie, wie Sie einen Raspberry Pi in einen vielseitigen
    nextcloud.rst 
    omv.rst 
    plex.rst
+   openclaw.rst

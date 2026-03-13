@@ -1,32 +1,22 @@
-.. note:: 
+.. include:: /index.rst
+   :start-after: start_hello_message
+   :end-before: end_hello_message
+   
+   
+.. start_compatible_nvme_ssd
 
-    Hallo und herzlich willkommen in der SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasten-Community auf Facebook! Tauchen Sie gemeinsam mit anderen Enthusiasten tiefer in die Welt von Raspberry Pi, Arduino und ESP32 ein.
+Compatible NVMe SSDs
+========================
 
-    **Warum beitreten?**
+**Empfohlen (Stabil)**
 
-    - **Expertenunterstützung**: Lösen Sie Probleme nach dem Kauf und technische Herausforderungen mit Unterstützung unserer Community und unseres Teams.
-    - **Lernen & Teilen**: Tauschen Sie Tipps und Tutorials aus, um Ihre Fähigkeiten zu verbessern.
-    - **Exklusive Vorschauen**: Erhalten Sie frühzeitigen Zugang zu Produktankündigungen und exklusiven Einblicken.
-    - **Sonderrabatte**: Profitieren Sie von exklusiven Rabatten auf unsere neuesten Produkte.
-    - **Festliche Aktionen und Verlosungen**: Nehmen Sie an Verlosungen und Sonderaktionen zu Feiertagen teil.
-
-    👉 Bereit, mit uns zu entdecken und zu gestalten? Klicken Sie auf [|link_sf_facebook|] und treten Sie noch heute bei!
-
-Kompatible NVMe SSDs
-=========================
-
-Kompatible NVMe SSDs
-----------------------------
+Diese SSD-Modelle wurden getestet und sind im Allgemeinen stabil mit Raspberry Pi 5 und Pironman NVMe-Konfigurationen.
 
 * ADATA Legend 700
 * ADATA Legend 800
 * AData XPG SX8200 Pro
 
 * Axe Memory Generic Drive
-
-* Crucial P2 M.2
-* Crucial P3 M.2
-* Crucial P3 Plus M.2
 
 * Inland PCIe NVMe SSD
 
@@ -62,25 +52,40 @@ Kompatible NVMe SSDs
 * Western Digital SN570
 * Western Digital SN530
 * Western Digital Black SN750 SE
-* Western Digital Blue SN550-Serie (Wenn Sie die neuesten rpi-eeprom-updates und die pieeprom-2024-01-24.bin installieren können, wird das Boot-Problem der Western Digital Blue SN550 NVMe behoben. Weitere Informationen finden Sie unter https://forums.raspberrypi.com/viewtopic.php?t=364327.)
+* Western Digital Blue SN550 Serie (Wenn Sie wissen, wie man die neuesten rpi-eeprom-updates installiert, hat pieeprom-2024-01-24.bin das NVMe-Boot-Problem der Western Digital Blue SN550 behoben. Siehe https://forums.raspberrypi.com/viewtopic.php?t=364327.)
 
 * XPG GAMMIX S70 BLADE
 * XPG SX8200 Pro
 
-Inkompatible NVMe SSDs
---------------------------
 
-Wir empfehlen, die folgenden NVMe SSDs zu vermeiden, die mit einem Phison-Controller ausgestattet sind, da ihre Inkompatibilität nachgewiesen wurde:
+**Kompatibel (Kann Variieren)**
 
-* Western Digital SN740  
-* Western Digital Black SN770  
-* WD Blue SN580 Serie  
-* Western Digital Green SN350 Serie  
-* Western Digital Black SN850 Serie  
-* WD BLACK 8TB SN850X  
-* Inland TN446 NVMe-Laufwerk  
-* Corsair MP600 SSD  
-* Samsung PM991  
-* Kingston OM8SEP4256Q-A0  
-* Transcend 110Q (TS500GMTE110Q)  
-* Andere NVMe-SSDs mit demselben Phison-Controller  
+Diese Modelle können in vielen Konfigurationen korrekt funktionieren, aber einige Benutzer haben gelegentliche Kompatibilitäts- oder Stabilitätsunterschiede in Abhängigkeit von der Arbeitslast oder Systemkonfiguration berichtet.
+
+
+* Crucial P2 M.2
+* Crucial P3 M.2
+
+
+
+**Nicht Empfohlen (Potenzielle Instabilität)**
+
+Diese Modelle oder Controller können auf PCIe-Schnittstellen des Raspberry Pi 5 NVMe-Resets, E/A-Fehler oder Verbindungsabbrüche des Laufwerks verursachen und werden daher nicht empfohlen.
+
+* SSDs mit Phison E27T / E21 Controllern
+* Crucial P310
+* Crucial P3 Plus M.2
+* Western Digital SN740
+* Western Digital Black SN770
+* WD Blue SN580 Serie
+* Western Digital Green SN350 Serie
+* Western Digital Black SN850 Serie
+* WD BLACK 8TB SN850X
+* Inland tn446 NVMe-Laufwerk
+* Corsair MP600 SSD
+* Samsung PM991
+* Kingston OM8SEP4256Q-A0
+* Transcend 110Q (TS500GMTE110Q)
+* Andere NVMe-SSDs, die mit dem gleichen Phison-Controller ausgestattet sind
+
+.. end_compatible_nvme_ssd

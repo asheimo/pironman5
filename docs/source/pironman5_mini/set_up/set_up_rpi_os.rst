@@ -51,6 +51,8 @@ Um zu verhindern, dass der über den GPIO des Raspberry Pi gespeiste RGB-Lüfter
 #. Speichere die Änderungen. Du wirst aufgefordert, einen Neustart durchzuführen, damit die neuen Einstellungen wirksam werden.
 
 
+.. _mini_download_pironman5_module:
+
 Download und Installation des Moduls ``pironman5``
 -----------------------------------------------------------
 
