@@ -13,7 +13,7 @@
     👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
 
 
-**Configuración en Raspberry Pi OS/Ubuntu/Kali Linux/Homebridge**
+Configuración en Raspberry Pi OS/Ubuntu/Kali Linux/Homebridge
 ======================================================================
 
 .. image:: ../img/pironman5_mini_pic.jpg
@@ -46,6 +46,8 @@ Para evitar que el ventilador RGB, alimentado por los GPIO de la Raspberry Pi, p
    .. image:: img/run_power_off.png
 
 #. Guarda los cambios. Se te pedirá que reinicies para que la nueva configuración surta efecto.
+
+.. _mini_download_pironman5_module:
 
 Descarga e instalación del módulo ``pironman5``
 -----------------------------------------------------------

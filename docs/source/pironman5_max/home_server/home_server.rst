@@ -26,3 +26,4 @@ Este capítulo presenta cómo convertir una Pironman 5 en un servidor doméstico
    nextcloud.rst 
    omv.rst 
    plex.rst
+   openclaw.rst

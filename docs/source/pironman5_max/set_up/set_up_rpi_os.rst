@@ -17,7 +17,7 @@
 Configuración en Raspberry Pi/Ubuntu/Kali/Homebridge OS
 ===================================================================
 
-.. image:: img/pironman5_max.jpg
+.. image:: ../img/pironman5_max.jpg
     :width: 400
     :align: center
     
@@ -52,6 +52,8 @@ Para evitar que la pantalla OLED y los ventiladores RGB, alimentados por el GPIO
 
 #. Guarda los cambios. Se te pedirá reiniciar para que la nueva configuración surta efecto.
 
+
+.. _max_download_pironman5_module:
 
 Descarga e instalación del módulo ``pironman5``
 -----------------------------------------------------------
