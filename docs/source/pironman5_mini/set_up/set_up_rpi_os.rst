@@ -50,6 +50,9 @@ Per evitare che la ventola RGB, alimentata dal GPIO del Raspberry Pi, rimanga at
 
 #. Salva le modifiche. Ti verrà chiesto di riavviare affinché le nuove impostazioni abbiano effetto.
 
+
+.. _mini_download_pironman5_module:
+
 Download e installazione del modulo ``pironman5``
 -----------------------------------------------------------
 

@@ -1,21 +1,12 @@
-.. note::
+.. include:: /index.rst
+   :start-after: start_hello_message
+   :end-before: end_hello_message
 
-    Ciao, benvenuto nella Community di appassionati di SunFounder Raspberry Pi & Arduino & ESP32 su Facebook! Approfondisci Raspberry Pi, Arduino ed ESP32 insieme agli altri appassionati.
-
-    **Perché unirti a noi?**
-
-    - **Supporto esperto**: Risolvi problemi post-vendita e sfide tecniche con l'aiuto della nostra community e del nostro team.
-    - **Impara e condividi**: Scambia suggerimenti e tutorial per migliorare le tue competenze.
-    - **Anteprime esclusive**: Ottieni accesso anticipato a nuovi annunci di prodotti e anteprime.
-    - **Sconti speciali**: Godi di sconti esclusivi sui nostri prodotti più recenti.
-    - **Promozioni festive e omaggi**: Partecipa a omaggi e promozioni speciali per le festività.
-
-    👉 Sei pronto a esplorare e creare con noi? Clicca su [|link_sf_facebook|] e unisciti oggi stesso!
 
 Configurazione su Raspberry Pi OS/Ubuntu/Kali Linux/Homebridge
 ==================================================================
 
-.. image:: img/pironman5_pic.jpg
+.. image:: ../img/pironman5_pic.jpg
     :width: 400
     :align: center
     
@@ -47,6 +38,8 @@ Per evitare che lo schermo OLED e le ventole RGB, alimentati dal GPIO del Raspbe
    .. image:: img/run_power_off.png
 
 #. Salva le modifiche. Ti verrà chiesto di riavviare affinché le nuove impostazioni abbiano effetto.
+
+.. _standard_download_pironman5_module:
 
 Download e installazione del modulo ``pironman5``
 -----------------------------------------------------------
