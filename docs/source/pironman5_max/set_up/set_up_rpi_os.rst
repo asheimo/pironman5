@@ -4,7 +4,7 @@
 ===================================================================
 
 
-.. image:: img/pironman5_max.jpg
+.. image:: ../img/pironman5_max.jpg
     :width: 400
     :align: center
     
@@ -37,6 +37,8 @@
    .. image:: img/run_power_off.png
 
 #. 保存更改。系统会提示你重启以使新设置生效。
+
+.. _max_download_pironman5_module:
 
 下载并安装 ``pironman5`` 模块
 -----------------------------------------------------------

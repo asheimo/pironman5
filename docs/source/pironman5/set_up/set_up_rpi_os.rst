@@ -2,7 +2,7 @@
 ==================================================================
 
 
-.. image:: img/pironman5_pic.jpg
+.. image:: ../img/pironman5_pic.jpg
     :width: 400
     :align: center
 
@@ -36,6 +36,7 @@
 
 #. 保存更改。系统会提示你重启以使新设置生效。
 
+.. _standard_download_pironman5_module:
 
 下载并安装 ``pironman5`` 模块
 -----------------------------------------------------------
