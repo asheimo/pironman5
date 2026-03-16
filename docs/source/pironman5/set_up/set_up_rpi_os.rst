@@ -16,7 +16,7 @@
 Raspberry Pi OS/Ubuntu/Kali Linux/Homebridgeでのセットアップ
 ==================================================================
 
-.. image:: img/pironman5_pic.jpg
+.. image:: ../img/pironman5_pic.jpg
     :width: 400
     :align: center
 
@@ -49,6 +49,8 @@ Raspberry PiのGPIOによって電力供給されているOLEDディスプレイ
 
 #. 変更を保存します。設定を有効にするために再起動を求められます。
 
+
+.. _standard_download_pironman5_module:
 
 ``pironman5`` モジュールのダウンロードとインストール
 -----------------------------------------------------------

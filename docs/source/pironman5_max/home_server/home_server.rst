@@ -26,3 +26,4 @@
    nextcloud.rst 
    omv.rst 
    plex.rst
+   openclaw.rst
