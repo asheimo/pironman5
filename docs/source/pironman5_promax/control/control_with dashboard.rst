@@ -95,53 +95,60 @@ The Log page is used to view the logs of the currently running Pironman5 service
   :width: 90%
 
 
-.. Settings
-.. -----------------
+Settings
+-----------------
 
-.. There is a settings menu in the **upper right corner** of the page where you can customize the settings according to your preferences. After making modifications, the changes will be saved automatically. If needed, you can click the CLEAR button at the bottom to clear the historical data.
+There is a settings menu in the **upper right corner** of the page where you can customize the settings according to your preferences. After making modifications, the changes will be saved automatically. If needed, you can click the CLEAR button at the bottom to clear the historical data.
 
-.. .. image:: img/dashboard_setting_darkmode.png
-..   :width: 600
+.. image:: img/dashboard_setting_darkmode.png
+  :width: 600
 
-.. * **Dark Mode**: Toggle between light and dark mode themes. The theme option is saved in the browser cache. Changing the browser or clearing the cache will revert to the default light theme.
-.. * **Show Unmounted Disk**: Whether to show unmounted disks in the dashboard.
-.. * **Show All Cores**: Whether to show all cores in the dashboard.
-.. * **Temperature Unit**: Set the temperature unit displayed by the system.
+* **Dark Mode**: Toggle between light and dark mode themes. The theme option is saved in the browser cache. Changing the browser or clearing the cache will revert to the default light theme.
+* **Show Unmounted Disk**: Whether to show unmounted disks in the dashboard.
+* **Show All Cores**: Whether to show all cores in the dashboard.
+* **Card layout**: Set the card layout of the dashboard.
+* **Temperature Unit**: Set the temperature unit displayed by the system.
 
-.. **About OLED Screen**
+**About OLED Screen**
 
-.. .. image:: img/dashboard_setting_oled.png
-..   :width: 600
+.. image:: img/dashboard_setting_oled.png
+  :width: 600
 
-.. * **OLED Enable**: Whether to enable OLED.
-.. * **OLED Disk**: Set OLED disk.
-.. * **OLED Network Interface**: 
+* **OLED Enable**: Whether to enable OLED.
+* **OLED Rotation**: Set OLED rotation.
+* **OLED Sleep Timeout**: Set OLED sleep timeout.
 
-..   * **all**: Toggle the display between the Ethernet IP and Wi-Fi IP in sequence.
-..   * **eth0**: Display only the Ethernet IP
-..   * **wlan0**: Display only the Wi-Fi IP
+* **OLED Page**: Set the OLED page to display: **System Mix**, **Performance Metrics**, **Disk Usage**, **IP Addresses**.
 
-.. * **OLED Rotation**: Set OLED rotation.
-.. * **OLED Sleep Timeout**: Set OLED sleep timeout.
 
-.. **About RGB LEDs**
 
-.. .. image:: img/RGB_LEDS.jpg
-..   :width: 600
+**About RGB LEDs**
 
-.. * **RGB Enable**: Whether to enable RGB LEDS
-.. * **RGB Color**: Set the color of the RGB LEDs.
-.. * **RGB Brightness**: You can adjust the brightness of the RGB LEDs with a slider.
-.. * **RGB Style**: Choose the RGB LEDs display mode. Options include **Solid**, **Breathing**, **Flow**, **Flow_reverse**, **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**.
+.. image:: img/dashboard_setting_rgb.png
+  :width: 600
 
-..   .. note::
+* **RGB Enable**: Whether to enable RGB LEDS
+* **RGB Color**: Set the color of the RGB LEDs.
+* **RGB Brightness**: You can adjust the brightness of the RGB LEDs with a slider.
+* **RGB Style**: Choose the RGB LEDs display mode. Options include **Solid**, **Breathing**, **Flow**, **Flow_reverse**, **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**.
+* **RGB Speed**: Set the speed of the RGB LED changes.
+* **RGB Led**: Set the number of RGB LEDs to control.
 
-..      If you set the **RGB Style** to **Rainbow**, **Rainbow Reverse**, and **Hue Cycle**, you will not be able to set the color.
 
-.. * **RGB Speed**: Set the speed of the RGB LED changes.
+**About Data**
+
+.. image:: img/dashboard_setting_debug.png
+  :width: 600
+
+* **Debug Level**: Set the debug level. Options include **Info**, **Warning**, **Error**, and **Critical**.
+* **History Retention**: Set the number of days to retain historical data.
+* **Clear All Data**: Clear all historical data.
+* **Reboot**: Reboot the system.
+* **Shutdown**: Shutdown the system.
+* **Restart service**: Restart the system services.
 
 .. **Fan**
-.. .. 
+
 
 .. The core fan connects to a dedicated 4-pin PWM fan port on the Raspberry Pi 5. Its default control strategy is a firmware-managed, multi-level intelligent speed adjustment scheme based on CPU temperature. This means that when you use an official or compatible PWM fan and connect it correctly, the system will automatically adjust the fan speed according to changes in CPU temperature (starting to operate above 50°C) without any manual intervention from you.
 

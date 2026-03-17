@@ -18,7 +18,6 @@
 Pironman 5 Pro MAX
 ================================================================================
 
-.. todo : add link to pironman5_promax
 
 Thanks for choosing our |link_pironman5_promax|.
 
