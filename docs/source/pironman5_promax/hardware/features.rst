@@ -47,7 +47,6 @@ Features
 
     * 4.3-inch DSI Capacitive Touchscreen (800 x 480 pixels)
     * 0.96-inch OLED Display (128x64) for system stats
-    * Vibration Sensor for tap-to-wake OLED
     * Stereo 3W Speakers
     * 5 Megapixel Camera Module support
 
