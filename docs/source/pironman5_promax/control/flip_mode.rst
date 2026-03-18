@@ -1,5 +1,33 @@
-Flip the Pironman 5 Pro MAX
-=====================================
+Configuring Display
+===================================================================
+
+This chapter guides you through configuring the display settings for the Pironman 5 Pro MAX, including enabling power-saving screen blanking and setting up screen flipping to accommodate special installation orientations.
+
+
+-------------------------------------------------------------------
+
+**Setting Up Screen Idle Sleep**
+
+
+To save power when you are not actively using the Pironman 5 Pro MAX, you can enable the screen's automatic sleep function. When the device has been idle for a set period, the main display will automatically turn off, entering a low-power state.
+
+Follow these steps to configure it:
+
+1. Click **Menu -> Preferences** in the bottom-left corner of the screen, then find and open the **Control Centre**.
+
+   .. image:: img/flip_mode1.png
+
+2.  In the Control Centre interface, click to enter the **Display** settings.
+
+3.  Locate the **Screen Blanking** option and toggle it on.
+
+   .. image:: img/flip_mode2.png
+
+
+
+----------------------------------------------------------------------
+
+**Flip the Pironman 5 Pro MAX**
 
 The Pironman 5 Pro MAX can be flipped over for use. In this configuration, the touchscreen will be positioned on top and the GPIO ports will be on the bottom, offering greater flexibility for various projects. This setup is ideal for applications such as more convenient screen viewing or easier access to GPIO pins when connecting sensors.
 
@@ -39,7 +67,9 @@ To flip the Pironman 5 Pro MAX, follow these steps:
 
       sudo pironman5 -or 180
 
-**Notes:**
+----------------------------------------------------
+
+**Note**
 
 - After flipping, ensure the unit is placed on a stable surface to prevent tipping.
 - If you encounter touch input misalignment, recalibrate the touchscreen through system settings.
