@@ -15,13 +15,13 @@ Follow these steps to configure it:
 
 1. Click **Menu -> Preferences** in the bottom-left corner of the screen, then find and open the **Control Centre**.
 
-   .. image:: img/flip_mode1.png
+   .. image:: img/sleep_screen1.png
 
 2.  In the Control Centre interface, click to enter the **Display** settings.
 
 3.  Locate the **Screen Blanking** option and toggle it on.
 
-   .. image:: img/flip_mode2.png
+   .. image:: img/sleep_screen2.png
 
 
 

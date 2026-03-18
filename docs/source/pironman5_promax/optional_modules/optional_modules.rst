@@ -13,7 +13,7 @@
     👉 Ready to explore and create with us? Click [|link_sf_facebook|] and join today!
 
 
-7. Optional Modules: RTL-SDR
+7. Optional Modules
 ==============================================================
 
 .. note::
@@ -22,7 +22,7 @@
     You need to prepare them yourself or purchase them from our official website:
 
     * `RTL-SDR Blog V4 <https://www.sunfounder.com/products/rtl-sdr-blog-v4>`_
-    
+
 This section explains how to expand the capabilities of the Pironman 5 series by integrating optional hardware modules, including a camera module, a 3.5-inch touchscreen display, and an RTL-SDR radio receiver.
 By combining these add-ons, you can enhance interactivity, enable real-time visual input, and unlock advanced wireless signal reception.
 
@@ -33,3 +33,4 @@ By combining these add-ons, you can enhance interactivity, enable real-time visu
     :maxdepth: 1
     
     rtl_sdr
+    pant_tilt
