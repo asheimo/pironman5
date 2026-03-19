@@ -127,6 +127,12 @@ gpio_settings = {
 }
 
 pi5_power_button_settings = {
+    'apt_dependencies': [
+        'build-essential',
+        'gcc',
+        'g++',
+        'python3-dev',
+    ],
     'groups': ['input'],
     'pip_dependencies': [
         'evdev',
