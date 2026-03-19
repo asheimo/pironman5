@@ -41,83 +41,40 @@ Use the images below to identify the product you purchased. Once identified, cli
 Based on the images below, select the product you own to learn more. Each link will take you to the respective product's introduction page.
 
 .. list-table:: 
-   :widths: 25 25 25
-   :header-rows: 1
-
-   * - :ref:`intro_pironman5`
-     - :ref:`intro_pironman5_max`
-     - :ref:`intro_pironman5_mini`
-   * - |pic_pironman5| 
-     - |pic_pironman5_max|
-     - |pic_pironman5_mini| 
-     
-Below is a comparison of specifications for the Pironman 5, Pironman 5 Mini and Pironman 5 MAX. Use this table to understand the differences between these products.
-
-.. list-table:: 
    :widths: 25 25 25 25
    :header-rows: 1
 
-   * - Specifications
-     - :ref:`intro_pironman5`
+   * - :ref:`intro_pironman5`
+     - :ref:`intro_pironman5_promax`
      - :ref:`intro_pironman5_max`
      - :ref:`intro_pironman5_mini`
-   * - Compatible Devices 
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-   * - Input
-     - USB Type C, 5V/5A
-     - USB Type C, 5V/5A
-     - USB Type C, 5V/5A
-   * - Power Button 
-     - ✔
-     - ✔
-     - ✔
-   * - Exterior Material 1
-     - Silver Aluminum Alloy
-     - Black Aluminum Alloy
-     - Silver Aluminum Alloy
-   * - Exterior Material 2
-     - Transparent Acrylic
-     - Black Acrylic
-     - Black Acrylic
-   * - Cooler
-     - Tower Cooler
-     - Tower Cooler
-     - Active Cooler
-   * - IR Receiver
-     - ✔
-     - ✔
-     - X
-   * - RGB Fans Number
-     - 2
-     - 2
-     - 1
-   * - Fan RGB Mode
-     - Sync with Fan
-     - Independent Control
-     - Independent Control
-   * - HDMI Ports
-     - 2 Standard HDMI Ports
-     - 2 Standard HDMI Ports
-     - 2 Micro HDMI Ports
-   * - OLED Display
-     - ✔
-     - ✔
-     - X
-   * - OLED Activation
-     - Always on
-     - Wake on Tap
-     - 
-   * - Support NVMe SSD
-     - 1
-     - 2
-     - 1   
-   * - Dimension
-     - 111.9x78.5x117mm
-     - 111.9x78.5x117mm
-     - 67.8x98.6x101.5mm  
+   * - |pic_pironman5| 
+     - |pic_pironman5_promax|
+     - |pic_pironman5_max|
+     - |pic_pironman5_mini| 
+
      
+Below is a comparison of specifications for the Pironman 5, Pironman 5 Mini and Pironman 5 MAX. Use this table to understand the differences between these products.
+
+.. csv-table:: Pironman 5 Series Comparison
+   :header: "Specifications", ":ref:`intro_pironman5`", ":ref:`intro_pironman5_promax`", ":ref:`intro_pironman5_max`", ":ref:`intro_pironman5_mini`"
+   :widths: 20, 15, 15, 15, 35
+
+   "Compatible Devices", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5"
+   "Input", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A"
+   "Power Button", "✔", "✔", "✔", "✔"
+   "Exterior Material 1", "Silver Aluminum Alloy", "Black Aluminum Alloy", "Black Aluminum Alloy", "Silver Aluminum Alloy"
+   "Exterior Material 2", "Transparent Acrylic", "Black Acrylic", "Black Acrylic", "Black Acrylic"
+   "Cooler", "Tower Cooler", "Tower Cooler", "Tower Cooler", "Active Cooler"
+   "IR Receiver", "✔", "✔", "✔", "X"
+   "RGB Fans Number", "2", "2", "2", "1"
+   "Fan RGB Mode", "Sync with Fan", "Sync with Fan", "Independent Control", "Independent Control"
+   "HDMI Ports", "2 Standard HDMI Ports", "2 Standard HDMI Ports", "2 Standard HDMI Ports", "2 Micro HDMI Ports"
+   "OLED Display", "✔", "✔", "✔", "X"
+   "OLED Activation", "Wake on Button", "Wake on Button", "Wake on Tap", ""
+   "Support NVMe SSD", "1", "2", "2", "1"
+   "Dimension", "111.9x78.5x117mm", "140.9x77.0x138.7mm", "111.9x78.5x117mm", "67.8x98.6x101.5mm"
+
 
 If you have any questions, please send an email to service@sunfounder.com and we will respond as soon as possible.
 

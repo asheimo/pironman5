@@ -33,4 +33,4 @@ By combining these add-ons, you can enhance interactivity, enable real-time visu
     :maxdepth: 1
     
     rtl_sdr
-    pant_tilt
+    pan_tilt
