@@ -92,10 +92,10 @@ class SF_Installer():
     WORK_DIR = '/opt/{name}'
     GIT_URL = None
     MAIN_GIT_URL = 'https://github.com/sunfounder/'
-    BACKUP_GIT_URLS = [
-        'https://github.com/sunfounder/', 
-        'https://gitee.com/sunfounder/',
-    ]
+    BACKUP_GIT_URLS = {
+        'github': 'https://github.com/sunfounder/', 
+        'gitee': 'https://gitee.com/sunfounder/',
+    }
 
     APT_DEPENDENCIES = [
         'python3-pip',
@@ -286,7 +286,7 @@ class SF_Installer():
         while self.is_running:
             i = (i + 1) % len(char)
             sys.stdout.write('\033[?25l')  # cursor invisible
-            sys.stdout.write(f'\r\033[36m[{char[i]}]\033[0m')
+            sys.stdout.write(f'\r\033[36m{char[i]}\033[0m')
             sys.stdout.flush()
             time.sleep(0.1)
 
@@ -295,7 +295,7 @@ class SF_Installer():
         sys.stdout.flush()
 
     def do(self, msg="", cmd="", ignore_error=False):
-        print(f"[ ] {msg}", end='', flush=True)
+        print(f"  {msg}", end='', flush=True)
         if not self.args.plain_text:
             self.is_running = True
             _thread = threading.Thread(target=self.spinner)
@@ -329,30 +329,30 @@ class SF_Installer():
     @property
     def SUCCESS(self):
         if self.args.plain_text:
-            return "[✓]"
+            return "✓"
         else:
-            return "\033[32m[✓]\033[0m"
+            return "\033[32m✓\033[0m"
 
     @property
     def WARNING(self):
         if self.args.plain_text:
-            return "[⚠]"
+            return "⚠"
         else:
-            return "\033[1;33m[⚠]\033[0m"
+            return "\033[1;33m⚠\033[0m"
 
     @property
     def SKIPPED(self):
         if self.args.plain_text:
-            return "[→]"
+            return "→"
         else:
-            return "\033[1;33m[→]\033[0m"
+            return "\033[1;33m→\033[0m"
 
     @property
     def FAILED(self):
         if self.args.plain_text:
-            return "[✗]"
+            return "✗"
         else:
-            return "\033[1;35m[✗]\033[0m"
+            return "\033[1;35m✗\033[0m"
 
     def check_admin(self):
         if os.geteuid() != 0:
@@ -521,17 +521,17 @@ class SF_Installer():
         venv_site_pkgs = f"{glob.glob(f'{self.venv_path}/lib/python*')[0]}/site-packages"
         sys.path.insert(0, venv_site_pkgs)  # add to front of path
         requests = importlib.import_module('requests')
-        for url in self.BACKUP_GIT_URLS:
+        for name, url in self.BACKUP_GIT_URLS.items():
             try:
                 requests.get(url)
                 self.GIT_URL = url
-                print(f'{self.SUCCESS} Use "{self.GIT_URL}" as git URL')
+                print(f'{self.SUCCESS} Use {name} as remote repository')
                 return
             except requests.exceptions.RequestException:
-                print(f'{self.WARNING} "{url}" is not reachable')
+                print(f'{self.WARNING} {name} is not reachable')
                 continue
         else:
-            print(f'{self.FAILED} None of these URLs is reachable: {self.BACKUP_GIT_URLS}')
+            print(f'{self.FAILED} None of these is reachable: {self.BACKUP_GIT_URLS}')
             sys.exit(1)
 
     def install_py_src_pkgs(self):
