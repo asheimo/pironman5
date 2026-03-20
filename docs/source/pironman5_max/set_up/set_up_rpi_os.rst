@@ -41,6 +41,10 @@ Um zu verhindern, dass das vom GPIO des Raspberry Pi gespeiste OLED-Display und 
 
 #. Speichere die Änderungen. Du wirst aufgefordert, einen Neustart durchzuführen, damit die neuen Einstellungen wirksam werden.
 
+
+
+.. _max_download_pironman5_module:
+
 Download und Installation des Moduls ``pironman5``
 -----------------------------------------------------------
 

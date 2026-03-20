@@ -26,6 +26,9 @@ Um OpenClaw zu ermöglichen, den Pironman5 Max zu bedienen, müssen wir die Piro
 3.  Sie können nun den Pironman5 Max in ``openclaw tui`` bedienen. Versuchen Sie, Befehle in der TUI zu senden, z.B. versuchen Sie, die LED-Leuchten am Gehäuse einzuschalten, deren Farbe zu ändern oder die Kamera ein Foto machen zu lassen. Sie können ihm sogar sagen, dass Sie ein DHT11-Modul an GPIO17 angeschlossen haben, und es die Temperatur auslesen lassen.
 
    .. note:: Wenn OpenClaw den importierten Skill immer noch nicht erkennt, erinnern Sie es bitte an rsync.
+
+
+      
 -------------------------------------------------------------
 
 
