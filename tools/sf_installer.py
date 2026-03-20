@@ -417,9 +417,9 @@ class SF_Installer():
         self.add_user_to_group(current_user, self.user)
 
         # Add permission to user
-        self.do(f'Add command permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | sudo tee /etc/sudoers.d/{self.user} > /dev/null')
-        self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}')
-        self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}')
+        self.do(f'Add command permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | tee /etc/sudoers.d/{self.user} > /dev/null')
+        self.do(f'Change sudoers file mode to 0440', f'chmod 0440 /etc/sudoers.d/{self.user}')
+        self.do(f'Check sudoers file', f'visudo -c -f /etc/sudoers.d/{self.user}')
 
     def add_user_to_groups(self):
         # Add groups to user

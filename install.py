@@ -73,8 +73,6 @@ settings = {
     'dtoverlays': DT_OVERLAYS,
 }
 
-
-
 ws2812_settings = {
     'run_scripts_before_install': [
         "install_lgpio.sh",
