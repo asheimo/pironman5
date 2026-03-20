@@ -8,7 +8,7 @@ import glob
 import importlib
 import subprocess
 import grp
-
+import shutil
 
 class ConfigTxt(object):
     DEFAULT_BOOT_FILE = "/boot/firmware/config.txt"
@@ -416,10 +416,13 @@ class SF_Installer():
         current_user = self.get_current_username()
         self.add_user_to_group(current_user, self.user)
 
-        # Add permission to user
-        self.do(f'Add command permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | tee /etc/sudoers.d/{self.user} > /dev/null')
-        self.do(f'Change sudoers file mode to 0440', f'chmod 0440 /etc/sudoers.d/{self.user}')
-        self.do(f'Check sudoers file', f'visudo -c -f /etc/sudoers.d/{self.user}')
+        # Add sudo permission to user
+        if shutil.which('sudo'):
+            self.do(f'Add permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | tee /etc/sudoers.d/{self.user} > /dev/null')
+            self.do(f'Change sudoers file mode to 0440', f'chmod 0440 /etc/sudoers.d/{self.user}')
+            self.do(f'Check sudoers file', f'visudo -c -f /etc/sudoers.d/{self.user}')
+        else:
+            print(f"{self.WARNING} Sudo is not exist, skip sudo permission setup")
 
     def add_user_to_groups(self):
         # Add groups to user
