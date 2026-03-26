@@ -63,9 +63,6 @@ OpenClaw 快速入门
 
     .. image:: /pironman5/home_server/img/openclaw/paste_api_key_open_claw.png
 
-.. |link_openai_platform| raw:: html
-
-    <a href="https://platform.openai.com/settings/organization/api-keys" target="_blank">OpenAI 平台</a>
 
 8.  访问 |link_openai_platform| 并登录。在 **API keys** 页面上，点击 **Create new secret key**。
 
@@ -163,7 +160,7 @@ OpenClaw 快速入门
 
 **步骤 1：创建一个 Telegram 机器人**
 
-1.  在 Telegram 上找到 **@BotFather**（官方机器人创建工具）
+1.  在 Telegram 上找到 **@BotFather** （官方机器人创建工具）
 2.  **创建一个新机器人**：发送 ``/newbot`` 命令
 3.  **按照提示操作**：
     *   为你的机器人起一个名字（例如： ``我的 OpenClaw 助手``）

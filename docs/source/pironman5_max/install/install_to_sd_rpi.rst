@@ -19,11 +19,7 @@
 1. 安装 Raspberry Pi Imager
 -------------------------------------------
 
-.. |shared_link_rpi_imager| raw:: html
-
-    <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a>   
-
-#. 访问 Raspberry Pi Imager 官方下载页面：|shared_link_rpi_imager|，下载与你操作系统对应的安装程序。
+#. 访问 Raspberry Pi Imager 官方下载页面：|link_rpi_imager|，下载与你操作系统对应的安装程序。
 
    .. image:: img/imager_download.png
       :width: 70%
@@ -97,7 +93,7 @@
 
 #. **配置 Wi-Fi**
 
-   * 输入你的 Wi-Fi **SSID**（网络名称）和 **密码**。  
+   * 输入你的 Wi-Fi **SSID** （网络名称）和 **密码**。  
    * Raspberry Pi 在首次启动时将自动连接该网络。
    
    .. image:: img/imager_custom_wifi.png

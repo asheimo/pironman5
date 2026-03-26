@@ -302,7 +302,7 @@ OLED 屏幕会在一段时间无操作后自动关闭以节能并延长寿命，
 17. 如何通过 PowerShell 安装 OpenSSH？
 --------------------------------------------------
 
-当你使用 ``ssh <username>@<hostname>.local``（或 ``ssh <username>@<IP address>``）连接树莓派时，若出现如下错误：
+当你使用 ``ssh <username>@<hostname>.local`` （或 ``ssh <username>@<IP address>``）连接树莓派时，若出现如下错误：
 
     .. code-block::
 

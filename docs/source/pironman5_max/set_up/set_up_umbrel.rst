@@ -8,8 +8,8 @@
 
 #. 使用以太网线将 Raspberry Pi 5 连接到网络。此步骤非常重要，以确保设备能够访问互联网。
 
-#. 在浏览器中访问：``http://umbrel.local``。  
-   如果页面无法打开，请在路由器中查找 Umbrel 设备的 IP 地址，例如：``http://192.168.1.50``
+#. 在浏览器中访问： ``http://umbrel.local``。  
+   如果页面无法打开，请在路由器中查找 Umbrel 设备的 IP 地址，例如： ``http://192.168.1.50``
 
    .. image:: img/umbrel_local.png
 

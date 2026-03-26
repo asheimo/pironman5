@@ -45,7 +45,7 @@
 
 .. note::
 
-   对于 “lite” 系统，请先安装以下工具：``git``、 ``python3``、 ``pip3``、 ``setuptools`` 等。
+   对于 “lite” 系统，请先安装以下工具： ``git``、 ``python3``、 ``pip3``、 ``setuptools`` 等。
    
    .. code-block:: shell
    

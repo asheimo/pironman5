@@ -16,7 +16,7 @@
    .. image:: img/batocera_login.png
       :width: 90%
 
-#. 执行命令：``/etc/init.d/S92switch setup`` 以进入菜单设置页面。
+#. 执行命令： ``/etc/init.d/S92switch setup`` 以进入菜单设置页面。
 
    .. image:: img/batocera_configure.png  
       :width: 90%
