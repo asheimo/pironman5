@@ -73,8 +73,6 @@ settings = {
     'dtoverlays': DT_OVERLAYS,
 }
 
-
-
 ws2812_settings = {
     'run_scripts_before_install': [
         "install_lgpio.sh",
@@ -83,6 +81,7 @@ ws2812_settings = {
     'groups': ['spi', 'gpio'],
     'pip_dependencies': [
         'adafruit-circuitpython-neopixel-spi',
+        'adafruit_platformdetect',
         'Adafruit-Blinka==8.59.0',
         'rpi.lgpio',
     ],
@@ -114,18 +113,25 @@ gpio_settings = {
     ],
     'groups': ['gpio'],
     # - Install from apt
-    'apt_dependencies': [
-        'python3-gpiozero', # for pm_auto fan control
+    'uninstall_pip_dependencies': [
+        'RPi.GPIO',
     ],
     # - Install from pip
     'pip_dependencies': [
-        'gpiozero',
-        'gpiod',
         'rpi.lgpio',
+    ],
+    'run_scripts_after_install': [
+        "change_rpi.gpio_to_rpi.lgpio.sh",
     ],
 }
 
 pi5_power_button_settings = {
+    'apt_dependencies': [
+        'build-essential',
+        'gcc',
+        'g++',
+        'python3-dev',
+    ],
     'groups': ['input'],
     'pip_dependencies': [
         'evdev',

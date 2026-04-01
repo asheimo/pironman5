@@ -18,6 +18,8 @@ class Pironman5Mini:
         'ip_address',
         'mac_address',
         "restart_service",
+        "reboot",
+        "shutdown",
         
         "ws2812",
         "pwm_fan_speed",

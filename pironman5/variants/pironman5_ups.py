@@ -18,7 +18,9 @@ class Pironman5UPS:
         'debug_level',
         'ip_address',
         'mac_address',
-        'restart_service',
+        "restart_service",
+        "reboot",
+        "shutdown",
 
         'oled',
         'oled_sleep',
@@ -48,6 +50,7 @@ class Pironman5UPS:
         'default_on',
         'power-failure-simulation',
         'send_email',
+
     ]
     EVENT_MAP = {
         'pipower5_button_click': 'oled_wake_page_next',

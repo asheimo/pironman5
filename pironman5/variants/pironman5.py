@@ -18,6 +18,8 @@ class Pironman5:
         'ip_address',
         'mac_address',
         "restart_service",
+        "reboot",
+        "shutdown",
         
         "oled",
         "oled_sleep",

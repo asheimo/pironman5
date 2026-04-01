@@ -16,6 +16,8 @@ class Pironman5NAS:
         'ip_address',
         'mac_address',
         "restart_service",
+        "reboot",
+        "shutdown",
 
         "oled",
         'oled_page_mix',

@@ -8,7 +8,7 @@ import glob
 import importlib
 import subprocess
 import grp
-
+import shutil
 
 class ConfigTxt(object):
     DEFAULT_BOOT_FILE = "/boot/firmware/config.txt"
@@ -92,10 +92,10 @@ class SF_Installer():
     WORK_DIR = '/opt/{name}'
     GIT_URL = None
     MAIN_GIT_URL = 'https://github.com/sunfounder/'
-    BACKUP_GIT_URLS = [
-        'https://github.com/sunfounder/', 
-        'https://gitee.com/sunfounder/',
-    ]
+    BACKUP_GIT_URLS = {
+        'github': 'https://github.com/sunfounder/', 
+        'gitee': 'https://gitee.com/sunfounder/',
+    }
 
     APT_DEPENDENCIES = [
         'python3-pip',
@@ -156,6 +156,7 @@ class SF_Installer():
         self.build_dependencies = set()
         self.before_install_scripts = set()
         self.custom_apt_dependencies = set()
+        self.custom_uninstall_pip_dependencies = set()
         self.custom_pip_dependencies = set()
         self.python_source = {}
         self.symlinks = set()
@@ -164,6 +165,7 @@ class SF_Installer():
         self.service_files = set()
         self.bin_files = set()
         self.dtoverlays = set()
+        self.after_install_scripts = set()
         self.venv_options = set()
 
         self.parser = argparse.ArgumentParser(description=description)
@@ -220,6 +222,8 @@ class SF_Installer():
             self.before_install_scripts.update(settings['run_scripts_before_install'])
         if 'apt_dependencies' in settings:
             self.custom_apt_dependencies.update(settings['apt_dependencies'])
+        if 'uninstall_pip_dependencies' in settings:
+            self.custom_uninstall_pip_dependencies.update(settings['uninstall_pip_dependencies'])
         if 'pip_dependencies' in settings:
             self.custom_pip_dependencies.update(settings['pip_dependencies'])
         if 'python_source' in settings:
@@ -236,6 +240,8 @@ class SF_Installer():
             self.bin_files.update(settings['bin_files'])
         if 'dtoverlays' in settings:
             self.dtoverlays.update(settings['dtoverlays'])
+        if 'run_scripts_after_install' in settings:
+            self.after_install_scripts.update(settings['run_scripts_after_install'])
         if 'venv_options' in settings:
             self.venv_options.update(settings['venv_options'])
 
@@ -280,7 +286,7 @@ class SF_Installer():
         while self.is_running:
             i = (i + 1) % len(char)
             sys.stdout.write('\033[?25l')  # cursor invisible
-            sys.stdout.write(f'\r\033[36m[{char[i]}]\033[0m')
+            sys.stdout.write(f'\r\033[36m{char[i]}\033[0m')
             sys.stdout.flush()
             time.sleep(0.1)
 
@@ -289,7 +295,7 @@ class SF_Installer():
         sys.stdout.flush()
 
     def do(self, msg="", cmd="", ignore_error=False):
-        print(f"[ ] {msg}", end='', flush=True)
+        print(f"  {msg}", end='', flush=True)
         if not self.args.plain_text:
             self.is_running = True
             _thread = threading.Thread(target=self.spinner)
@@ -323,30 +329,30 @@ class SF_Installer():
     @property
     def SUCCESS(self):
         if self.args.plain_text:
-            return "[✓]"
+            return "✓"
         else:
-            return "\033[32m[✓]\033[0m"
+            return "\033[32m✓\033[0m"
 
     @property
     def WARNING(self):
         if self.args.plain_text:
-            return "[⚠]"
+            return "⚠"
         else:
-            return "\033[1;33m[⚠]\033[0m"
+            return "\033[1;33m⚠\033[0m"
 
     @property
     def SKIPPED(self):
         if self.args.plain_text:
-            return "[→]"
+            return "→"
         else:
-            return "\033[1;33m[→]\033[0m"
+            return "\033[1;33m→\033[0m"
 
     @property
     def FAILED(self):
         if self.args.plain_text:
-            return "[✗]"
+            return "✗"
         else:
-            return "\033[1;35m[✗]\033[0m"
+            return "\033[1;35m✗\033[0m"
 
     def check_admin(self):
         if os.geteuid() != 0:
@@ -410,10 +416,13 @@ class SF_Installer():
         current_user = self.get_current_username()
         self.add_user_to_group(current_user, self.user)
 
-        # Add permission to user
-        self.do(f'Add command permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | sudo tee /etc/sudoers.d/{self.user} > /dev/null')
-        self.do(f'Change sudoers file mode to 0440', f'sudo chmod 0440 /etc/sudoers.d/{self.user}')
-        self.do(f'Check sudoers file', f'sudo visudo -c -f /etc/sudoers.d/{self.user}')
+        # Add sudo permission to user
+        if shutil.which('sudo'):
+            self.do(f'Add permission to user "{self.user}"', f'echo "{self.user} ALL=(ALL) NOPASSWD: {", ".join(self.SUDOER_PERMISSION)}" | tee /etc/sudoers.d/{self.user} > /dev/null')
+            self.do(f'Change sudoers file mode to 0440', f'chmod 0440 /etc/sudoers.d/{self.user}')
+            self.do(f'Check sudoers file', f'visudo -c -f /etc/sudoers.d/{self.user}')
+        else:
+            print(f"{self.WARNING} Sudo is not exist, skip sudo permission setup")
 
     def add_user_to_groups(self):
         # Add groups to user
@@ -452,6 +461,13 @@ class SF_Installer():
         for script in self.before_install_scripts:
             self.do(f'Run scripts before install: {script}', f'bash scripts/{script}')
 
+    def run_scripts_after_install(self):
+        if len(self.after_install_scripts) == 0:
+            return
+        self.print_title("Run scripts after install...")
+        for script in self.after_install_scripts:
+            self.do(f'Run scripts after install: {script}', f'bash scripts/{script}')
+
     def install_apt_dep(self):
         if ('no_dep' in self.args and self.args.no_dep) or \
             len(self.custom_apt_dependencies) == 0:
@@ -480,6 +496,14 @@ class SF_Installer():
             self.do('Remove old virtual environment', f'rm -r {self.venv_path}')
         self.do('Create virtual environment', f'python3 -m venv {self.venv_path} {" ".join(self.venv_options)}')
 
+    def uninstall_pip_dep(self):
+        if ('no_dep' in self.args and self.args.no_dep) or \
+            len(self.custom_uninstall_pip_dependencies) == 0:
+            return
+        deps = " ".join(self.custom_uninstall_pip_dependencies)
+        self.print_title(f"Uninstall: {deps}")
+        self.do(f'Uninstall {deps}', f'{self.venv_pip} uninstall -y {deps}')
+
     def install_pip_dep(self):
         if ('no_dep' in self.args and self.args.no_dep) or \
             len(self.custom_pip_dependencies) == 0:
@@ -500,17 +524,17 @@ class SF_Installer():
         venv_site_pkgs = f"{glob.glob(f'{self.venv_path}/lib/python*')[0]}/site-packages"
         sys.path.insert(0, venv_site_pkgs)  # add to front of path
         requests = importlib.import_module('requests')
-        for url in self.BACKUP_GIT_URLS:
+        for name, url in self.BACKUP_GIT_URLS.items():
             try:
                 requests.get(url)
                 self.GIT_URL = url
-                print(f'{self.SUCCESS} Use "{self.GIT_URL}" as git URL')
+                print(f'{self.SUCCESS} Use {name} as remote repository')
                 return
             except requests.exceptions.RequestException:
-                print(f'{self.WARNING} "{url}" is not reachable')
+                print(f'{self.WARNING} {name} is not reachable')
                 continue
         else:
-            print(f'{self.FAILED} None of these URLs is reachable: {self.BACKUP_GIT_URLS}')
+            print(f'{self.FAILED} None of these is reachable: {self.BACKUP_GIT_URLS}')
             sys.exit(1)
 
     def install_py_src_pkgs(self):
@@ -687,6 +711,7 @@ class SF_Installer():
         self.setup_user()
         self.add_user_to_groups()
         self.create_working_dir()
+        self.uninstall_pip_dep()
         self.install_pip_dep()
         self.check_git_url()
         self.install_py_src_pkgs()
@@ -697,6 +722,7 @@ class SF_Installer():
         self.copy_dtoverlay()
         self.custom_install()
         self.change_work_dir_owner()
+        self.run_scripts_after_install()
         self.print_title("Finished")
 
     def uninstall(self):

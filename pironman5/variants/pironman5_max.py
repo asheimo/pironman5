@@ -18,6 +18,8 @@ class Pironman5Max:
         'ip_address',
         'mac_address',
         "restart_service",
+        "reboot",
+        "shutdown",
 
         "oled",
         'oled_page_mix',
@@ -29,7 +31,6 @@ class Pironman5Max:
         "gpio_fan_state",
         "gpio_fan_mode",
         "gpio_fan_led",
-        "vibration_switch",
         "pi5_power_button",
         "oled_sleep",
     ]
@@ -65,10 +66,8 @@ class Pironman5Max:
         'gpio_fan_led': 'follow',
         'gpio_fan_led_pin': 5,
         'oled_sleep_timeout': 10,
-        'vibration_switch_pin': 26,
-        'vibration_switch_pull_up': False,
     }
     DT_OVERLAYS = [
-        'sunfounder-pironman5max.dtbo',
+        'sunfounder-pironman5.dtbo',
     ]
 
