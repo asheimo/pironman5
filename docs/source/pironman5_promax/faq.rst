@@ -89,8 +89,6 @@ This issue may be caused by a system update, changes to the boot order, or a cor
 6. OLED Screen Not Working?
 ------------------------------
 
-.. note:: The OLED screen may turn off automatically after a period of inactivity to save power. You can gently tap the case to trigger the vibration sensor and wake the screen.
-
 If the OLED screen is not displaying or is displaying incorrectly, follow these troubleshooting steps:
 
 1. **Check the OLED Screen Connection**
@@ -211,22 +209,23 @@ If the problem persists after performing the above steps, please send an email t
 
 If the problem persists after performing the above steps, please send an email to service@sunfounder.com. We will respond as soon as possible.
 
-9. CPU fan not working?
+.. _promax_fan_faq:
+
+9. Fan not working / cannot be controlled?
 ----------------------------------------------
 
-When the CPU temperature has not reached the set threshold, the CPU fan will not working.
+The Pro / MAX adopts the official Raspberry Pi PWM fan control solution. All three cooling fans are directly controlled by the Raspberry Pi system and do not rely on the pironman5 service (therefore, you will not see fan control options in the command-line tool or the Dashboard).
 
-**Fan Speed Control Based on Temperature**  
+**Test whether the fan is working properly**
 
-The PWM fan operates dynamically, adjusting its speed according to the Raspberry Pi 5's temperature:  
+You can manually control the fan using the following commands:
 
-* **Below 50°C**: Fan remains off (0% speed).  
-* **At 50°C**: Fan operates at low speed (30% speed).  
-* **At 60°C**: Fan increases to medium speed (50% speed).  
-* **At 67.5°C**: Fan ramps up to high speed (70% speed).  
-* **At 75°C and above**: Fan operates at full speed (100% speed).  
+.. code-block:: bash
 
-For more detail please refer to : :ref:`fan`
+   pinctrl FAN_PWM op dl   # enable fan (low active)
+   pinctrl FAN_PWM op dh   # disable fan (high active)
+   pinctrl FAN_PWM a0      # auto mode (system temperature control)
+
 
 10. How to wake up the OLED screen?
 ---------------------------------------------------------------------------------
@@ -374,3 +373,19 @@ It means your computer system is too old and does not have `OpenSSH <https://lea
 --------------------------------------------------------------------------------------------------------
 
 Yes, OpenMediaVault is set up on the Raspberry Pi system. Please follow the steps of :ref:`promax_set_up_pi_os` to continue the configuration.
+
+
+19. Raspberry Pi camera not working?
+----------------------------------------
+
+When the camera is not working, 90% of the issues are related to the ribbon cable connection or the camera hardware itself.
+
+First, use ``rpicam-hello --list-cameras`` to confirm whether the camera is detected. If it is successfully detected, you should see a message similar to the following:
+
+.. code-block:: bash
+
+   Available cameras
+   -----------------
+   0 : ov5647 [2592x1944] (/base/axi/pcie@1000120000/rp1/i2c@88000/ov5647@36)
+
+If the camera is not detected, check whether the ribbon cable is reversed or not fully inserted. If the issue persists, try replacing the ribbon cable or the camera module for cross-testing.

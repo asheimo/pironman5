@@ -89,7 +89,6 @@ This issue may be caused by a system update, changes to the boot order, or a cor
 6. OLED Screen Not Working?
 ------------------------------
 
-.. note:: The OLED screen may turn off automatically after a period of inactivity to save power. You can gently tap the case to trigger the vibration sensor and wake the screen.
 
 If the OLED screen is not displaying or is displaying incorrectly, follow these troubleshooting steps:
 
@@ -230,7 +229,7 @@ For more detail please refer to : :ref:`fan`
 
 To save power and extend the screen’s lifespan, the OLED screen will automatically turn off after a period of inactivity. This is part of the normal design and does not affect the product’s functionality.
 
-You can gently tap the case to trigger the vibration sensor and wake the screen.
+You can press the button and wake the screen.
 
 .. note::
 
@@ -372,3 +371,34 @@ It means your computer system is too old and does not have `OpenSSH <https://lea
 --------------------------------------------------------------------------------------------------------
 
 Yes, OpenMediaVault is set up on the Raspberry Pi system. Please follow the steps of :ref:`max_set_up_pi_os` to continue the configuration.
+
+
+19. Can I use the Pironman5 Max's vibration switch function?
+----------------------------------------------------------------------------------------------------------------------------
+
+The vibration switch function of the Pironman5 Max is no longer software-compatible after version 1.3.6. This is a change introduced by version iteration, not a hardware failure. If you rely on this feature, you may consider rolling back to an earlier version, manually modifying the code, or submitting a request to the official support. The OLED screen's display duration can still be adjusted via the command line. The OLED screen is activated by pressing the button once, and the screen stays on for a few seconds.
+
+
+20. The dashboard shows no data (temperature, stats, graphs are empty)
+----------------------------------------------------------------------------------------------------------------------------
+
+
+1. Please try clearing your browser cache, or access the Dashboard page using your browser's incognito/private mode.
+
+2. To further confirm the current status, it is recommended that you first check whether the following two services are running properly:
+
+   .. code-block::
+
+      sudo systemctl status pironman5 --no-pager
+      sudo systemctl status influxdb --no-pager
+
+   Both services should show as: ``active (running)``
+
+3. If the services are not running properly, you can try executing:
+
+   .. code-block::
+
+      sudo systemctl restart influxdb
+      sudo systemctl restart pironman5
+
+   Then wait approximately 30 seconds and refresh the Dashboard page to check.

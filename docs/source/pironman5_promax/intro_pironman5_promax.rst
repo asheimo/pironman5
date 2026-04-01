@@ -26,7 +26,7 @@ Elevate your Raspberry Pi 5 experience with the |link_pironman5_promax|, our new
 * **Dual Display & Multimedia**:
 
     * **4.3" DSI Touchscreen** (800x480): Use as a secondary info display, status dashboard, or even a primary desktop monitor.
-    * **0.96" Smart OLED Display**: Shows real-time CPU, memory, temperature, disk usage, and IP. Features tap-to-wake via a built-in vibration sensor.
+    * **0.96" Smart OLED Display**: Shows real-time CPU, memory, temperature, disk usage, and IP.
     * **Stereo 3W Speakers & 5MP Camera**: Ready for multimedia, video conferencing, or computer vision projects.
 
 * **Enhanced User Interface & Control**:
@@ -106,7 +106,6 @@ Elevate your Raspberry Pi 5 experience with the |link_pironman5_promax|, our new
 
     * 4.3-inch DSI Capacitive Touchscreen (800 x 480 pixels)
     * 0.96-inch OLED Display (128x64) for system stats
-    * Vibration Sensor for tap-to-wake OLED
     * Stereo 3W Speakers
     * 5 Megapixel Camera Module support
 
@@ -118,7 +117,7 @@ Elevate your Raspberry Pi 5 experience with the |link_pironman5_promax|, our new
 
 * **Controls, Lighting & Features**:
 
-    * 6 x WS2812B Addressable RGB LEDs
+    * 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated into the RGB fans.
     * IR Receiver (38kHz)
     * Metal Power Button (safe shutdown function)
     * Real-Time Clock (RTC) Battery Holder (for CR1220 cell)

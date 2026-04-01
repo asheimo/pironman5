@@ -71,7 +71,7 @@ Below is a comparison of specifications for the Pironman 5, Pironman 5 Mini and 
    "Fan RGB Mode", "Sync with Fan", "Sync with Fan", "Independent Control", "Independent Control"
    "HDMI Ports", "2 Standard HDMI Ports", "2 Standard HDMI Ports", "2 Standard HDMI Ports", "2 Micro HDMI Ports"
    "OLED Display", "✔", "✔", "✔", "X"
-   "OLED Activation", "Wake on Button", "Wake on Button", "Wake on Tap", ""
+   "OLED Activation", "Wake on Button", "Wake on Button", "Wake on Button", ""
    "Support NVMe SSD", "1", "2", "2", "1"
    "Dimension", "111.9x78.5x117mm", "140.9x77.0x138.7mm", "111.9x78.5x117mm", "67.8x98.6x101.5mm"
 

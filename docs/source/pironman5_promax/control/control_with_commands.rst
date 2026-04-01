@@ -192,43 +192,13 @@ The board features 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated 
 
   sudo pironman5 -rl 12
 
-.. .. _cc_control_fan_promax:
 
-.. **Control RGB Fans**
-.. ---------------------
-.. The Pironman 5 Pro Max features **three** 5V addressable RGB PWM fans. These fans can be controlled for both lighting effects and cooling performance. The cooling behavior (fan speed based on temperature) is managed automatically by the system, but the RGB lighting is fully configurable via the same RGB LED commands above (``-rc``, ``-rs``, etc.), as they are part of the same addressable LED chain.
-
-.. For **cooling performance control**, the system uses intelligent thermal management. You can adjust the fan curve profile to match your needs:
-
-.. .. note::
-
-..   After modifying the fan mode, restart the service:
-
-..   .. code-block:: shell
-
-..     sudo systemctl restart pironman5.service
-
-.. * Set the fan operating mode. This determines the temperature threshold at which the fans start spinning and their speed curve.
-
-.. .. code-block:: shell
-
-..   sudo pironman5 -gm 2
-
-.. * **Available Fan Modes**:
-..   * **0: Always On**: Fans run continuously at a low speed.
-..   * **1: Performance**: Aggressive cooling. Fans activate at ~50°C.
-..   * **2: Cool**: Balanced profile. Fans activate at ~60°C. *(Recommended for most use)*
-..   * **3: Balanced**: Quiet-focused. Fans activate at ~67.5°C.
-..   * **4: Quiet**: Minimal fan noise. Fans activate only at ~70°C.
-
-.. .. note::
-
-..   The fan control pin is fixed in hardware. The ``-gp`` (GPIO pin) command from previous versions is **not applicable** to the Pironman 5 Pro Max, as fan control is handled via a dedicated circuit.
 
 **Fan**
 --------------------------------
 
-The core fan connects to a dedicated 4-pin PWM fan port on the Raspberry Pi 5. Its default control strategy is a firmware-managed, multi-level intelligent speed adjustment scheme based on CPU temperature. This means that when you use an official or compatible PWM fan and connect it correctly, the system will automatically adjust the fan speed according to changes in CPU temperature (starting to operate above 50°C) without any manual intervention from you.
+These fans connects to a dedicated 4-pin PWM fan port on the Raspberry Pi 5. Its default control strategy is a firmware-managed, multi-level intelligent speed adjustment scheme based on CPU temperature. This means that when you use an official or compatible PWM fan and connect it correctly, the system will automatically adjust the fan speed according to changes in CPU temperature (starting to operate above 50°C) without any manual intervention from you.
+
 
 
 

@@ -15,7 +15,7 @@ RGB LEDs
 
 .. image:: img/io_board_rgb.png
 
-The board features 6 WS2812 RGB LEDs, offering customizable control. Users can turn them on or off, change the color, adjust the brightness, switch display modes, and set the speed of changes.
+The board features 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated into the RGB fans, offering customizable control. Users can turn them on or off, change the color, adjust the brightness, switch display modes, and set the speed of changes.
 
 
 
@@ -36,7 +36,7 @@ RGB OUT Pins
 
 The WS2812 RGB LEDs support serial connection, allowing for the attachment of an external RGB LED strip. Connect the **SIG** pin to the external strip's **DIN** pin for expansion.
 
-The default setup includes 6 RGB LEDs. Connect additional LEDs and update the count using:
+The board features 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated into the RGB fans. Connect additional LEDs and update the count using:
 
 .. code-block:: shell
 
@@ -46,7 +46,7 @@ Example:
 
 .. code-block:: shell
 
-  sudo pironman5 --rgb-led-count 12
+  sudo pironman5 --rgb-led-count 24
 
 
 
