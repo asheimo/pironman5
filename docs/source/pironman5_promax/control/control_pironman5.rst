@@ -13,9 +13,9 @@
 
 Pironman 5 Pro MAX は、コマンドを使用するか、 ``http://<ip>:34001`` のウェブページからダッシュボードにアクセスすることで、監視および制御できます。
 
-.. note::
+.. .. note::
 
-    * **Home Assistant** システムの場合、Pironman 5 Pro MAX の監視と制御は、 ``http://<ip>:34001`` のウェブページを開いてダッシュボード経由でのみ行えます。
+..     * **Home Assistant** システムの場合、Pironman 5 Pro MAX の監視と制御は、 ``http://<ip>:34001`` のウェブページを開いてダッシュボード経由でのみ行えます。
 
 .. * **Batocera.linux** システムの場合、Pironman 5 Pro MAX の監視と制御はコマンド経由でのみ行えます。設定を変更した場合は、 ``pironman5 restart`` を使用してサービスを再起動する必要があることに注意してください。
 

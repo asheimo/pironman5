@@ -1,16 +1,6 @@
-.. note::
-
-    こんにちは！SunFounderのRaspberry Pi・Arduino・ESP32 愛好者向けFacebookコミュニティへようこそ！同じ趣味を持つ仲間たちと一緒に、Raspberry Pi・Arduino・ESP32 の世界をより深く楽しみましょう。
-
-    **なぜ参加するのか？**
-
-    - **エキスパートサポート**：購入後のサポートや技術的なトラブルは、コミュニティとチームがサポートします。
-    - **学びと共有**：チュートリアルやノウハウを共有してスキルアップ。
-    - **新製品の先行公開**：新製品の情報や先行リリースをいち早くゲット。
-    - **特別割引**：新製品を対象とした限定割引をお届け。
-    - **季節イベントとプレゼント企画**：プレゼント企画や季節ごとのキャンペーンにも参加可能。
-
-    👉 一緒にモノづくりと探求を始めませんか？[|link_sf_facebook|] をクリックして、今すぐ参加！
+.. include:: /index.rst
+   :start-after: start_hello_message
+   :end-before: end_hello_message
 
 .. _max_set_up_pironman5:
 
@@ -32,7 +22,8 @@
     set_up_rpi_os 
     set_up_home_assistant
     set_up_umbrel
-    set_up_batocera
+
+.. set_up_batocera
     
 
 
