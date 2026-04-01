@@ -81,6 +81,7 @@ ws2812_settings = {
     'groups': ['spi', 'gpio'],
     'pip_dependencies': [
         'adafruit-circuitpython-neopixel-spi',
+        'adafruit_platformdetect',
         'Adafruit-Blinka==8.59.0',
         'rpi.lgpio',
     ],
