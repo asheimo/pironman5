@@ -4,9 +4,9 @@ Control with Commands
 ========================================
 除了通过 Dashboard 查看 Pironman 5 Pro MAX 的数据并控制各类设备外，您也可以通过命令行进行控制。
 
-.. note::
+.. .. note::
 
-  * 对于 **Home Assistant** 系统，只能通过访问网页 ``http://<ip>:34001`` 的 Dashboard 来监控和控制 Pironman 5 Pro MAX。
+..   * 对于 **Home Assistant** 系统，只能通过访问网页 ``http://<ip>:34001`` 的 Dashboard 来监控和控制 Pironman 5 Pro MAX。
  
 .. * 对于 **Batocera.linux** 系统，只能通过命令行方式监控和控制 Pironman 5 Pro MAX。需要注意的是，任何配置更改都必须执行 ``pironman5 restart`` 重启服务后才会生效。
 
@@ -130,7 +130,7 @@ Control with Commands
 
 **控制 RGB 灯**
 ----------------------
-该主板配备了 18 个 WS2812B 可编程 RGB 灯：其中 6 个位于主板上，另外 12 个集成在 RGB 风扇中。用户可以控制灯光的开关、颜色、亮度、显示模式、动画速度以及启用的 LED 数量。 :contentReference[oaicite:0]{index=0}
+该主板配备了 18 个 WS2812B 可编程 RGB 灯：其中 6 个位于主板上，另外 12 个集成在 RGB 风扇中。用户可以控制灯光的开关、颜色、亮度、显示模式、动画速度以及启用的 LED 数量。 
 
 .. note::
 
@@ -190,7 +190,7 @@ Control with Commands
 **风扇**
 --------------------------------
 
-核心风扇通过 Raspberry Pi 5 上的专用 4 针 PWM 风扇接口连接。其默认控制策略为基于 CPU 温度的固件级多档智能调速机制。这意味着，当您使用官方或兼容的 PWM 风扇并正确连接后，系统会根据 CPU 温度变化自动调节风扇转速（约在 50°C 以上开始工作），无需手动干预。 :contentReference[oaicite:1]{index=1}
+风扇通过 Raspberry Pi 5 上的专用 4 针 PWM 风扇接口连接。其默认控制策略为基于 CPU 温度的固件级多档智能调速机制。这意味着，当您使用官方或兼容的 PWM 风扇并正确连接后，系统会根据 CPU 温度变化自动调节风扇转速（约在 50°C 以上开始工作），无需手动干预。 
 
 
 
