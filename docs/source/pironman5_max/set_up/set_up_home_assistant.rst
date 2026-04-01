@@ -10,7 +10,7 @@
 1. 登录 Home Assistant
 -----------------------------
 
-* 启动 Pironman 5 MAX 后，建议直接插入网线。此时可在电脑浏览器中输入：``homeassistant.local:8123`` 访问 Home Assistant。
+* 启动 Pironman 5 MAX 后，建议直接插入网线。此时可在电脑浏览器中输入： ``homeassistant.local:8123`` 访问 Home Assistant。
 
   .. image:: img/home_login.png
    :width: 90%

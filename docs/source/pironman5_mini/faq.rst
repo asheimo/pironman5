@@ -175,7 +175,7 @@ PWM 风扇会根据 Raspberry Pi 5 的温度动态调整转速：
 14. 如何通过 PowerShell 安装 OpenSSH？
 ---------------------------------------
 
-当你使用 ``ssh <用户名>@<主机名>.local``（或 ``ssh <用户名>@<IP地址>``）连接 Raspberry Pi 时，出现如下错误提示：
+当你使用 ``ssh <用户名>@<主机名>.local`` （或 ``ssh <用户名>@<IP地址>``）连接 Raspberry Pi 时，出现如下错误提示：
 
 .. code-block::
 
