@@ -108,8 +108,8 @@ Utilisez ce tableau pour comprendre les différences entre ces produits.
      - ✔
      - X
    * - Activation OLED
-     - Toujours allumé
-     - Allumage par contact
+     - Réveillez-vous avec le bouton
+     - Réveillez-vous avec le bouton
      - 
    * - Prise en charge NVMe SSD
      - 1

@@ -32,7 +32,8 @@ Vous pouvez ensuite sélectionner le tutoriel de configuration adapté à votre 
     set_up_rpi_os 
     set_up_home_assistant
     set_up_umbrel
-    set_up_batocera
+
+.. set_up_batocera
 
 
 **À propos du bouton d’alimentation**

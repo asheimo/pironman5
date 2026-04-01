@@ -378,3 +378,9 @@ Cela signifie que votre système est trop ancien et ne possède pas `OpenSSH <ht
 --------------------------------------------------------------------------------------------------------
 
 Oui, OpenMediaVault est configuré sur le système Raspberry Pi. Veuillez suivre les étapes de :ref:`max_set_up_pi_os` pour continuer la configuration.
+
+
+19. Puis-je utiliser la fonction de capteur de vibrations du Pironman5 Max ?
+----------------------------------------------------------------------------------------------------------------------------
+
+La fonction de capteur de vibrations du Pironman5 Max n'est plus compatible sur le plan logiciel après la version 1.3.6. Il s'agit d'un changement introduit par l'évolution des versions, et non d'un défaut matériel. Si vous dépendez de cette fonctionnalité, vous pouvez envisager de revenir à une version antérieure, de modifier manuellement le code, ou de soumettre une demande au support officiel. La durée d'affichage de l'écran OLED peut toujours être ajustée via la ligne de commande. L'écran OLED s'active en appuyant une fois sur le bouton et reste allumé pendant quelques secondes.
