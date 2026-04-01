@@ -182,7 +182,7 @@ Die Platine verfügt über 18 adressierbare WS2812B-RGB-LEDs: 6 auf der Platine 
 
   sudo pironman5 -rp 50
 
-* **LED-Anzahl festlegen**: Das System steuert standardmäßig 18 LEDs. Wenn Sie die Kette mit zusätzlichen externen WS2812B-LEDs erweitert haben, aktualisieren Sie die Gesamtzahl entsprechend.
+* **LED-Anzahl festlegen**: Die Platine verfügt über 18 adressierbare WS2812B-RGB-LEDs: 6 auf der Platine und 12 in die RGB-Lüfter integriert. Wenn Sie die Kette mit zusätzlichen externen WS2812B-LEDs erweitert haben, aktualisieren Sie die Gesamtzahl entsprechend.
 
 .. code-block:: shell
 

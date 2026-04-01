@@ -49,7 +49,7 @@ Merkmale
 
 * **Bedienelemente, Beleuchtung & Besonderheiten**:
 
-    * 6 x WS2812B adressierbare RGB-LEDs
+    * Die Platine verfügt über 18 adressierbare WS2812B-RGB-LEDs: 6 auf der Platine und 12 in die RGB-Lüfter integriert. 
     * IR-Empfänger (38kHz)
     * Metallischer Netzschalter (sichere Abschaltfunktion)
     * Echtzeituhr (RTC)-Batteriehalter (für CR1220-Zelle)
