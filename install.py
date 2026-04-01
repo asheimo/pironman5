@@ -84,6 +84,9 @@ ws2812_settings = {
         'adafruit_platformdetect',
         'Adafruit-Blinka==8.59.0',
         'rpi.lgpio',
+        'adafruit-circuitpython-typing',
+        'Adafruit-PureIO>=1.1.7',
+        'pyftdi>=0.40.0',
     ],
 }
 
