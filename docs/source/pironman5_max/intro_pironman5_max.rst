@@ -30,7 +30,7 @@ Lleva tu Raspberry Pi 5 al siguiente nivel con |link_pironman5_max|, una carcasa
 
 * **Expansión Dual NVMe & AI**: Conmutador PCIe Gen 2 con dos ranuras M.2 M-key (2230/2242/2260/2280) para SSDs o aceleradores de IA. Totalmente compatible con Hailo-8/8L.  
 * **Refrigeración Extrema**: Disipador tipo torre con ventilador PWM más dos ventiladores RGB, manteniendo una Pi al 100% de carga a solo 39°C en una habitación a 25°C.  
-* **Pantalla OLED Inteligente**: CPU, memoria, temperatura, uso de disco, dirección IP y más en tiempo real. Se activa con un toque gracias al sensor de vibración integrado.  
+* **Pantalla OLED Inteligente**: CPU, memoria, temperatura, uso de disco, dirección IP y más en tiempo real. 
 * **Iluminación RGB Personalizable**: Cuatro LEDs direccionables WS2812 iluminan tu configuración con efectos vibrantes.  
 * **Conectividad Mejorada**: Dos puertos HDMI estándar, receptor IR para aplicaciones multimedia, botón de encendido seguro estilo retro y expansor GPIO externo con etiquetas.  
 * **Construcción Premium**: Chasis de aluminio duradero con panel lateral acrílico oscuro y ranura para tarjeta con resorte para fácil acceso.  
@@ -81,7 +81,6 @@ Lleva tu Raspberry Pi 5 al siguiente nivel con |link_pironman5_max|, una carcasa
     * 2 x Ventiladores RGB (controlados por GPIO)  
 * Pantalla  
     * Pantalla OLED de 0.96" (CPU, RAM, temperatura, uso de disco, dirección IP)  
-    * Interruptor de vibración integrado para activar la pantalla tocando la carcasa  
 * Almacenamiento y Expansión  
     * Conmutador PCIe Gen 2 integrado  
     * 2 x Ranuras PCIe 2.0 M.2 M key para SSDs NVMe o aceleradores de IA  

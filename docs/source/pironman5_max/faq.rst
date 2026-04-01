@@ -98,8 +98,6 @@ Este problema puede deberse a una actualización del sistema, cambios en el orde
 6. ¿La pantalla OLED no funciona?
 -----------------------------------------
 
-.. note:: La pantalla OLED puede apagarse automáticamente tras un período de inactividad para ahorrar energía. Puede tocar ligeramente la carcasa para activar el sensor de vibración y encender la pantalla.
-
 Si la pantalla OLED no muestra nada o muestra información incorrecta, siga estos pasos para la solución de problemas:
 
 1. **Verifique la conexión de la pantalla OLED**
@@ -237,7 +235,7 @@ Para más detalles, consulte : :ref:`fan_max`
 
 Para ahorrar energía y prolongar la vida útil de la pantalla, la pantalla OLED se apaga automáticamente tras un período de inactividad. Esto es parte del diseño normal y no afecta la funcionalidad del producto.
 
-Puede tocar ligeramente la carcasa para activar el sensor de vibración y encender la pantalla.
+Puedes presionar el botón para activar la pantalla.
 
 .. note::
 
@@ -376,3 +374,9 @@ Significa que su sistema operativo es demasiado antiguo y no tiene `OpenSSH <htt
 --------------------------------------------------------------------------------------------------------
 
 Sí, OpenMediaVault se instala sobre el sistema Raspberry Pi. Por favor, siga los pasos de :ref:`max_set_up_pi_os` para continuar con la configuración.
+
+
+19. ¿Puedo usar la función de interruptor por vibración del Pironman5 Max?
+--------------------------------------------------------------------------------------------------------
+
+La función de interruptor por vibración del Pironman5 Max ya no es compatible a nivel de software a partir de la versión 1.3.6. Este cambio se debe a la evolución de las versiones, no a un fallo de hardware. Si depende de esta función, puede considerar volver a una versión anterior, modificar el código manualmente o enviar una solicitud al soporte oficial. La duración de visualización de la pantalla OLED aún se puede ajustar mediante la línea de comandos. La pantalla OLED se activa presionando el botón una vez y permanece encendida durante unos segundos.

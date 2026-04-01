@@ -108,8 +108,8 @@ A continuación se muestra una comparación de especificaciones para el Pironman
      - ✔
      - X
    * - Activación OLED
-     - Siempre encendida
-     - Activación por toque
+     - Despertar mediante botón
+     - Despertar mediante botón
      - 
    * - Soporte SSD NVMe
      - 1
