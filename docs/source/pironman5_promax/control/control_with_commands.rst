@@ -8,10 +8,6 @@ Steuerung mit Befehlen
 ========================================
 Neben der Anzeige von Daten des Pironman 5 Pro MAX und der Steuerung verschiedener Geräte über das Dashboard können Sie auch Befehle zu deren Steuerung verwenden.
 
-.. note::
-
-  * Für das **Home Assistant**-System können Sie den Pironman 5 Pro MAX nur über das Dashboard überwachen und steuern, indem Sie die Webseite ``http://<ip>:34001`` öffnen.
-
 Grundkonfigurationen anzeigen
 -----------------------------------
 

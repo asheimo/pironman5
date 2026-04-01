@@ -11,9 +11,6 @@ Sobald Sie das Modul ``pironman5`` erfolgreich installiert haben, wird der ``pir
 
 Sie können den Pironman 5 Pro MAX über Befehle überwachen und steuern oder über das Dashboard, das Sie über die Webseite ``http://<ip>:34001`` erreichen.
 
-.. note::
-
-    * Für das **Home Assistant**-System können Sie den Pironman 5 Pro MAX nur über das Dashboard überwachen und steuern, indem Sie die Webseite ``http://<ip>:34001`` öffnen.
 
 
 .. toctree::
