@@ -19,6 +19,6 @@ Sie können den Pironman 5 Pro MAX über Befehle überwachen und steuern oder ü
 .. toctree::
     :maxdepth: 1
 
-    control_with dashboard
+    control_with_dashboard
     control_with_commands
     conf_display

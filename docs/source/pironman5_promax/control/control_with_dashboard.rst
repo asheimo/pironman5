@@ -136,6 +136,8 @@ Es gibt ein Einstellungsmenü in der **oberen rechten Ecke** der Seite, in dem S
 * **Shutdown**: Fährt das System herunter.
 * **Restart service**: Startet die Systemdienste neu.
 
-**Fan**
 
-Der Kernlüfter wird an einen dedizierten 4-Pin-PWM-Lüfteranschluss des Raspberry Pi 5 angeschlossen. Seine Standardsteuerungsstrategie ist ein firmwaregesteuertes, mehrstufiges intelligentes Drehzahlanpassungsschema basierend auf der CPU-Temperatur. Das bedeutet, dass das System bei Verwendung eines offiziellen oder kompatiblen PWM-Lüfters und korrektem Anschluss die Lüftergeschwindigkeit automatisch an Änderungen der CPU-Temperatur anpasst (Beginn des Betriebs über 50°C), ohne dass ein manueller Eingriff erforderlich ist.
+**Lüfter**
+
+
+Diese Lüfter werden an den dedizierten 4-poligen PWM-Lüfteranschluss des Raspberry Pi 5 angeschlossen. Die standardmäßige Steuerungsstrategie ist ein firmwaregesteuertes, mehrstufiges intelligentes Drehzahlregelungssystem basierend auf der CPU-Temperatur. Das bedeutet, dass das System bei Verwendung eines offiziellen oder kompatiblen PWM-Lüfters und korrektem Anschluss die Lüfterdrehzahl automatisch an die CPU-Temperatur anpasst (Startbetrieb oberhalb von 50 °C), ohne dass Sie manuell eingreifen müssen.

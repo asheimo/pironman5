@@ -97,8 +97,6 @@ Dieses Problem kann durch ein Systemupdate, Änderungen der Bootreihenfolge oder
 6. OLED-Bildschirm funktioniert nicht?
 ------------------------------------------------
 
-.. note:: Der OLED-Bildschirm kann nach einer gewissen Inaktivität automatisch ausgeschaltet werden, um Strom zu sparen. Sie können leicht auf das Gehäuse tippen, um den Vibrationssensor auszulösen und den Bildschirm zu aktivieren.
-
 Wenn der OLED-Bildschirm nichts anzeigt oder falsch anzeigt, folgen Sie diesen Schritten zur Fehlerbehebung:
 
 1. **Überprüfen Sie die Verbindung des OLED-Bildschirms**
@@ -236,7 +234,7 @@ Weitere Details finden Sie unter : :ref:`fan_max`
 
 Um Strom zu sparen und die Lebensdauer des Bildschirms zu verlängern, schaltet sich der OLED-Bildschirm nach einer gewissen Inaktivität automatisch ab. Dies ist Teil des normalen Designs und beeinträchtigt die Funktionalität des Produkts nicht.
 
-Sie können leicht auf das Gehäuse tippen, um den Vibrationssensor auszulösen und den Bildschirm zu aktivieren.
+Sie können die Taste drücken und den Bildschirm aktivieren.
 
 .. note::
 
@@ -369,3 +367,31 @@ Bedeutet dies, dass Ihr Computersystem zu alt ist und `OpenSSH <https://learn.mi
 --------------------------------------------------------------------------------------------------------
 
 Ja, OpenMediaVault wird auf dem Raspberry-Pi-System eingerichtet. Bitte folgen Sie den Schritten in :ref:`max_set_up_pi_os`, um die Konfiguration fortzusetzen.
+
+19. Kann ich die Vibrationsschalterfunktion des Pironman5 Max verwenden?
+----------------------------------------------------------------------------------------------------------------------------
+
+Die Vibrationsschalterfunktion des Pironman5 Max ist ab Version 1.3.6 nicht mehr softwarekompatibel. Dies ist eine Änderung, die durch die Versionseinführung entstanden ist, und kein Hardwarefehler. Wenn Sie auf diese Funktion angewiesen sind, können Sie in Betracht ziehen, auf eine frühere Version zurückzusetzen, den Code manuell anzupassen oder eine Anfrage an den offiziellen Support zu senden. Die Anzeigedauer des OLED-Bildschirms kann weiterhin über die Befehlszeile angepasst werden. Der OLED-Bildschirm wird durch einmaliges Drücken der Taste aktiviert und bleibt einige Sekunden lang eingeschaltet.
+
+20. Das Dashboard zeigt keine Daten an (Temperatur, Statistiken, Diagramme sind leer)
+----------------------------------------------------------------------------------------------------------------------------
+
+1. Bitte leeren Sie den Cache Ihres Browsers oder rufen Sie die Dashboard-Seite im Inkognito-/Privaten Modus Ihres Browsers auf.
+
+2. Um den aktuellen Status weiter zu überprüfen, wird empfohlen, zunächst zu prüfen, ob die folgenden beiden Dienste ordnungsgemäß ausgeführt werden:
+
+   .. code-block::
+
+      sudo systemctl status pironman5 --no-pager
+      sudo systemctl status influxdb --no-pager
+
+   Beide Dienste sollten als ``active (running)`` angezeigt werden.
+
+3. Wenn die Dienste nicht ordnungsgemäß ausgeführt werden, können Sie versuchen, Folgendes auszuführen:
+
+   .. code-block::
+
+      sudo systemctl restart influxdb
+      sudo systemctl restart pironman5
+
+   Warten Sie dann etwa 30 Sekunden und aktualisieren Sie die Dashboard-Seite, um dies zu überprüfen.

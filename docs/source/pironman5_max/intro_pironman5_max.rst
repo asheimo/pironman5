@@ -34,7 +34,7 @@ Perfekt für NAS, KI, Media-Center und fortgeschrittene Projekte.
 
 * **Dual NVMe & KI-Erweiterung**: PCIe Gen 2 Switch mit zwei M.2 M-Key-Slots (2230/2242/2260/2280) für SSDs oder KI-Beschleuniger. Vollständig kompatibel mit Hailo-8/8L.  
 * **Extreme Kühlung**: Tower-Kühler mit PWM-Lüfter plus zwei RGB-Lüfter, hält einen Pi bei 100 % Last in einem 25 °C Raum bei nur 39 °C.  
-* **Intelligentes OLED-Display**: Echtzeit-Anzeige von CPU, Speicher, Temperatur, Speichernutzung, IP-Adresse und mehr. Aufwecken durch Antippen mit eingebautem Vibrationssensor.  
+* **Intelligentes OLED-Display**: Echtzeit-Anzeige von CPU, Speicher, Temperatur, Speichernutzung, IP-Adresse und mehr. 
 * **Anpassbare RGB-Beleuchtung**: Vier WS2812-Adressierbare LEDs erhellen dein Setup mit lebendigen Effekten.  
 * **Erweiterte Konnektivität**: Zwei Standard-HDMI-Ports, IR-Empfänger für Media-Apps, sicherer Retro-Power-Button und beschrifteter externer GPIO-Extender.  
 * **Premium-Bauweise**: Robustes Aluminiumgehäuse mit dunkler Acryl-Seitenwand und federbelastetem Kartenslot für einfachen Zugriff.  

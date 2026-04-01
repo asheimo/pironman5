@@ -72,7 +72,7 @@ Unten finden Sie einen Vergleich der Spezifikationen für Pironman 5, Pironman 5
    "RGB-Modus Lüfter", "Synchron mit Lüfter", "Synchron mit Lüfter", "Unabhängige Steuerung", "Unabhängige Steuerung"
    "HDMI-Anschlüsse", "2 Standard-HDMI-Anschlüsse", "2 Standard-HDMI-Anschlüsse", "2 Standard-HDMI-Anschlüsse", "2 Micro-HDMI-Anschlüsse"
    "OLED-Display", "✔", "✔", "✔", "X"
-   "OLED-Aktivierung", "Aufwecken per Taste", "Aufwecken per Taste", "Aufwecken per Tippen", ""
+   "OLED-Aktivierung", "Aufwecken per Taste", "Aufwecken per Taste", "Aufwecken per Taste", ""
    "Unterstützt NVMe-SSD", "1", "2", "2", "1"
    "Abmessungen", "111,9 x 78,5 x 117 mm", "140,9 x 77,0 x 138,7 mm", "111,9 x 78,5 x 117 mm", "67,8 x 98,6 x 101,5 mm"
 

@@ -72,10 +72,6 @@ Download und Installation des Moduls ``pironman5``
    Hier sind die Hauptkonfigurationen des Pironman 5 MAX:
    
    * Das OLED-Display zeigt CPU-, RAM- und Festplattennutzung, CPU-Temperatur und die IP-Adresse des Raspberry Pi an.
-
-   .. note:: Das OLED-Display kann sich nach einer gewissen Inaktivität automatisch ausschalten, um Energie zu sparen.  
-      Du kannst das Gehäuse leicht berühren, um den Vibrationssensor zu aktivieren und das Display wieder einzuschalten.
-
    * Vier WS2812-RGB-LEDs leuchten blau mit einem Atemeffekt.  
    * Die RGB-Lüfter sind standardmäßig auf **Always On** eingestellt. Informationen zur Einstellung der Einschalttemperaturen findest du unter :ref:`cc_control_fan_max`.
 

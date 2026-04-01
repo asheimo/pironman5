@@ -87,8 +87,6 @@ Dieses Problem kann durch ein Systemupdate, Änderungen der Startreihenfolge ode
 6. OLED-Bildschirm funktioniert nicht?
 --------------------------------------------------------
 
-.. note:: Der OLED-Bildschirm schaltet sich möglicherweise nach einer gewissen Inaktivität automatisch aus, um Strom zu sparen. Sie können leicht auf das Gehäuse tippen, um den Vibrationssensor auszulösen und den Bildschirm aufzuwecken.
-
 Wenn der OLED-Bildschirm nichts anzeigt oder falsch anzeigt, folgen Sie diesen Schritten zur Fehlerbehebung:
 
 1. **Überprüfen Sie die OLED-Bildschirmverbindung**
@@ -209,10 +207,22 @@ Wenn das Problem nach Durchführung der oben genannten Schritte weiterhin besteh
 
 Wenn das Problem nach Durchführung der oben genannten Schritte weiterhin besteht, senden Sie bitte eine E-Mail an service@sunfounder.com. Wir werden so schnell wie möglich antworten.
 
-9. CPU-Lüfter funktioniert nicht?
-----------------------------------------------
+.. _promax_fan_faq:
 
-Wenn die CPU-Temperatur den eingestellten Schwellenwert noch nicht erreicht hat, wird der CPU-Lüfter nicht arbeiten.
+9. Lüfter funktioniert nicht / kann nicht gesteuert werden?
+-------------------------------------------------------------------------------------------
+
+Der Pro / MAX verwendet die offizielle PWM-Lüftersteuerungslösung des Raspberry Pi. Alle drei Kühlventilatoren werden direkt vom Raspberry Pi-System gesteuert und sind nicht auf den pironman5-Dienst angewiesen (daher finden Sie keine Lüftersteuerungsoptionen im Befehlszeilentool oder im Dashboard).
+
+**Testen, ob der Lüfter ordnungsgemäß funktioniert**
+
+Sie können den Lüfter mit den folgenden Befehlen manuell steuern:
+
+.. code-block:: bash
+
+   pinctrl FAN_PWM op dl   # Lüfter einschalten (Low-Aktiv)
+   pinctrl FAN_PWM op dh   # Lüfter ausschalten (High-Aktiv)
+   pinctrl FAN_PWM a0      # Automatikmodus (systemgesteuerte Temperaturregelung)
 
 **Lüftergeschwindigkeitsregelung basierend auf der Temperatur**
 
@@ -360,3 +370,19 @@ Das bedeutet, dass Ihr Computersystem zu alt ist und `OpenSSH <https://learn.mic
 --------------------------------------------------------------------------------------------------------
 
 Ja, OpenMediaVault wird auf dem Raspberry-Pi-System eingerichtet. Bitte folgen Sie den Schritten unter :ref:`promax_set_up_pi_os`, um die Konfiguration fortzusetzen.
+
+
+19. Raspberry Pi Kamera funktioniert nicht?
+----------------------------------------
+
+Wenn die Kamera nicht funktioniert, hängen 90 % der Probleme mit dem Flachbandkabel-Anschluss oder der Kamera-Hardware selbst zusammen.
+
+Verwenden Sie zunächst ``rpicam-hello --list-cameras``, um zu überprüfen, ob die Kamera erkannt wird. Bei erfolgreicher Erkennung sollte eine Meldung ähnlich der folgenden angezeigt werden:
+
+.. code-block:: bash
+
+   Verfügbare Kameras
+   -----------------
+   0 : ov5647 [2592x1944] (/base/axi/pcie@1000120000/rp1/i2c@88000/ov5647@36)
+
+Wenn die Kamera nicht erkannt wird, überprüfen Sie, ob das Flachbandkabel verdreht oder nicht vollständig eingesteckt ist. Falls das Problem weiterhin besteht, versuchen Sie, das Flachbandkabel oder das Kameramodul auszutauschen, um eine Kreuzprüfung durchzuführen.

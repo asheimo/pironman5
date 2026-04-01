@@ -191,9 +191,7 @@ Die Platine verfügt über 18 adressierbare WS2812B-RGB-LEDs: 6 auf der Platine 
 **Lüfter**
 --------------------------------
 
-Der Kernlüfter wird an einen dedizierten 4-Pin-PWM-Lüfteranschluss des Raspberry Pi 5 angeschlossen. Seine Standardsteuerungsstrategie ist ein firmwaregesteuertes, mehrstufiges intelligentes Drehzahlanpassungsschema basierend auf der CPU-Temperatur. Das bedeutet, dass das System bei Verwendung eines offiziellen oder kompatiblen PWM-Lüfters und korrektem Anschluss die Lüftergeschwindigkeit automatisch an Änderungen der CPU-Temperatur anpasst (Beginn des Betriebs über 50°C), ohne dass ein manueller Eingriff erforderlich ist.
-
-
+Diese Lüfter werden an den dedizierten 4-poligen PWM-Lüfteranschluss des Raspberry Pi 5 angeschlossen. Die standardmäßige Steuerungsstrategie ist ein firmwaregesteuertes, mehrstufiges intelligentes Drehzahlregelungssystem basierend auf der CPU-Temperatur. Das bedeutet, dass das System bei Verwendung eines offiziellen oder kompatiblen PWM-Lüfters und korrektem Anschluss die Lüfterdrehzahl automatisch an die CPU-Temperatur anpasst (Startbetrieb oberhalb von 50 °C), ohne dass Sie manuell eingreifen müssen.
 
 **OLED-Bildschirm überprüfen**
 -----------------------------------

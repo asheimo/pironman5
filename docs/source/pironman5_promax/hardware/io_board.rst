@@ -13,7 +13,7 @@ RGB-LEDs
 
 .. image:: img/io_board_rgb.png
 
-Die Platine verfügt über 6 WS2812-RGB-LEDs, die anpassbare Steuerungsmöglichkeiten bieten. Benutzer können sie ein- oder ausschalten, die Farbe ändern, die Helligkeit anpassen, die Anzeigemodi wechseln und die Geschwindigkeit der Änderungen einstellen.
+Die Platine verfügt über 18 WS2812-RGB-LEDs, die anpassbare Steuerungsmöglichkeiten bieten. Benutzer können sie ein- oder ausschalten, die Farbe ändern, die Helligkeit anpassen, die Anzeigemodi wechseln und die Geschwindigkeit der Änderungen einstellen.
 
 
 
@@ -34,7 +34,7 @@ RGB-Ausgangspins
 
 Die WS2812-RGB-LEDs unterstützen eine serielle Verbindung, was den Anschluss eines externen RGB-LED-Streifens ermöglicht. Verbinden Sie den **SIG**-Pin mit dem **DIN**-Pin des externen Streifens zur Erweiterung.
 
-Die Standardkonfiguration umfasst 6 RGB-LEDs. Schließen Sie zusätzliche LEDs an und aktualisieren Sie die Anzahl mit:
+Die Standardkonfiguration umfasst 18 RGB-LEDs. Schließen Sie zusätzliche LEDs an und aktualisieren Sie die Anzahl mit:
 
 .. code-block:: shell
 
@@ -44,7 +44,7 @@ Beispiel:
 
 .. code-block:: shell
 
-  sudo pironman5 --rgb-led-count 12
+  sudo pironman5 --rgb-led-count 24
 
 
 

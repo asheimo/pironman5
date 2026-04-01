@@ -25,7 +25,7 @@ Werten Sie Ihr Raspberry Pi 5-Erlebnis mit dem |link_pironman5_promax| auf, unse
 * **Dual-Display & Multimedia**:
 
     * **4,3-Zoll-DSI-Touchscreen** (800x480): Nutzbar als sekundäres Info-Display, Status-Dashboard oder sogar als primärer Desktop-Monitor.
-    * **0,96-Zoll-Smart-OLED-Display**: Zeigt in Echtzeit CPU, Arbeitsspeicher, Temperatur, Speicherbelegung und IP an. Verfügt über eine Aufweckfunktion per Tippen durch einen integrierten Vibrationssensor.
+    * **0,96-Zoll-Smart-OLED-Display**: Zeigt in Echtzeit CPU, Arbeitsspeicher, Temperatur, Speicherbelegung und IP an. 
     * **Stereo-3W-Lautsprecher & 5MP-Kamera**: Bereit für Multimedia, Videokonferenzen oder Computer-Vision-Projekte.
 
 * **Verbesserte Benutzeroberfläche & Steuerung**:
@@ -105,7 +105,6 @@ Werten Sie Ihr Raspberry Pi 5-Erlebnis mit dem |link_pironman5_promax| auf, unse
 
     * 4,3-Zoll-DSI-Kapazitiv-Touchscreen (800 x 480 Pixel)
     * 0,96-Zoll-OLED-Display (128x64) für Systemstatistiken
-    * Vibrationssensor zum Aufwecken des OLEDs per Tippen
     * Stereo-3W-Lautsprecher
     * Unterstützung für 5-Megapixel-Kameramodul
 
@@ -117,7 +116,7 @@ Werten Sie Ihr Raspberry Pi 5-Erlebnis mit dem |link_pironman5_promax| auf, unse
 
 * **Bedienelemente, Beleuchtung & Besonderheiten**:
 
-    * 6 x WS2812B adressierbare RGB-LEDs
+    * 18 x WS2812B adressierbare RGB-LEDs
     * IR-Empfänger (38kHz)
     * Metallischer Netzschalter (sichere Abschaltfunktion)
     * Echtzeituhr (RTC)-Batteriehalter (für CR1220-Zelle)
