@@ -106,8 +106,8 @@ Di seguito una tabella comparativa delle specifiche tra Pironman 5, Pironman 5 M
      - ✔
      - X
    * - Attivazione OLED
-     - Sempre attivo
-     - Attivo al tocco
+     - Risveglio tramite pulsante
+     - Risveglio tramite pulsante
      - 
    * - Supporto NVMe SSD
      - 1

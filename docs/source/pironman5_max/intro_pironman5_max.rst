@@ -32,7 +32,7 @@ Porta il tuo Raspberry Pi 5 al livello successivo con |link_pironman5_max|, un c
 
 * **Espansione Dual NVMe & AI**: Switch PCIe Gen 2 con due slot M.2 M-key (2230/2242/2260/2280) per SSD o acceleratori AI. Pienamente compatibile con Hailo-8/8L.
 * **Raffreddamento Estremo**: Dissipatore a torre con ventola PWM più due ventole RGB, mantiene un Pi al 100% di carico a soli 39°C in una stanza a 25°C.
-* **Display OLED Intelligente**: Mostra in tempo reale CPU, memoria, temperatura, utilizzo disco, indirizzo IP e altro ancora. Si riattiva con un tocco grazie al sensore di vibrazione integrato.
+* **Display OLED Intelligente**: Mostra in tempo reale CPU, memoria, temperatura, utilizzo disco, indirizzo IP e altro ancora.
 * **Illuminazione RGB Personalizzabile**: Quattro LED indirizzabili WS2812 illuminano il tuo setup con effetti vibranti.
 * **Connettività Avanzata**: Doppie porte HDMI standard, ricevitore IR per applicazioni multimediali, pulsante di accensione sicuro in stile retrò ed estensore GPIO esterno etichettato.
 * **Costruzione Premium**: Telaio in alluminio resistente con pannello laterale in acrilico scuro e slot per schede a molla per un facile accesso.
@@ -82,7 +82,6 @@ Porta il tuo Raspberry Pi 5 al livello successivo con |link_pironman5_max|, un c
     * 2 x Ventole RGB (controllate da GPIO)
 * Display
     * Display OLED da 0,96" (CPU, RAM, temperatura, utilizzo disco, indirizzo IP)
-    * Interruttore a vibrazione integrato per riattivare lo schermo toccando il case
 * Archiviazione & Espansione
     * Switch PCIe Gen 2 integrato
     * 2 x slot PCIe 2.0 M.2 M-key per SSD NVMe o acceleratori AI

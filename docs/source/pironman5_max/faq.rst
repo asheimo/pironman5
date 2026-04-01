@@ -98,8 +98,6 @@ Questo problema può essere causato da un aggiornamento del sistema, modifiche a
 6. Lo schermo OLED non funziona?
 ------------------------------------------
 
-.. note:: Lo schermo OLED può spegnersi automaticamente dopo un periodo di inattività per risparmiare energia. Puoi toccare leggermente il case per attivare il sensore di vibrazione e riaccendere lo schermo.
-
 Se lo schermo OLED non mostra nulla o mostra dati errati, segui questi passaggi per la risoluzione dei problemi:
 
 1. **Controlla la connessione dello schermo OLED**
@@ -237,7 +235,7 @@ Per ulteriori dettagli consulta: :ref:`fan_max`
 
 Per risparmiare energia e prolungare la durata dello schermo, lo schermo OLED si spegne automaticamente dopo un periodo di inattività. Questo comportamento è parte del design normale e non influisce sulla funzionalità del prodotto.
 
-Puoi toccare leggermente il case per attivare il sensore di vibrazione e riaccendere lo schermo.
+Puoi premere il pulsante e sbloccare lo schermo.
 
 .. note::
 
@@ -364,3 +362,9 @@ Significa che il sistema del tuo computer è troppo vecchio e non ha `OpenSSH <h
 
 Sì, OpenMediaVault è configurato sul sistema Raspberry Pi. Segui i passaggi di :ref:`max_set_up_pi_os` per continuare la configurazione.
 
+Ecco la traduzione in italiano:
+
+19. Posso utilizzare la funzione dell'interruttore a vibrazione del Pironman5 Max?
+--------------------------------------------------------------------------------------------------------
+
+La funzione dell'interruttore a vibrazione del Pironman5 Max non è più compatibile a livello software a partire dalla versione 1.3.6. Si tratta di una modifica introdotta dall'evoluzione della versione, non di un guasto hardware. Se dipendi da questa funzionalità, puoi prendere in considerazione il ripristino a una versione precedente, la modifica manuale del codice o l'invio di una richiesta all'assistenza ufficiale. La durata di visualizzazione dello schermo OLED può comunque essere regolata tramite riga di comando. Lo schermo OLED si attiva premendo una volta il pulsante e rimane acceso per alcuni secondi.
