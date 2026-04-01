@@ -8,8 +8,8 @@
 
 #. 使用以太网线将 Raspberry Pi 5 连接到网络。此步骤非常重要，以确保设备能够访问互联网。
 
-#. 在浏览器中访问：``http://umbrel.local``。  
-   如果页面无法打开，请在路由器中查找 Umbrel 设备的 IP 地址，例如：``http://192.168.1.50``
+#. 在浏览器中访问： ``http://umbrel.local``。  
+   如果页面无法打开，请在路由器中查找 Umbrel 设备的 IP 地址，例如： ``http://192.168.1.50``
 
    .. image:: img/umbrel_local.png
 
@@ -50,7 +50,7 @@
 
       sudo reboot
 
-#. 重启后，``pironman5.service`` 服务会自动启动。  
+#. 重启后， ``pironman5.service`` 服务会自动启动。  
    以下是 Pironman 5 MAX 的主要配置：
 
    * OLED 屏幕显示 CPU、RAM、磁盘使用率、CPU 温度和 Raspberry Pi 的 IP 地址。  

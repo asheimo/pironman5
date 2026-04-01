@@ -45,7 +45,7 @@
 
 .. note::
 
-   对于 “lite” 系统，请先安装以下工具：``git``、 ``python3``、 ``pip3``、 ``setuptools`` 等。
+   对于 “lite” 系统，请先安装以下工具： ``git``、 ``python3``、 ``pip3``、 ``setuptools`` 等。
    
    .. code-block:: shell
    
@@ -63,14 +63,10 @@
 
    安装成功后，需要重启系统以激活安装。请根据屏幕提示重启。
 
-   重启后，``pironman5.service`` 服务会自动启动。  
+   重启后， ``pironman5.service`` 服务会自动启动。  
    以下是 Pironman 5 MAX 的主要功能配置：
    
    * OLED 屏幕显示 CPU、RAM、磁盘使用率、CPU 温度及 Raspberry Pi 的 IP 地址。  
-
-   .. note:: OLED 屏幕在一段时间无操作后会自动关闭以节省电能。  
-      你可以轻触机壳，触发震动传感器以重新点亮屏幕。
-
    * 四个 WS2812 RGB 灯会以蓝色呼吸灯效果亮起。  
    * RGB 风扇默认设置为 **Always On（始终开启）** 模式。若需设置不同的启用温度，请参阅 :ref:`cc_control_fan_max`。
 
