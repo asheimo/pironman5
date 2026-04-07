@@ -324,13 +324,15 @@ OpenClaw 故障排除
 
           nano ~/.openclaw/openclaw.json
 
-    2. 找到 ``tools`` 选项，将 ``profile`` 从 ``message`` 改为 ``coding``。
+    2. 找到 ``tools`` 选项，将其改为如下所示。
 
        .. code-block:: json
 
-          "tools": {
-             "profile": "coding"
-          },
+         "tools": {
+            "profile": "coding",
+            "exec": {
+               "secrity": "full"
+         },
 
     3. 保存并退出。
 
