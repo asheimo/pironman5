@@ -353,12 +353,15 @@ D. Il mio OpenClaw non può operare il sistema, cosa devo fare?
 
          nano ~/.openclaw/openclaw.json
 
-   2.  Trova l'opzione ``tools`` e cambia il ``profile`` da ``message`` a ``coding``.
+   2.  Trova le opzioni ``tools`` e modifica ``profile`` e ``exec`` come segue.
 
       .. code-block:: json
 
          "tools": {
-            "profile": "coding"
+            "profile": "coding",
+            "exec": {
+               "secrity": "full"
+            }
          },
 
    3.  Salva ed esci.
