@@ -226,6 +226,15 @@ You can manually control the fan using the following commands:
    pinctrl FAN_PWM op dh   # disable fan (high active)
    pinctrl FAN_PWM a0      # auto mode (system temperature control)
 
+**Fan Speed Control Based on Temperature**  
+
+The PWM fan operates dynamically, adjusting its speed according to the Raspberry Pi 5's temperature:  
+
+* **Below 50°C**: Fan remains off (0% speed).  
+* **At 50°C**: Fan operates at low speed (30% speed).  
+* **At 60°C**: Fan increases to medium speed (50% speed).  
+* **At 67.5°C**: Fan ramps up to high speed (70% speed).  
+* **At 75°C and above**: Fan operates at full speed (100% speed).  
 
 10. How to wake up the OLED screen?
 ---------------------------------------------------------------------------------

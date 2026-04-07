@@ -50,7 +50,7 @@ Features
 
 * **Controls, Lighting & Features**:
 
-    * 6 x WS2812B Addressable RGB LEDs
+    * 18 WS2812B addressable RGB LEDs: 6 onboard and 12 integrated into the RGB fans.
     * IR Receiver (38kHz)
     * Metal Power Button (safe shutdown function)
     * Real-Time Clock (RTC) Battery Holder (for CR1220 cell)
