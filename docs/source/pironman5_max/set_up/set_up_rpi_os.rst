@@ -20,8 +20,13 @@ If you have installed Raspberry Pi OS, Ubuntu, Kali Linux or Homebridge on your 
 
   Before configuring, you need to boot up and log into your Raspberry Pi. If you're unsure how to log in, you can visit the official Raspberry Pi website: |link_rpi_get_start|.
 
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
 
-Configuring Shutdown to Deactivate GPIO Power
+
+
+2. Configuring Shutdown to Deactivate GPIO Power
 ------------------------------------------------------------
 
 To prevent the OLED screen and RGB fans, powered by the Raspberry Pi GPIO, from remaining active post-shutdown, it's essential to configure the Raspberry Pi for GPIO power deactivation.
@@ -45,7 +50,7 @@ To prevent the OLED screen and RGB fans, powered by the Raspberry Pi GPIO, from 
 
 .. _max_download_pironman5_module:
 
-Downloading and Installing the ``pironman5`` Module
+3. Downloading and Installing the ``pironman5`` Module
 -----------------------------------------------------------
 
 .. note::

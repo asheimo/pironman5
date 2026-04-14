@@ -376,7 +376,9 @@ Yes, OpenMediaVault is set up on the Raspberry Pi system. Please follow the step
 19. Can I use the Pironman5 Max's vibration switch function?
 ----------------------------------------------------------------------------------------------------------------------------
 
-The vibration switch function of the Pironman5 Max is no longer software-compatible after version 1.3.6. This is a change introduced by version iteration, not a hardware failure. If you rely on this feature, you may consider rolling back to an earlier version, manually modifying the code, or submitting a request to the official support. The OLED screen's display duration can still be adjusted via the command line. The OLED screen is activated by pressing the button once, and the screen stays on for a few seconds.
+From v1.3.6, OLED wake-up uses the power button. You must remove the vibration switch jumper to avoid occupying Raspberry Pi GPIO pins and prevent potential conflicts. Please check whether this jumper exists; if not, please ignore this notice.
+
+.. image:: /pironman5_max/img/remove_vib_jumper.jpg
 
 
 20. The dashboard shows no data (temperature, stats, graphs are empty)
