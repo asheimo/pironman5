@@ -71,29 +71,13 @@ Los tubos en forma de U en la parte superior del disipador tipo torre están com
 
    .. image::  img/tower_cooler1.png
 
-5. ¿El PI5 no arranca (LED rojo)?
--------------------------------------------
+5. ¿Puedo usar la función del interruptor de vibración del Pironman5 Max?
+----------------------------------------------------------------------------------------------------------------------------
 
-Este problema puede deberse a una actualización del sistema, cambios en el orden de arranque o un cargador de arranque dañado. Puede intentar los siguientes pasos para resolver el problema:
+A partir de la versión v1.3.6, la activación de la pantalla OLED utiliza el botón de encendido. Debe retirar el puente del interruptor de vibración para evitar ocupar los pines GPIO de la Raspberry Pi y prevenir posibles conflictos. Verifique si este puente existe; si no es así, ignore este aviso.
 
-#. Verificar la conexión del adaptador USB-HDMI
-
-   * Verifique cuidadosamente que el adaptador USB-HDMI esté correctamente conectado al PI5.
-   * Intente desconectar y volver a conectar el adaptador USB-HDMI.
-   * Luego, vuelva a conectar la fuente de alimentación y compruebe si el PI5 arranca correctamente.
-
-#. Probar el PI5 fuera de la carcasa
-
-   * Si volver a conectar el adaptador no soluciona el problema:
-   * Retire el PI5 de la carcasa del Pironman 5.
-   * Alimente el PI5 directamente con el adaptador de corriente (sin la carcasa).
-   * Verifique si puede arrancar normalmente.
-
-#. Restaurar el cargador de arranque
-
-   * Si el PI5 aún no arranca, es posible que el cargador de arranque esté dañado. Puede seguir esta guía: :ref:`update_bootloader_max` y elegir si desea arrancar desde la tarjeta SD o NVMe/USB.
-   * Inserte la tarjeta SD preparada en el PI5, enciéndalo y espere al menos 10 segundos. Una vez completada la recuperación, retire y reformatee la tarjeta SD.
-   * Luego, use Raspberry Pi Imager para grabar la versión más reciente del sistema operativo Raspberry Pi OS, inserte nuevamente la tarjeta y pruebe iniciar de nuevo.
+.. image:: /pironman5_max/img/remove_vib_jumper.jpg
+la versión más reciente del sistema operativo Raspberry Pi OS, inserte nuevamente la tarjeta y pruebe iniciar de nuevo.
 
 6. ¿La pantalla OLED no funciona?
 -----------------------------------------
@@ -376,7 +360,27 @@ Significa que su sistema operativo es demasiado antiguo y no tiene `OpenSSH <htt
 Sí, OpenMediaVault se instala sobre el sistema Raspberry Pi. Por favor, siga los pasos de :ref:`max_set_up_pi_os` para continuar con la configuración.
 
 
-19. ¿Puedo usar la función de interruptor por vibración del Pironman5 Max?
---------------------------------------------------------------------------------------------------------
 
-La función de interruptor por vibración del Pironman5 Max ya no es compatible a nivel de software a partir de la versión 1.3.6. Este cambio se debe a la evolución de las versiones, no a un fallo de hardware. Si depende de esta función, puede considerar volver a una versión anterior, modificar el código manualmente o enviar una solicitud al soporte oficial. La duración de visualización de la pantalla OLED aún se puede ajustar mediante la línea de comandos. La pantalla OLED se activa presionando el botón una vez y permanece encendida durante unos segundos.
+19. ¿El PI5 no arranca (LED rojo)?
+-------------------------------------------
+
+Este problema puede deberse a una actualización del sistema, cambios en el orden de arranque o un cargador de arranque dañado. Puede intentar los siguientes pasos para resolver el problema:
+
+#. Verificar la conexión del adaptador USB-HDMI
+
+   * Verifique cuidadosamente que el adaptador USB-HDMI esté correctamente conectado al PI5.
+   * Intente desconectar y volver a conectar el adaptador USB-HDMI.
+   * Luego, vuelva a conectar la fuente de alimentación y compruebe si el PI5 arranca correctamente.
+
+#. Probar el PI5 fuera de la carcasa
+
+   * Si volver a conectar el adaptador no soluciona el problema:
+   * Retire el PI5 de la carcasa del Pironman 5.
+   * Alimente el PI5 directamente con el adaptador de corriente (sin la carcasa).
+   * Verifique si puede arrancar normalmente.
+
+#. Restaurar el cargador de arranque
+
+   * Si el PI5 aún no arranca, es posible que el cargador de arranque esté dañado. Puede seguir esta guía: :ref:`update_bootloader_max` y elegir si desea arrancar desde la tarjeta SD o NVMe/USB.
+   * Inserte la tarjeta SD preparada en el PI5, enciéndalo y espere al menos 10 segundos. Una vez completada la recuperación, retire y reformatee la tarjeta SD.
+   * Luego, use Raspberry Pi Imager para grabar 

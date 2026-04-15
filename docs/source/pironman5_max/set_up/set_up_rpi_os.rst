@@ -30,8 +30,11 @@ Si has instalado Raspberry Pi OS, Ubuntu, Kali Linux o Homebridge en tu Raspberr
   Antes de proceder con la configuración, debes iniciar y acceder a tu Raspberry Pi.  
   Si no estás seguro de cómo iniciar sesión, puedes visitar el sitio oficial de Raspberry Pi: |link_rpi_get_start|.
 
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
 
-Configuración del apagado para desactivar la alimentación GPIO
+2. Configuración del apagado para desactivar la alimentación GPIO
 -------------------------------------------------------------------------------
 
 Para evitar que la pantalla OLED y los ventiladores RGB, alimentados por el GPIO de la Raspberry Pi, permanezcan activos después del apagado, es fundamental configurar la Raspberry Pi para desactivar la alimentación GPIO.
@@ -55,7 +58,7 @@ Para evitar que la pantalla OLED y los ventiladores RGB, alimentados por el GPIO
 
 .. _max_download_pironman5_module:
 
-Descarga e instalación del módulo ``pironman5``
+3. Descarga e instalación del módulo ``pironman5``
 -----------------------------------------------------------
 
 .. note::
