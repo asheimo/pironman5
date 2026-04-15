@@ -51,6 +51,7 @@ Faites passer votre Raspberry Pi 5 au niveau supérieur avec |link_pironman5_max
     About this Kit <self>
     what_do_we_need    
     assembly_instructions
+    important_notice
     install/install_the_os
     set_up/set_up_pironman5
     control/control_pironman5

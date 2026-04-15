@@ -32,7 +32,11 @@ Si vous avez installé Raspberry Pi OS, Ubuntu, Kali Linux ou Homebridge sur vot
   Si vous n’êtes pas sûr de la procédure de connexion, vous pouvez visiter le site officiel de Raspberry Pi : |link_rpi_get_start|.
 
 
-Configuration de l’arrêt pour couper l’alimentation GPIO
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
+
+2. Configuration de l’arrêt pour couper l’alimentation GPIO
 -------------------------------------------------------------------------------
 
 Pour éviter que l’écran OLED et les ventilateurs RGB, alimentés par le GPIO du Raspberry Pi, restent actifs après l’arrêt, il est essentiel de configurer le Raspberry Pi afin de désactiver l’alimentation GPIO.
@@ -53,7 +57,7 @@ Pour éviter que l’écran OLED et les ventilateurs RGB, alimentés par le GPIO
 
 #. Enregistrez les modifications. Il vous sera demandé de redémarrer afin que les nouveaux paramètres prennent effet.
 
-Download e installazione del modulo ``pironman5``
+3. Download e installazione del modulo ``pironman5``
 -----------------------------------------------------------
 
 .. note::
