@@ -62,29 +62,12 @@ The U-shaped heat pipes at the top of the tower cooler are compressed to facilit
 
    .. image::  img/tower_cooler1.png
 
-5. PI5 Fails to Boot (Red LED)?
--------------------------------------------
+5. Can I use the Pironman5 Max's vibration switch function?
+----------------------------------------------------------------------------------------------------------------------------
 
-This issue may be caused by a system update, changes to the boot order, or a corrupted bootloader. You can try the following steps to resolve the problem:
+From v1.3.6, OLED wake-up uses the power button. You must remove the vibration switch jumper to avoid occupying Raspberry Pi GPIO pins and prevent potential conflicts. Please check whether this jumper exists; if not, please ignore this notice.
 
-#. Check USB-HDMI Adapter Connection
-
-   * Please carefully check whether the USB-HDMI adapter is securely connected to the PI5.
-   * Try unplugging and reconnecting the USB-HDMI adapter.
-   * Then reconnect the power supply and check if the PI5 boots successfully.
-
-#. Test PI5 Outside the Case
-
-   * If reconnecting the adapter does not solve the problem:
-   * Remove the PI5 from the Pironman 5 case.
-   * Power the PI5 directly with the power adapter (without the case).
-   * Check if it can boot normally.
-
-#. Restore the Bootloader
-
-   * If the PI5 still cannot boot, the bootloader may be corrupted. You can follow this guide: :ref:`update_bootloader_max` and choose whether to boot from SD card or NVMe/USB.
-   * Insert the prepared SD card into the PI5, power it on, and wait at least 10 seconds. Once the recovery is complete, remove and reformat the SD card. 
-   * Then, use Raspberry Pi Imager to flash the latest Raspberry Pi OS, insert the card back, and try booting again.
+.. image:: /pironman5_max/img/remove_vib_jumper.jpg
 
 6. OLED Screen Not Working?
 ------------------------------
@@ -373,13 +356,30 @@ It means your computer system is too old and does not have `OpenSSH <https://lea
 Yes, OpenMediaVault is set up on the Raspberry Pi system. Please follow the steps of :ref:`max_set_up_pi_os` to continue the configuration.
 
 
-19. Can I use the Pironman5 Max's vibration switch function?
-----------------------------------------------------------------------------------------------------------------------------
 
-From v1.3.6, OLED wake-up uses the power button. You must remove the vibration switch jumper to avoid occupying Raspberry Pi GPIO pins and prevent potential conflicts. Please check whether this jumper exists; if not, please ignore this notice.
+19. PI5 Fails to Boot (Red LED)?
+-------------------------------------------
 
-.. image:: /pironman5_max/img/remove_vib_jumper.jpg
+This issue may be caused by a system update, changes to the boot order, or a corrupted bootloader. You can try the following steps to resolve the problem:
 
+#. Check USB-HDMI Adapter Connection
+
+   * Please carefully check whether the USB-HDMI adapter is securely connected to the PI5.
+   * Try unplugging and reconnecting the USB-HDMI adapter.
+   * Then reconnect the power supply and check if the PI5 boots successfully.
+
+#. Test PI5 Outside the Case
+
+   * If reconnecting the adapter does not solve the problem:
+   * Remove the PI5 from the Pironman 5 case.
+   * Power the PI5 directly with the power adapter (without the case).
+   * Check if it can boot normally.
+
+#. Restore the Bootloader
+
+   * If the PI5 still cannot boot, the bootloader may be corrupted. You can follow this guide: :ref:`update_bootloader_max` and choose whether to boot from SD card or NVMe/USB.
+   * Insert the prepared SD card into the PI5, power it on, and wait at least 10 seconds. Once the recovery is complete, remove and reformat the SD card. 
+   * Then, use Raspberry Pi Imager to flash the latest Raspberry Pi OS, insert the card back, and try booting again.
 
 20. The dashboard shows no data (temperature, stats, graphs are empty)
 ----------------------------------------------------------------------------------------------------------------------------
