@@ -19,8 +19,14 @@ Raspberry PiにRaspberry Pi OS、Ubuntu、Kali Linux、またはHomebridgeをイ
 
   設定を行う前に、Raspberry Piを起動してログインする必要があります。ログイン方法がわからない場合は、Raspberry Pi公式サイト（|link_rpi_get_start|）を参照してください。
 
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
 
-GPIO電源を停止時に無効化する設定
+
+
+
+2. GPIO電源を停止時に無効化する設定
 ------------------------------------------------------------
 
 Raspberry PiのGPIOによって電力供給されているOLEDディスプレイやRGBファンがシャットダウン後も動作し続けるのを防ぐために、GPIO電源を停止時に無効化する設定を行う必要があります。
@@ -44,7 +50,7 @@ Raspberry PiのGPIOによって電力供給されているOLEDディスプレイ
 
 .. _max_download_pironman5_module:
 
-``pironman5`` モジュールのダウンロードとインストール
+3. ``pironman5`` モジュールのダウンロードとインストール
 -----------------------------------------------------------
 
 .. note::
