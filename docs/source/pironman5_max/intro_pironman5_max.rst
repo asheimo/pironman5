@@ -35,6 +35,7 @@ Pironman 5 MAX
     About this Kit <self>
     what_do_we_need    
     assembly_instructions
+    important_notice
     install/install_the_os
     set_up/set_up_pironman5
     control/control_pironman5

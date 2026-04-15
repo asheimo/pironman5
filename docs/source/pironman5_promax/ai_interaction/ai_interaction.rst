@@ -9,8 +9,9 @@
 .. code-block:: bash
 
 
-    sudo apt install portaudio19-dev
-    sudo pip install --break git+https://github.com/sunfounder/sunfounder-voice-assistant.git
+    sudo apt install espeak libttspico-utils sox portaudio19-dev
+    git clone https://github.com/sunfounder/sunfounder-voice-assistant.git
+    sudo pip install sunfounder-voice-assistant --break
 
 
 在本章节中，您将探索文本转语音（TTS）、语音转文本（STT）以及大语言模型（LLMs）的应用，使您的 Pironman 5 Pro MAX 能够像智能机器人一样进行语音输出、语音识别，甚至与您进行对话。

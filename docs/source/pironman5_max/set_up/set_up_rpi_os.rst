@@ -17,7 +17,13 @@
   如果不确定如何登录，可以访问 Raspberry Pi 官方网站：|link_rpi_get_start|。
 
 
-配置关机时关闭 GPIO 电源
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
+
+
+
+2. 配置关机时关闭 GPIO 电源
 -------------------------------------------------------------------------------
 
 为防止 Raspberry Pi 关机后由 GPIO 供电的 OLED 屏幕和 RGB 风扇仍保持运行，必须配置 Raspberry Pi 以在关机时关闭 GPIO 电源。
@@ -40,7 +46,7 @@
 
 .. _max_download_pironman5_module:
 
-下载并安装 ``pironman5`` 模块
+3. 下载并安装 ``pironman5`` 模块
 -----------------------------------------------------------
 
 .. note::
