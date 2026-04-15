@@ -71,29 +71,12 @@ I tubi di calore a forma di U nella parte superiore del dissipatore Tower sono s
 
    .. image::  img/tower_cooler1.png
 
-5. PI5 non si avvia (LED rosso)?
--------------------------------------------
+5. Posso utilizzare la funzione dell'interruttore a vibrazione del Pironman5 Max?
+----------------------------------------------------------------------------------------------------------------------------
 
-Questo problema può essere causato da un aggiornamento del sistema, modifiche all’ordine di avvio o un bootloader danneggiato. Puoi provare i seguenti passaggi per risolvere il problema:
+Dalla versione v1.3.6, il risveglio del display OLED utilizza il pulsante di accensione. È necessario rimuovere il ponticello dell'interruttore a vibrazione per evitare di occupare i pin GPIO del Raspberry Pi e prevenire potenziali conflitti. Verificare se questo ponticello è presente; in caso contrario, ignorare questo avviso.
 
-#. Controlla la connessione dell’adattatore USB-HDMI
-
-   * Verifica attentamente che l’adattatore USB-HDMI sia correttamente collegato al PI5.
-   * Prova a scollegare e ricollegare l’adattatore USB-HDMI.
-   * Quindi ricollega l’alimentazione e verifica se il PI5 si avvia correttamente.
-
-#. Testa il PI5 fuori dal case
-
-   * Se ricollegare l’adattatore non risolve il problema:
-   * Rimuovi il PI5 dal case Pironman 5.
-   * Alimenta il PI5 direttamente con l’alimentatore (senza il case).
-   * Verifica se si avvia normalmente.
-
-#. Ripristina il bootloader
-
-   * Se il PI5 non si avvia ancora, il bootloader potrebbe essere corrotto. Puoi seguire questa guida: :ref:`update_bootloader_max` e scegliere se avviare da SD card o da NVMe/USB.
-   * Inserisci la scheda SD preparata nel PI5, accendilo e attendi almeno 10 secondi. Una volta completato il ripristino, rimuovi e riformatta la scheda SD.
-   * Poi utilizza Raspberry Pi Imager per installare l’ultima versione del Raspberry Pi OS, reinserisci la scheda e prova ad avviare nuovamente.
+.. image:: /pironman5_max/img/remove_vib_jumper.jpg
 
 6. Lo schermo OLED non funziona?
 ------------------------------------------
@@ -364,7 +347,26 @@ Sì, OpenMediaVault è configurato sul sistema Raspberry Pi. Segui i passaggi di
 
 Ecco la traduzione in italiano:
 
-19. Posso utilizzare la funzione dell'interruttore a vibrazione del Pironman5 Max?
---------------------------------------------------------------------------------------------------------
+19. PI5 non si avvia (LED rosso)?
+-------------------------------------------
 
-La funzione dell'interruttore a vibrazione del Pironman5 Max non è più compatibile a livello software a partire dalla versione 1.3.6. Si tratta di una modifica introdotta dall'evoluzione della versione, non di un guasto hardware. Se dipendi da questa funzionalità, puoi prendere in considerazione il ripristino a una versione precedente, la modifica manuale del codice o l'invio di una richiesta all'assistenza ufficiale. La durata di visualizzazione dello schermo OLED può comunque essere regolata tramite riga di comando. Lo schermo OLED si attiva premendo una volta il pulsante e rimane acceso per alcuni secondi.
+Questo problema può essere causato da un aggiornamento del sistema, modifiche all’ordine di avvio o un bootloader danneggiato. Puoi provare i seguenti passaggi per risolvere il problema:
+
+#. Controlla la connessione dell’adattatore USB-HDMI
+
+   * Verifica attentamente che l’adattatore USB-HDMI sia correttamente collegato al PI5.
+   * Prova a scollegare e ricollegare l’adattatore USB-HDMI.
+   * Quindi ricollega l’alimentazione e verifica se il PI5 si avvia correttamente.
+
+#. Testa il PI5 fuori dal case
+
+   * Se ricollegare l’adattatore non risolve il problema:
+   * Rimuovi il PI5 dal case Pironman 5.
+   * Alimenta il PI5 direttamente con l’alimentatore (senza il case).
+   * Verifica se si avvia normalmente.
+
+#. Ripristina il bootloader
+
+   * Se il PI5 non si avvia ancora, il bootloader potrebbe essere corrotto. Puoi seguire questa guida: :ref:`update_bootloader_max` e scegliere se avviare da SD card o da NVMe/USB.
+   * Inserisci la scheda SD preparata nel PI5, accendilo e attendi almeno 10 secondi. Una volta completato il ripristino, rimuovi e riformatta la scheda SD.
+   * Poi utilizza Raspberry Pi Imager per installare l’ultima versione del Raspberry Pi OS, reinserisci la scheda e prova ad avviare nuovamente.
