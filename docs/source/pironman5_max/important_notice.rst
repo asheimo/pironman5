@@ -1,6 +1,4 @@
-Ecco la traduzione in italiano dell'intero avviso:
-
-**Avviso Importante**
+Avviso Importante
 ========================================
 
 .. start_max_important_notice
