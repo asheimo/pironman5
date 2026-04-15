@@ -70,29 +70,12 @@ Die U-förmigen Heatpipes an der Oberseite des Tower-Kühlers sind zusammengedr�
 
    .. image::  img/tower_cooler1.png
 
-5. PI5 startet nicht (rote LED)?
--------------------------------------------
+5. Kann ich die Vibrationsschalterfunktion des Pironman5 Max verwenden?
+----------------------------------------------------------------------------------------------------------------------------
 
-Dieses Problem kann durch ein Systemupdate, Änderungen der Bootreihenfolge oder einen beschädigten Bootloader verursacht werden. Sie können die folgenden Schritte ausprobieren, um das Problem zu beheben:
+Ab Version v1.3.6 verwendet das OLED-Aufwecken den Netzschalter. Sie müssen die Brücke des Vibrationsschalters entfernen, um eine Belegung der GPIO-Pins des Raspberry Pi und mögliche Konflikte zu vermeiden. Bitte prüfen Sie, ob diese Brücke vorhanden ist; falls nicht, ignorieren Sie bitte diesen Hinweis.
 
-#. Überprüfen Sie die USB-HDMI-Adapter-Verbindung
-
-   * Bitte überprüfen Sie sorgfältig, ob der USB-HDMI-Adapter korrekt mit dem PI5 verbunden ist.
-   * Versuchen Sie, den USB-HDMI-Adapter abzuziehen und wieder anzuschließen.
-   * Schließen Sie dann die Stromversorgung wieder an und prüfen Sie, ob der PI5 erfolgreich startet.
-
-#. Testen Sie den PI5 außerhalb des Gehäuses
-
-   * Wenn das erneute Anschließen des Adapters das Problem nicht löst:
-   * Entfernen Sie den PI5 aus dem Pironman 5 Gehäuse.
-   * Versorgen Sie den PI5 direkt mit dem Netzteil (ohne das Gehäuse).
-   * Überprüfen Sie, ob er normal startet.
-
-#. Bootloader wiederherstellen
-
-   * Wenn der PI5 immer noch nicht startet, ist möglicherweise der Bootloader beschädigt. Sie können dieser Anleitung folgen: :ref:`update_bootloader_max` und wählen, ob von SD-Karte oder NVMe/USB gebootet werden soll.
-   * Legen Sie die vorbereitete SD-Karte in den PI5 ein, schalten Sie ihn ein und warten Sie mindestens 10 Sekunden. Sobald die Wiederherstellung abgeschlossen ist, entfernen und formatieren Sie die SD-Karte erneut.
-   * Verwenden Sie dann Raspberry Pi Imager, um das neueste Raspberry Pi OS auf die SD-Karte zu flashen, setzen Sie die Karte wieder ein und versuchen Sie erneut zu starten.
+.. image:: /pironman5_max/img/remove_vib_jumper.jpg
 
 6. OLED-Bildschirm funktioniert nicht?
 ------------------------------------------------
@@ -368,10 +351,31 @@ Bedeutet dies, dass Ihr Computersystem zu alt ist und `OpenSSH <https://learn.mi
 
 Ja, OpenMediaVault wird auf dem Raspberry-Pi-System eingerichtet. Bitte folgen Sie den Schritten in :ref:`max_set_up_pi_os`, um die Konfiguration fortzusetzen.
 
-19. Kann ich die Vibrationsschalterfunktion des Pironman5 Max verwenden?
-----------------------------------------------------------------------------------------------------------------------------
 
-Die Vibrationsschalterfunktion des Pironman5 Max ist ab Version 1.3.6 nicht mehr softwarekompatibel. Dies ist eine Änderung, die durch die Versionseinführung entstanden ist, und kein Hardwarefehler. Wenn Sie auf diese Funktion angewiesen sind, können Sie in Betracht ziehen, auf eine frühere Version zurückzusetzen, den Code manuell anzupassen oder eine Anfrage an den offiziellen Support zu senden. Die Anzeigedauer des OLED-Bildschirms kann weiterhin über die Befehlszeile angepasst werden. Der OLED-Bildschirm wird durch einmaliges Drücken der Taste aktiviert und bleibt einige Sekunden lang eingeschaltet.
+19. PI5 startet nicht (rote LED)?
+-------------------------------------------
+
+Dieses Problem kann durch ein Systemupdate, Änderungen der Bootreihenfolge oder einen beschädigten Bootloader verursacht werden. Sie können die folgenden Schritte ausprobieren, um das Problem zu beheben:
+
+#. Überprüfen Sie die USB-HDMI-Adapter-Verbindung
+
+   * Bitte überprüfen Sie sorgfältig, ob der USB-HDMI-Adapter korrekt mit dem PI5 verbunden ist.
+   * Versuchen Sie, den USB-HDMI-Adapter abzuziehen und wieder anzuschließen.
+   * Schließen Sie dann die Stromversorgung wieder an und prüfen Sie, ob der PI5 erfolgreich startet.
+
+#. Testen Sie den PI5 außerhalb des Gehäuses
+
+   * Wenn das erneute Anschließen des Adapters das Problem nicht löst:
+   * Entfernen Sie den PI5 aus dem Pironman 5 Gehäuse.
+   * Versorgen Sie den PI5 direkt mit dem Netzteil (ohne das Gehäuse).
+   * Überprüfen Sie, ob er normal startet.
+
+#. Bootloader wiederherstellen
+
+   * Wenn der PI5 immer noch nicht startet, ist möglicherweise der Bootloader beschädigt. Sie können dieser Anleitung folgen: :ref:`update_bootloader_max` und wählen, ob von SD-Karte oder NVMe/USB gebootet werden soll.
+   * Legen Sie die vorbereitete SD-Karte in den PI5 ein, schalten Sie ihn ein und warten Sie mindestens 10 Sekunden. Sobald die Wiederherstellung abgeschlossen ist, entfernen und formatieren Sie die SD-Karte erneut.
+   * Verwenden Sie dann Raspberry Pi Imager, um das neueste Raspberry Pi OS auf die SD-Karte zu flashen, setzen Sie die Karte wieder ein und versuchen Sie erneut zu starten.
+
 
 20. Das Dashboard zeigt keine Daten an (Temperatur, Statistiken, Diagramme sind leer)
 ----------------------------------------------------------------------------------------------------------------------------

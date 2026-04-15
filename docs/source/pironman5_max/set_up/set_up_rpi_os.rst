@@ -20,8 +20,13 @@ Wenn du Raspberry Pi OS, Ubuntu, Kali Linux oder Homebridge auf deinem Raspberry
   Wenn du dir nicht sicher bist, wie du dich anmeldest, kannst du die offizielle Website von Raspberry Pi besuchen: |link_rpi_get_start|.
 
 
-Konfiguration des Herunterfahrens zur Deaktivierung der GPIO-Stromversorgung
--------------------------------------------------------------------------------
+.. include:: /pironman5_max/important_notice.rst
+   :start-after: start_max_important_notice
+   :end-before: end_max_important_notice
+
+
+2. Konfiguration des Herunterfahrens zur Deaktivierung der GPIO-Stromversorgung
+------------------------------------------------------------------------------------------------
 
 Um zu verhindern, dass das vom GPIO des Raspberry Pi gespeiste OLED-Display und die RGB-Lüfter nach dem Herunterfahren eingeschaltet bleiben, ist es wichtig, den Raspberry Pi so zu konfigurieren, dass die GPIO-Stromversorgung deaktiviert wird.
 
@@ -45,7 +50,7 @@ Um zu verhindern, dass das vom GPIO des Raspberry Pi gespeiste OLED-Display und 
 
 .. _max_download_pironman5_module:
 
-Download und Installation des Moduls ``pironman5``
+3. Download und Installation des Moduls ``pironman5``
 -----------------------------------------------------------
 
 .. note::
