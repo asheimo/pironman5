@@ -57,6 +57,9 @@ Pour éviter que l’écran OLED et les ventilateurs RGB, alimentés par le GPIO
 
 #. Enregistrez les modifications. Il vous sera demandé de redémarrer afin que les nouveaux paramètres prennent effet.
 
+
+.. _max_download_pironman5_module:
+
 3. Download e installazione del modulo ``pironman5``
 -----------------------------------------------------------
 
