@@ -69,7 +69,7 @@ Code
 .. code-block:: python
 
   from sunfounder_voice_assistant.voice_assistant import VoiceAssistant
-  from sunfounder_voice_assistant.lm import OpenAI as LLM
+  from sunfounder_voice_assistant.llm import OpenAI as LLM
   from secret import OPENAI_API_KEY as API_KEY
 
   llm = LLM(
@@ -154,7 +154,7 @@ Pour changer, modifiez simplement la partie initialisation dans le code :
 
 .. code-block:: python
 
-   from sunfounder_voice_assistant.lm import Gemini as LLM
+   from sunfounder_voice_assistant.llm import Gemini as LLM
    llm = LLM(api_key="VOTRE_CLÉ", model="gemini-pro")
 
    # Définir les modèles et langues
