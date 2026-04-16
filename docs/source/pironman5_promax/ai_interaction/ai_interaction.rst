@@ -17,7 +17,7 @@
 
     sudo apt install espeak libttspico-utils sox portaudio19-dev
     git clone https://github.com/sunfounder/sunfounder-voice-assistant.git
-    sudo pip install sunfounder-voice-assistant --break
+    pip install ./sunfounder-voice-assistant --break
 
 
 ここでは、テキスト読み上げ（TTS）、音声認識（STT）、大規模言語モデル（LLM）を活用し、Pironman 5 Pro MAX がまるでスマートロボットのように話しかけ、聞き取り、さらには会話できるようにする方法を探求します。
