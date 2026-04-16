@@ -17,7 +17,7 @@ Exécutez la commande d'installation suivante :
 
     sudo apt install espeak libttspico-utils sox portaudio19-dev
     git clone https://github.com/sunfounder/sunfounder-voice-assistant.git
-    sudo pip install sunfounder-voice-assistant --break
+    pip install ./sunfounder-voice-assistant --break
 
 Vous explorerez ici la synthèse vocale (TTS), la reconnaissance vocale (STT) et les grands modèles de langage (LLMs) pour faire parler, écouter et même discuter avec vous votre Pironman 5 Pro MAX, comme un robot intelligent.
 
