@@ -126,7 +126,7 @@ Jetzt können Sie direkt vom Terminal aus mit dem Pironman 5 Pro MAX chatten.
 
 .. code-block:: python
 
-   from sunfounder_voice_assistant.lm import Ollama
+   from sunfounder_voice_assistant.llm import Ollama
 
    INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
    WELCOME = "Hallo, ich bin ein hilfreicher Assistent. Wie kann ich dir helfen?"
@@ -202,7 +202,7 @@ Dies ist eine minimale "Sehen & Erzählen"-Grundlage, die Sie später mit Farb-/
 
 .. code-block:: python
 
-   from sunfounder_voice_assistant.lm import Ollama
+   from sunfounder_voice_assistant.llm import Ollama
    from picamera2 import Picamera2
    import time
 

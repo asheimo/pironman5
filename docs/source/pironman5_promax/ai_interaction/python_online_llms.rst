@@ -79,7 +79,7 @@ So richten Sie es ein:
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import OpenAI
+      from sunfounder_voice_assistant.llm import OpenAI
       from secret import OPENAI_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -158,7 +158,7 @@ Gehen Sie zur offiziellen |link_gemini_model| Seite, hier sehen Sie die Liste de
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import Gemini
+      from sunfounder_voice_assistant.llm import Gemini
       from secret import GEMINI_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -256,7 +256,7 @@ Benutzer in Festlandchina können stattdessen die **Bailian (百炼)**-Konsole v
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import Qwen
+      from sunfounder_voice_assistant.llm import Qwen
       from secret import QWEN_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -328,7 +328,7 @@ Gehen Sie zur Models-Seite in der xAI-Konsole. Hier sehen Sie alle Modelle, die 
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import Grok
+      from sunfounder_voice_assistant.llm import Grok
       from secret import GROK_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -404,7 +404,7 @@ Zum Zeitpunkt der Erstellung (2025-09-12) bietet DeepSeek:
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import Deepseek
+      from sunfounder_voice_assistant.llm import Deepseek
       from secret import DEEPSEEK_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -493,7 +493,7 @@ Doubao ist Bytedances KI-Modellplattform (Volcengine Ark).
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import Doubao
+      from sunfounder_voice_assistant.llm import Doubao
       from secret import DOUBAO_API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
@@ -568,7 +568,7 @@ Für diese Plattformen müssen Sie manuell Ihren **API-Schlüssel** und die korr
 
    .. code-block:: python
 
-      from sunfounder_voice_assistant.lm import LLM
+      from sunfounder_voice_assistant.llm import LLM
       from secret import API_KEY
 
       INSTRUCTIONS = "Du bist ein hilfreicher Assistent."
