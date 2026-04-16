@@ -70,7 +70,7 @@
 
    import re
    import time
-   from sunfounder_voice_assistant.lm import Ollama
+   from sunfounder_voice_assistant.llm import Ollama
    from sunfounder_voice_assistant.stt import Vosk
    from sunfounder_voice_assistant.tts import Piper
 
@@ -163,7 +163,7 @@
 
    import re
    import time
-   from sunfounder_voice_assistant.lm import Ollama
+   from sunfounder_voice_assistant.llm import Ollama
    from sunfounder_voice_assistant.stt import Vosk
    from sunfounder_voice_assistant.tts import Piper
 
