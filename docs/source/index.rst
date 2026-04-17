@@ -1,32 +1,31 @@
 .. start_hello_message
 
-.. note:: 
+.. note::
 
-    Bonjour et bienvenue dans la communauté des passionnés SunFounder Raspberry Pi, Arduino et ESP32 sur Facebook ! Plongez plus profondément dans l’univers de Raspberry Pi, Arduino et ESP32 avec d’autres passionnés.
+    Bonjour, bienvenue sur la communauté SunFounder Raspberry Pi & Arduino & ESP32 Enthusiasts sur Facebook ! Plongez plus profondément dans Raspberry Pi, Arduino et ESP32 avec d'autres passionnés.
 
-    **Pourquoi nous rejoindre ?**
+    **Pourquoi rejoindre ?**
 
-    - **Support d'experts** : Bénéficiez de l’aide de notre équipe et de notre communauté pour résoudre vos problèmes après-vente et relever les défis techniques.
-    - **Apprendre & Partager** : Échangez des astuces et des tutoriels pour perfectionner vos compétences.
-    - **Avant-premières exclusives** : Accédez en priorité aux annonces de nouveaux produits et à des aperçus exclusifs.
-    - **Réductions spéciales** : Profitez de remises exclusives sur nos derniers produits.
-    - **Promotions festives et tirages au sort** : Participez à des concours et à des offres spéciales durant les fêtes.
+    * **Support d'experts** : Résolvez les problèmes post-vente et les défis techniques avec l'aide de notre communauté et de notre équipe.
+    * **Apprendre et partager** : Échangez des conseils et des tutoriels pour améliorer vos compétences.
+    * **Aperçus exclusifs** : Accédez en avant-première aux annonces de nouveaux produits et aux aperçus.
+    * **Remises spéciales** : Profitez de réductions exclusives sur nos nouveaux produits.
+    * **Promotions et cadeaux festifs** : Participez à des concours et des promotions de fin d'année.
 
-    👉 Prêt à explorer et à créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd’hui !
+    👉 Prêt à explorer et créer avec nous ? Cliquez sur [|link_sf_facebook|] et rejoignez-nous dès aujourd'hui !
 
 .. end_hello_message
 
-Pironman 5 Series - Boîtier Mini PC PCIe NVMe M.2 SSD pour Raspberry Pi 5
+Pironman 5 Series - Boîtier Mini PC PCIe avec SSD NVMe M.2 pour Raspberry Pi 5
 ================================================================================
 
-Bienvenue dans le guide officiel des produits de la série Pironman 5. Ce guide vous aidera à identifier votre produit spécifique au sein de la série et vous fournira des instructions détaillées pour l’installation et la configuration.
+Bienvenue sur le guide officiel des produits de la série Pironman 5. Ce guide vous aidera à identifier votre produit spécifique au sein de la série et fournira des instructions étape par étape pour la configuration et l'installation.
 
-Utilisez les images ci-dessous pour identifier le produit que vous avez acheté. Une fois identifié, cliquez sur le lien correspondant pour accéder à la présentation détaillée et aux spécifications. Après avoir consulté l’introduction, vous pourrez procéder à l’installation du système et à la configuration du logiciel ``pironman5``.
+Utilisez les images ci-dessous pour identifier le produit que vous avez acheté. Une fois identifié, cliquez sur le lien correspondant pour accéder à la présentation détaillée du produit et à ses spécifications. Après avoir consulté la présentation, vous pouvez procéder à l'installation du système et à la configuration du logiciel ``pironman5``.
 
-.. 
-  .. note::
+.. .. note::
 
-..     Ce document est disponible dans les langues suivantes :
+..     Ce document est disponible dans les langues suivantes.
 
 ..     * |link_german_tutorials|
 ..     * |link_jp_tutorials|
@@ -36,96 +35,49 @@ Utilisez les images ci-dessous pour identifier le produit que vous avez acheté.
 ..     * |link_it_tutorials|
 ..     * |link_zh_tutorials|
 
+    .. Veuillez cliquer sur les liens respectifs pour accéder au document dans la langue de votre choix.
 
-    .. Cliquez sur le lien correspondant pour consulter le document dans la langue de votre choix.
+En fonction des images ci-dessous, sélectionnez le produit que vous possédez pour en savoir plus. Chaque lien vous mènera à la page de présentation du produit correspondant.
 
-À partir des images ci-dessous, sélectionnez le produit que vous possédez pour en savoir plus. Chaque lien vous redirigera vers la page de présentation dédiée du produit.
-
-.. list-table:: 
-   :widths: 25 25 25
-   :header-rows: 1
-
-   * - :ref:`intro_pironman5`
-     - :ref:`intro_pironman5_max`
-     - :ref:`intro_pironman5_mini`
-   * - |pic_pironman5| 
-     - |pic_pironman5_max|
-     - |pic_pironman5_mini| 
-
-Vous trouverez ci-dessous une comparaison des spécifications des modèles **Pironman 5**, **Pironman 5 Mini** et **Pironman 5 MAX**.  
-Utilisez ce tableau pour comprendre les différences entre ces produits.  
-
-.. list-table:: 
+.. list-table::
    :widths: 25 25 25 25
    :header-rows: 1
 
-   * - Caractéristiques
-     - :ref:`intro_pironman5`
+   * - :ref:`intro_pironman5`
+     - :ref:`intro_pironman5_promax`
      - :ref:`intro_pironman5_max`
      - :ref:`intro_pironman5_mini`
-   * - Appareils compatibles 
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-   * - Alimentation
-     - USB Type C, 5V/5A
-     - USB Type C, 5V/5A
-     - USB Type C, 5V/5A
-   * - Bouton d'alimentation 
-     - ✔
-     - ✔
-     - ✔
-   * - Matériau extérieur 1
-     - Alliage d’aluminium argenté
-     - Alliage d’aluminium noir
-     - Alliage d’aluminium argenté
-   * - Matériau extérieur 2
-     - Acrylique transparent
-     - Acrylique noir
-     - Acrylique noir
-   * - Refroidisseur
-     - Refroidisseur à tour
-     - Refroidisseur à tour
-     - Refroidisseur actif
-   * - Récepteur IR
-     - ✔
-     - ✔
-     - X
-   * - Nombre de ventilateurs RVB
-     - 2 Ajouter un commentaire Plus d'actions
-     - 2
-     - 1
-   * - Mode RVB du ventilateur
-     - Synchronisation avec le ventilateur
-     - Contrôle indépendant
-     - Contrôle indépendant
-   * - Ports HDMI
-     - 2 ports HDMI standard
-     - 2 ports HDMI standard
-     - 2 ports Micro HDMI
-   * - Écran OLED
-     - ✔
-     - ✔
-     - X
-   * - Activation OLED
-     - Réveillez-vous avec le bouton
-     - Réveillez-vous avec le bouton
-     - 
-   * - Prise en charge NVMe SSD
-     - 1
-     - 2
-     - 1
-   * - Dimensions
-     - 111.9 x 78.5 x 117 mm
-     - 111.9 x 78.5 x 117 mm
-     - 67.8 x 98.6 x 101.5 mm  
+   * - |pic_pironman5|
+     - |pic_pironman5_promax|
+     - |pic_pironman5_max|
+     - |pic_pironman5_mini|
+
+Voici une comparaison des spécifications du Pironman 5, du Pironman 5 Mini et du Pironman 5 MAX. Utilisez ce tableau pour comprendre les différences entre ces produits.
+
+.. csv-table:: Comparaison de la série Pironman 5
+   :header: "Spécifications", ":ref:`intro_pironman5`", ":ref:`intro_pironman5_promax`", ":ref:`intro_pironman5_max`", ":ref:`intro_pironman5_mini`"
+   :widths: 20, 15, 15, 15, 35
+
+   "Appareils compatibles", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5"
+   "Entrée", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A"
+   "Bouton d'alimentation", "✔", "✔", "✔", "✔"
+   "Matériau extérieur 1", "Alliage d'aluminium argenté", "Alliage d'aluminium noir", "Alliage d'aluminium noir", "Alliage d'aluminium argenté"
+   "Matériau extérieur 2", "Acrylique transparent", "Acrylique noir", "Acrylique noir", "Acrylique noir"
+   "Refroidisseur", "Refroidisseur tour", "Refroidisseur tour", "Refroidisseur tour", "Refroidisseur actif"
+   "Récepteur IR", "✔", "✔", "✔", "X"
+   "Nombre de ventilateurs RGB", "2", "2", "2", "1"
+   "Mode RGB des ventilateurs", "Synchro avec ventilateur", "Synchro avec ventilateur", "Contrôle indépendant", "Contrôle indépendant"
+   "Ports HDMI", "2 Ports HDMI standard", "2 Ports HDMI standard", "2 Ports HDMI standard", "2 Ports Micro HDMI"
+   "Écran OLED", "✔", "✔", "✔", "X"
+   "Activation OLED", "Réveil par bouton", "Réveil par bouton", "Réveil par bouton", ""
+   "Support SSD NVMe", "1", "2", "2", "1"
+   "Dimensions", "111,9x78,5x117 mm", "140,9x77,0x138,7 mm", "111,9x78,5x117 mm", "67,8x98,6x101,5 mm"
+
+Si vous avez des questions, veuillez envoyer un courriel à service@sunfounder.com et nous répondrons dès que possible.
 
 .. note::
 
-  Il est recommandé d’utiliser l’alimentation officielle 27W ou |link_sf_27w_supply| pour les produits de la série Pironman 5 afin d’éviter une alimentation insuffisante, ce qui pourrait entraîner un redémarrage du Raspberry Pi 5.
-
-Pour toute question, veuillez envoyer un e-mail à service@sunfounder.com. Nous vous répondrons dans les plus brefs délais.
-
+  Il est recommandé d'utiliser l'alimentation officielle 27W ou la |link_sf_27w_supply| pour les produits de la série Pironman 5 afin d'éviter une alimentation insuffisante, ce qui pourrait provoquer le redémarrage du Raspberry Pi 5.
 
 .. raw:: html
 
@@ -136,11 +88,10 @@ Pour toute question, veuillez envoyer un e-mail à service@sunfounder.com. Nous 
 
     About Pironman 5 Series <self>
     pironman5/intro_pironman5
+    pironman5_promax/intro_pironman5_promax
     pironman5_max/intro_pironman5_max
     pironman5_mini/intro_pironman5_mini
 
+**Avis de droit d'auteur**
 
-**Avis de droits d’auteur**
-
-Tous les contenus de ce manuel — y compris, sans s’y limiter, les textes, images et codes — sont la propriété de la société SunFounder. Vous ne pouvez les utiliser que dans un cadre personnel : étude, exploration, loisir ou tout autre usage non commercial et à but non lucratif, conformément aux lois sur le droit d’auteur et sans porter atteinte aux droits légitimes de l’auteur et des ayants droit. Toute utilisation commerciale non autorisée par une personne physique ou morale pourra faire l’objet de poursuites judiciaires.
-
+Tout le contenu, y compris, mais sans s'y limiter, les textes, les images et le code de ce manuel, est la propriété de SunFounder Company. Vous ne devez l'utiliser que pour votre étude personnelle, votre recherche, votre divertissement ou d'autres usages non commerciaux ou à but non lucratif, conformément aux réglementations applicables et aux lois sur les droits d'auteur, sans porter atteinte aux droits légaux de l'auteur et des ayants droit concernés. Pour toute personne ou organisation qui utiliserait ces contenus à des fins de profit commercial sans autorisation, la Société se réserve le droit d'engager des poursuites judiciaires.
