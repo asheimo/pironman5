@@ -8,7 +8,7 @@ Aviso Importante
 
 A partir de la versión v1.3.6, la activación de la pantalla OLED utiliza el botón de encendido. Debe retirar el puente del interruptor de vibración para evitar ocupar los pines GPIO de la Raspberry Pi y prevenir posibles conflictos.
 
-.. nota::
+.. note::
    Verifique si este puente existe; si no es así, ignore este aviso.
 
 .. image:: /pironman5_max/img/remove_vib_jumper.jpg

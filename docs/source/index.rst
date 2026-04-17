@@ -1,131 +1,69 @@
-.. start_hello_message 
+.. start_hello_message
 
 .. note::
 
-    ¡Hola! Bienvenido a la comunidad de entusiastas de SunFounder para Raspberry Pi, Arduino y ESP32 en Facebook. Profundiza tus conocimientos sobre Raspberry Pi, Arduino y ESP32 junto a otros apasionados.
+    Hola, bienvenido a la Comunidad de Entusiastas de Raspberry Pi, Arduino y ESP32 de SunFounder en Facebook. Profundice en Raspberry Pi, Arduino y ESP32 junto a otros entusiastas.
 
     **¿Por qué unirte?**
 
-    - **Soporte experto**: Resuelve problemas postventa y desafíos técnicos con el apoyo de nuestra comunidad y equipo.
-    - **Aprende y comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
-    - **Avances exclusivos**: Accede antes que nadie a nuevos lanzamientos y vistas previas de productos.
-    - **Descuentos especiales**: Disfruta de ofertas exclusivas en nuestros productos más recientes.
-    - **Promociones y sorteos festivos**: Participa en sorteos y promociones durante las festividades.
+    * **Soporte de Expertos**: Resuelve problemas post-venta y desafíos técnicos con la ayuda de nuestra comunidad y equipo.
+    * **Aprende y Comparte**: Intercambia consejos y tutoriales para mejorar tus habilidades.
+    * **Vistas Previas Exclusivas**: Obtén acceso anticipado a nuevos anuncios de productos y vistas previas.
+    * **Descuentos Especiales**: Disfruta de descuentos exclusivos en nuestros productos más nuevos.
+    * **Promociones y Sorteos Festivos**: Participa en sorteos y promociones de temporada.
 
-    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy mismo.
+    👉 ¿Listo para explorar y crear con nosotros? Haz clic en [|link_sf_facebook|] y únete hoy.
 
-.. end_hello_message 
+.. end_hello_message
 
-Pironman 5 Series - Carcasa Mini PC PCIe NVMe M.2 para Raspberry Pi 5
+Serie Pironman 5 - Caja Mini PC PCIe con SSD M.2 NVMe para Raspberry Pi 5
 ================================================================================
 
-Bienvenido a la guía oficial de productos de la serie Pironman 5. Esta guía te ayudará a identificar tu modelo específico dentro de la serie y te proporcionará instrucciones detalladas para su configuración e instalación.
+Bienvenido a la guía oficial para los productos de la Serie Pironman 5. Esta guía te ayudará a identificar tu producto específico dentro de la serie y proporcionará instrucciones paso a paso para la configuración e instalación.
 
-Utiliza las imágenes a continuación para identificar el producto que adquiriste. Una vez identificado, haz clic en el enlace correspondiente para acceder a la introducción detallada y las especificaciones del producto. Después de revisar la información, podrás continuar con la instalación del sistema y la configuración del software ``pironman5``.
+Usa las imágenes a continuación para identificar el producto que compraste. Una vez identificado, haz clic en el enlace correspondiente para acceder a la introducción detallada del producto y las especificaciones. Después de revisar la introducción, puedes proceder con la instalación del sistema y la configuración del software ``pironman5``.
 
-.. 
-  .. note::
+Basado en las imágenes a continuación, selecciona el producto que posees para aprender más. Cada enlace te llevará a la página de introducción del producto respectivo.
 
-..     Este documento está disponible en los siguientes idiomas.
-
-..     * |link_german_tutorials|
-..     * |link_jp_tutorials|
-..     * |link_en_tutorials|
-..     * |link_fr_tutorials|
-..     * |link_es_tutorials|
-..     * |link_it_tutorials|
-..     * |link_zh_tutorials|
-
-
-    .. Haz clic en los enlaces correspondientes para acceder al documento en tu idioma preferido.
-
-Según las imágenes que se muestran a continuación, selecciona el producto que tienes para obtener más información. Cada enlace te llevará a la página de presentación del producto correspondiente.
-
-.. list-table:: 
-   :widths: 25 25 25
-   :header-rows: 1
-
-
-   * - :ref:`intro_pironman5`
-     - :ref:`intro_pironman5_max`
-     - :ref:`intro_pironman5_mini`
-   * - |pic_pironman5| 
-     - |pic_pironman5_max|
-     - |pic_pironman5_mini| 
-
-A continuación se muestra una comparación de especificaciones para el Pironman 5, Pironman 5 Mini y Pironman 5 MAX. Usa esta tabla para comprender las diferencias entre estos productos.
-
-.. list-table:: 
+.. list-table::
    :widths: 25 25 25 25
    :header-rows: 1
 
-   * - Especificaciones
-     - :ref:`intro_pironman5`
+   * - :ref:`intro_pironman5`
+     - :ref:`intro_pironman5_promax`
      - :ref:`intro_pironman5_max`
      - :ref:`intro_pironman5_mini`
-   * - Dispositivos compatibles 
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-     - Raspberry Pi 5
-   * - Entrada
-     - USB tipo C, 5V/5A
-     - USB tipo C, 5V/5A
-     - USB tipo C, 5V/5A
-   * - Botón de encendido 
-     - ✔
-     - ✔
-     - ✔
-   * - Material exterior 1
-     - Aleación de aluminio plateado
-     - Aleación de aluminio negro
-     - Aleación de aluminio plateado
-   * - Material exterior 2
-     - Acrílico transparente
-     - Acrílico negro
-     - Acrílico negro
-   * - Sistema de refrigeración
-     - Enfriador tipo torre
-     - Enfriador tipo torre
-     - Enfriador activo
-   * - Receptor IR
-     - ✔
-     - ✔
-     - X
-   * - Número de ventiladores RGB
-     - 2
-     - 2
-     - 1
-   * - Modo RGB del ventilador - Añadir comentario - Más acciones
-     - Sincronizar con el ventilador
-     - Control independiente
-     - Control independiente
-   * - Puertos HDMI
-     - 2 puertos HDMI estándar
-     - 2 puertos HDMI estándar
-     - 2 puertos Micro HDMI
-   * - Pantalla OLED
-     - ✔
-     - ✔
-     - X
-   * - Activación OLED
-     - Despertar mediante botón
-     - Despertar mediante botón
-     - 
-   * - Soporte SSD NVMe
-     - 1
-     - 2
-     - 1   
-   * - Dimensiones
-     - 111.9x78.5x117 mm
-     - 111.9x78.5x117 mm
-     - 67.8x98.6x101.5 mm  
+   * - |pic_pironman5|
+     - |pic_pironman5_promax|
+     - |pic_pironman5_max|
+     - |pic_pironman5_mini|
+
+A continuación se muestra una comparación de especificaciones para el Pironman 5, Pironman 5 Mini y Pironman 5 MAX. Usa esta tabla para entender las diferencias entre estos productos.
+
+.. csv-table:: Comparación de la Serie Pironman 5
+   :header: "Especificaciones", ":ref:`intro_pironman5`", ":ref:`intro_pironman5_promax`", ":ref:`intro_pironman5_max`", ":ref:`intro_pironman5_mini`"
+   :widths: 20, 15, 15, 15, 35
+
+   "Dispositivos Compatibles", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5", "Raspberry Pi 5"
+   "Entrada", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A", "USB Type C, 5V/5A"
+   "Botón de Encendido", "✔", "✔", "✔", "✔"
+   "Material Exterior 1", "Aleación de Aluminio Plata", "Aleación de Aluminio Negro", "Aleación de Aluminio Negro", "Aleación de Aluminio Plata"
+   "Material Exterior 2", "Acrílico Transparente", "Acrílico Negro", "Acrílico Negro", "Acrílico Negro"
+   "Enfriador", "Enfriador de Torre", "Enfriador de Torre", "Enfriador de Torre", "Enfriador Activo"
+   "Receptor IR", "✔", "✔", "✔", "X"
+   "Número de Ventiladores RGB", "2", "2", "2", "1"
+   "Modo RGB del Ventilador", "Sincronizado con Ventilador", "Sincronizado con Ventilador", "Control Independiente", "Control Independiente"
+   "Puertos HDMI", "2 Puertos HDMI Estándar", "2 Puertos HDMI Estándar", "2 Puertos HDMI Estándar", "2 Puertos Micro HDMI"
+   "Pantalla OLED", "✔", "✔", "✔", "X"
+   "Activación del OLED", "Activación por Botón", "Activación por Botón", "Activación por Botón", ""
+   "Soporte SSD NVMe", "1", "2", "2", "1"
+   "Dimensiones", "111.9x78.5x117mm", "140.9x77.0x138.7mm", "111.9x78.5x117mm", "67.8x98.6x101.5mm"
+
+Si tienes alguna pregunta, envía un correo electrónico a service@sunfounder.com y responderemos lo antes posible.
 
 .. note::
 
-  Se recomienda usar la fuente de alimentación oficial de 27W o |link_sf_27w_supply| para los productos de la serie Pironman 5, a fin de evitar un suministro de energía insuficiente que pueda provocar el reinicio de la Raspberry Pi 5.
-
-Si tienes alguna pregunta, envía un correo a service@sunfounder.com y te responderemos lo antes posible.
-
+  Se recomienda usar la fuente de alimentación oficial de 27W o |link_sf_27w_supply| para los productos de la serie Pironman 5 para evitar una alimentación insuficiente, que podría causar reinicios de la Raspberry Pi 5.
 
 .. raw:: html
 
@@ -136,10 +74,10 @@ Si tienes alguna pregunta, envía un correo a service@sunfounder.com y te respon
 
     About Pironman 5 Series <self>
     pironman5/intro_pironman5
+    pironman5_promax/intro_pironman5_promax
     pironman5_max/intro_pironman5_max
     pironman5_mini/intro_pironman5_mini
 
-**Aviso de derechos de autor**
+**Aviso de Copyright**
 
-Todos los contenidos, incluyendo pero no limitándose a textos, imágenes y código, contenidos en este manual son propiedad de la empresa SunFounder. Solo se permite su uso para estudio personal, investigación, disfrute u otros fines no comerciales o sin ánimo de lucro, conforme a las leyes y regulaciones de derechos de autor correspondientes, sin infringir los derechos legales del autor ni de los titulares de derechos relacionados. Cualquier persona u organización que utilice estos contenidos con fines comerciales sin autorización, será susceptible de acciones legales por parte de la empresa.
-
+Todo el contenido incluyendo, pero no limitado a, textos, imágenes y código en este manual es propiedad de SunFounder Company. Debe usarlo solo para estudio personal, investigación, disfrute u otros fines no comerciales o sin fines de lucro, bajo las regulaciones y leyes de derechos de autor relacionadas, sin infringir los derechos legales del autor y los titulares de derechos relevantes. Para cualquier individuo u organización que los use con fines de lucro comercial sin permiso, la Compañía se reserva el derecho de tomar acciones legales.

@@ -28,7 +28,7 @@ Si has instalado Raspberry Pi OS, Ubuntu, Kali Linux o Homebridge en tu Raspberr
 
 
 Configurar el Apagado para Desactivar la Alimentación de los GPIO
-------------------------------------------------------------
+----------------------------------------------------------------------------------
 Para evitar que el ventilador RGB, alimentado por los GPIO de la Raspberry Pi, permanezca activo después del apagado, es esencial configurar la Raspberry Pi para desactivar la alimentación de los GPIO.
 
 #. Abre la herramienta de configuración de la EEPROM:
