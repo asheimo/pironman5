@@ -99,6 +99,7 @@ def get_variant(variant_id, version=None):
         return None
 
 def get_variant_from_file():
+    from os import path
     if not path.exists("/opt/pironman5/variant"):
         return None
     with open("/opt/pironman5/variant", "r") as f:
