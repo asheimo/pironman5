@@ -25,20 +25,10 @@ Quick Links:
 
 ## Installation
 
-For systems that don't have git, python3 pre-installed you need to install them first
-
-```bash
-sudo apt-get update
-sudo apt-get install git python3 -y
-```
-
 Execute the installation script
 
 ```bash
-cd ~
-git clone https://github.com/sunfounder/pironman5.git
-cd ~/pironman5
-sudo python3 install.py
+curl -sSL "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_pironman5.sh" | sudo bash
 ```
 
 ## Auto launch dashboard on browser
