@@ -4,6 +4,27 @@ import os
 from importlib.resources import files as resource_files
 import signal
 
+
+def _format_json(obj, max_level=2, indent=2, _level=0):
+    """Format JSON with indentation capped at max_level; deeper levels stay inline."""
+    sp = ' ' * indent
+    if _level >= max_level:
+        return json.dumps(obj, separators=(', ', ': '), ensure_ascii=False)
+    if isinstance(obj, dict):
+        if not obj:
+            return '{}'
+        items = []
+        for k, v in obj.items():
+            val = _format_json(v, max_level, indent, _level + 1)
+            items.append(f'{sp * (_level + 1)}"{k}": {val}')
+        return '{\n' + ',\n'.join(items) + '\n' + sp * _level + '}'
+    if isinstance(obj, list):
+        if not obj:
+            return '[]'
+        items = [_format_json(v, max_level, indent, _level + 1) for v in obj]
+        return '[\n' + ',\n'.join(sp * (_level + 1) + i for i in items) + '\n' + sp * _level + ']'
+    return json.dumps(obj, ensure_ascii=False)
+
 from pm_auto.pm_auto import PMAuto
 from pm_auto import __version__ as pm_auto_version
 from .logger import Logger
@@ -85,11 +106,11 @@ class Pironman5:
         self.log.info(f"Pironman5 version: {pironman5_version}")
         self.log.info(f"Variant: {NAME} {PRODUCT_VERSION}")
 
-        _config_json = json.dumps(self.config, indent=4)
+        _config_json = _format_json(self.config)
         self.log.info(f"Config:")
         for line in _config_json.splitlines():
             self.log.info(line)
-        _device_info_json = json.dumps(device_info, indent=4)
+        _device_info_json = _format_json(device_info)
         self.log.info(f"Device info:")
         for line in _device_info_json.splitlines():
             self.log.info(line)
