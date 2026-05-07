@@ -20,8 +20,12 @@ register(Module(
         'power-failure-simulation',
         'send_email',
         'data_interval',
+        'oled_page_battery',
+        'oled_page_input',
+        'oled_page_rpi_power',
     ],
     default_config={
+        'oled_pages': ['mix', 'battery', 'input', 'rpi_power'],
         'shutdown_percentage': 10,
         'send_email_on': [
             "low_battery",
