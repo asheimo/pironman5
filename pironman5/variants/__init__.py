@@ -91,16 +91,16 @@ def _detect_variant_key():
     return get_variant(varient_id, version) or "base"
 
 
-def _custom_peripheral_modules():
-    custom_path = "/opt/pironman5/.custom_peripheral"
+def _custom_modules():
+    custom_path = "/opt/pironman5/.custom_module"
     if not path.exists(custom_path):
-        return None
+        return []
     with open(custom_path) as f:
         modules = [
             line.strip() for line in f
             if line.strip() and not line.strip().startswith("#")
         ]
-    return modules if modules else None
+    return modules
 
 
 # --- Assembly ---
@@ -108,7 +108,11 @@ def _custom_peripheral_modules():
 _variant_key = _detect_variant_key()
 _product = PRODUCT_DEFINITIONS.get(_variant_key, PRODUCT_DEFINITIONS["base"])
 
-_module_names = _custom_peripheral_modules() or _product["modules"]
+_module_names = list(_product["modules"])
+_custom = _custom_modules()
+for m in _custom:
+    if m not in _module_names:
+        _module_names.append(m)
 _assembled = assemble(_module_names)
 
 _config = dict(_assembled["default_config"])

@@ -29,7 +29,7 @@ def test_dependency_resolution():
     print("Dependency resolution: OK")
 
 
-def test_custom_peripheral():
+def test_custom_module():
     from pironman5.variants.modules import assemble
 
     # Custom list with core + oled only
@@ -44,7 +44,7 @@ def test_custom_peripheral():
     assert "pipower5" in result["peripherals"]
     assert "shutdown_percentage" in result["default_config"]
     assert "oled" not in result["peripherals"]
-    print("Custom peripheral assembly: OK")
+    print("Custom module assembly: OK")
 
 
 def test_unknown_module():
@@ -92,7 +92,7 @@ def test_variant_imports():
 if __name__ == "__main__":
     test_products_assemble_without_error()
     test_dependency_resolution()
-    test_custom_peripheral()
+    test_custom_module()
     test_unknown_module()
     test_duplicate_module_names()
     test_empty_module_list()
