@@ -8,7 +8,7 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-# Check if argument exists before accessing \$1
+# Check if argument exists before accessing $1
 if [ $# -ge 1 ] && [ "$1" == "--uninstall" ]; then
     echo "Uninstalling PiPower 5 driver"
     rm -rf /lib/modules/$(uname -r)/kernel/drivers/misc/pipower5_driver.ko
@@ -19,18 +19,62 @@ fi
 
 DEBIAN_FRONTEND=noninteractive apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install wget unzip -y
-DEBIAN_FRONTEND=noninteractive apt-get install linux-headers-$(uname -r) -y
 
+# Install kernel headers, handling 64-bit kernel on 32-bit userspace
+KERNEL_VERSION=$(uname -r)
+KERNEL_ARCH=$(uname -m)
+DPKG_ARCH=$(dpkg --print-architecture)
+DRIVER_SKIP=false
 
-echo "Installing PiPower 5 driver"
+if [ "$KERNEL_ARCH" = "aarch64" ] && [ "$DPKG_ARCH" = "armhf" ]; then
+    echo "Detected 64-bit kernel on 32-bit OS. Setting up cross-compilation..."
+    DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-aarch64-linux-gnu make || true
+    if ! command -v aarch64-linux-gnu-gcc > /dev/null 2>&1; then
+        echo "Warning: cross-compiler not available. Skipping PiPower5 driver."
+        DRIVER_SKIP=true
+    fi
 
-rm -rf driver.zip driver/
-wget https://github.com/sunfounder/pipower5/releases/download/1.2.1/driver.zip
-unzip driver.zip
-cd driver
-bash install.sh
-cd ..
-rm -rf driver.zip driver/
+    if [ "$DRIVER_SKIP" = false ]; then
+        # Force-install headers without gcc:arm64 dependency;
+        # gcc-aarch64-linux-gnu cross-compiler is used instead.
+        if ! apt-get download "linux-headers-${KERNEL_VERSION}:arm64" 2>/dev/null; then
+            echo "Warning: Could not download kernel headers for PiPower5 driver"
+            echo "UPS hardware may not be detected."
+            DRIVER_SKIP=true
+        fi
+    fi
+    if [ "$DRIVER_SKIP" = false ]; then
+        if ! dpkg --force-depends -i linux-headers-${KERNEL_VERSION}_*.deb 2>/dev/null; then
+            echo "Warning: Could not install kernel headers for PiPower5 driver"
+            echo "UPS hardware may not be detected."
+            DRIVER_SKIP=true
+        fi
+        rm -f linux-headers-${KERNEL_VERSION}_*.deb
+    fi
+    if [ "$DRIVER_SKIP" = false ]; then
+        export ARCH=arm64
+        export CROSS_COMPILE=aarch64-linux-gnu-
+    fi
+else
+    if ! DEBIAN_FRONTEND=noninteractive apt-get install -y "linux-headers-${KERNEL_VERSION}"; then
+        echo "Warning: Could not install kernel headers. Skipping PiPower5 driver."
+        DRIVER_SKIP=true
+    fi
+fi
+
+if [ "$DRIVER_SKIP" = false ]; then
+    echo "Installing PiPower 5 driver"
+
+    rm -rf driver.zip driver/
+    wget https://github.com/sunfounder/pipower5/releases/download/1.2.1/driver.zip
+    unzip driver.zip
+    cd driver
+    bash install.sh
+    cd ..
+    rm -rf driver.zip driver/
+else
+    echo "Skipping PiPower5 driver compilation (headers not available)"
+fi
 
 echo "Setting up email templates"
 
