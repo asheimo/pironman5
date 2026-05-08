@@ -19,21 +19,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - variant: base
-          #   pipower5: "false"
-          #   suffix: ""
-          # - variant: mini
-          #   pipower5: "false"
-          #   suffix: ""
+          - variant: base
+            pipower5: "false"
+            suffix: ""
+          - variant: mini
+            pipower5: "false"
+            suffix: ""
           - variant: max
             pipower5: "false"
             suffix: ""
-          # - variant: pro-max
-          #   pipower5: "false"
-          #   suffix: ""
-          # - variant: base
-          #   pipower5: "true"
-          #   suffix: "-pipower5"
+          - variant: pro-max
+            pipower5: "false"
+            suffix: ""
 
     steps:
       - name: Checkout pironman5
