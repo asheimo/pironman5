@@ -28,7 +28,7 @@ Quick Links:
 Execute the installation script
 
 ```bash
-curl -sSL "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/install_pironman5.sh" | sudo bash
+curl -sSL "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh" | sudo bash
 ```
 
 ## Auto launch dashboard on browser
