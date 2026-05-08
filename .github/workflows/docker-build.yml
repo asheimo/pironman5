@@ -36,8 +36,17 @@ jobs:
             suffix: "-pipower5"
 
     steps:
-      - name: Checkout
+      - name: Checkout pironman5
         uses: actions/checkout@v4
+        with:
+          path: pironman5
+
+      - name: Checkout installer-scripts
+        uses: actions/checkout@v4
+        with:
+          repository: sunfounder/sunfounder-installer-scripts
+          ref: main
+          path: installer-scripts
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -64,8 +73,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: docker/Dockerfile
+          context: installer-scripts
+          file: installer-scripts/docker/Dockerfile
           platforms: linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
