@@ -12,6 +12,7 @@ services:
     volumes:
       - ${APP_DATA_DIR:-./data}:/data
       - /dev:/dev
+      - /lib/modules:/lib/modules:ro
     labels:
       com.umbrel.app.name: "Pironman 5"
       com.umbrel.app.version: "1.3.0"
