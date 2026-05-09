@@ -21,12 +21,7 @@ PRODUCT_DEFINITIONS = {
             "pi5_power_button",
         ],
         "config_overrides": {},
-        "event_map_replace": {
-            'pi5_power_button_click': 'oled_wake_page_next',
-            'pi5_power_button_double_click': 'oled_page_prev',
-            'pi5_power_button_long_press_2s': 'oled_show_shutdown_screen',
-            'pi5_power_button_long_press_2s_released': 'shutdown',
-        },
+        "event_map_overrides": {},
         "dt_overlays": ["sunfounder-pironman5.dtbo"],
     },
     "mini": {
