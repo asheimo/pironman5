@@ -700,6 +700,9 @@ def main():
         print("Removing directories...")
         os.system('rm -rf /opt/pironman5/')
         os.system('rm -rf /var/log/pironman5/')
+        sudo_user = os.environ.get('SUDO_USER', '')
+        if sudo_user:
+            os.system(f'rm -rf /home/{sudo_user}/pironman5')
 
         if _confirm("Uninstall InfluxDB database too?"):
             os.system('apt-get purge influxdb -y')
