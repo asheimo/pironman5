@@ -643,7 +643,7 @@ def main():
                 pass
 
         installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
-        cmd_parts = ["curl -sSL", installer_url, "| sudo bash -s -- --variant", variant]
+        cmd_parts = ["echo n | curl -sSL", installer_url, "| sudo bash -s -- --variant", variant]
         if use_pipower5:
             cmd_parts.append("--pipower5")
 
@@ -655,7 +655,7 @@ def main():
             print(f"Update failed with exit code {ret}", file=sys.stderr)
             sys.exit(1)
         print("Update complete. Restarting service...")
-        os.system('systemctl restart pironman5.service')
+        os.system('sudo systemctl restart pironman5.service')
         quit()
 
     # uninstall
