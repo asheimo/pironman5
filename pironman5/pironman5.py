@@ -170,7 +170,7 @@ class Pironman5:
         if len(patch) > 0:
             self.log.debug(f"Update config: {patch}")
             self.config['system'].update(patch)
-            self.log.debug(f"New config: {json.dumps(self.config, indent=4)}")
+            self.log.debug(f"Config updated: {list(patch.keys())}")
             with open(self.config_path, 'w') as f:
                 json.dump(self.config, f, indent=4)
 

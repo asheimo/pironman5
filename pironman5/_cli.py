@@ -1,8 +1,10 @@
+# PYTHON_ARGCOMPLETE_OK
 
 import argparse
 import json
 import sys
 import os
+import argcomplete
 from importlib.resources import files as resource_files
 
 from ._launch_browser import run as launch_browser
@@ -109,6 +111,13 @@ def main():
     stop_parser = subparsers.add_parser("stop", help="Stop Pironman5")
     launch_browser_parser = subparsers.add_parser("launch-browser", help="Launch browser")
     launch_browser_parser.add_argument("-a", "--auto-start", nargs='?', default='', help="Auto start browser on boot")
+    update_parser = subparsers.add_parser("update", help="Update Pironman5 to latest version")
+    update_parser.add_argument("--variant", nargs='?', default='', help="Override variant (base/mini/max/pro-max/ups/nas)")
+    update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
+    uninstall_parser = subparsers.add_parser("uninstall", help="Uninstall Pironman5 completely")
+    uninstall_parser.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
+
+    argcomplete.autocomplete(parser)
 
     # parse args
     # -----------------------------------------------------------
@@ -606,6 +615,100 @@ def main():
             except FileNotFoundError:
                 print("Error: pipower5 command not found, please make sure it is installed and in the environment variables", file=sys.stderr)
                 sys.exit(1)
+
+    # update
+    # ----------------------------------------
+    if args.subcommand == 'update':
+        variant = args.variant if args.variant else ''
+        if not variant:
+            try:
+                with open('/opt/pironman5/.variant', 'r') as f:
+                    variant = f.read().strip()
+            except FileNotFoundError:
+                print("Error: Cannot detect variant. /opt/pironman5/.variant not found.")
+                print("Specify variant manually: pironman5 update --variant base")
+                sys.exit(1)
+
+        if not variant:
+            print("Error: Empty variant. Specify manually: pironman5 update --variant base")
+            sys.exit(1)
+
+        use_pipower5 = args.pipower5
+        if not use_pipower5:
+            try:
+                with open('/opt/pironman5/.custom_module', 'r') as f:
+                    if 'pipower5' in f.read():
+                        use_pipower5 = True
+            except FileNotFoundError:
+                pass
+
+        installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
+        cmd_parts = ["echo n | curl -sSL", installer_url, "| sudo bash -s -- --variant", variant]
+        if use_pipower5:
+            cmd_parts.append("--pipower5")
+
+        cmd = ' '.join(cmd_parts)
+        print(f"Updating Pironman 5 ({variant})...")
+        print(f"Running: {cmd}")
+        ret = os.system(cmd)
+        if ret != 0:
+            print(f"Update failed with exit code {ret}", file=sys.stderr)
+            sys.exit(1)
+        print("Update complete. Restarting service...")
+        os.system('sudo systemctl restart pironman5.service')
+        quit()
+
+    # uninstall
+    # ----------------------------------------
+    if args.subcommand == 'uninstall':
+        if os.geteuid() != 0:
+            print("Requesting root privileges...")
+            os.execvp('sudo', ['sudo', 'pironman5'] + sys.argv[1:])
+            sys.exit(0)
+
+        def _confirm(prompt):
+            if args.yes:
+                return True
+            while True:
+                resp = input(prompt + " [y/N] ")
+                if resp.lower() in ('y', 'yes'):
+                    return True
+                elif resp.lower() in ('', 'n', 'no'):
+                    return False
+
+        if not _confirm("This will completely remove Pironman 5 and all its data. Continue?"):
+            print("Uninstall cancelled.")
+            quit()
+
+        print("Stopping service...")
+        os.system('systemctl stop pironman5.service')
+        os.system('systemctl disable pironman5.service')
+        service_file = '/etc/systemd/system/pironman5.service'
+        if os.path.exists(service_file):
+            os.remove(service_file)
+            os.system('systemctl daemon-reload')
+
+        print("Removing symlinks...")
+        symlink_path = '/usr/local/bin/pironman5'
+        if os.path.exists(symlink_path):
+            os.remove(symlink_path)
+
+        print("Removing user and group...")
+        os.system('userdel pironman5 2>/dev/null')
+        os.system('groupdel pironman5 2>/dev/null')
+
+        print("Removing directories...")
+        os.system('rm -rf /opt/pironman5/')
+        os.system('rm -rf /var/log/pironman5/')
+        sudo_user = os.environ.get('SUDO_USER', '')
+        if sudo_user:
+            os.system(f'rm -rf /home/{sudo_user}/pironman5')
+
+        if _confirm("Remove InfluxDB data (pironman5 database)?"):
+            os.system('influx -execute "DROP DATABASE pironman5" 2>/dev/null')
+
+        print("Pironman 5 has been uninstalled.")
+        quit()
 
     # Update settings
     # ----------------------------------------
