@@ -662,8 +662,9 @@ def main():
     # ----------------------------------------
     if args.subcommand == 'uninstall':
         if os.geteuid() != 0:
-            print("Error: uninstall requires root privileges. Run with: sudo pironman5 uninstall")
-            sys.exit(1)
+            print("Requesting root privileges...")
+            os.execvp('sudo', ['sudo', 'pironman5'] + sys.argv[1:])
+            sys.exit(0)
 
         def _confirm(prompt):
             if args.yes:
