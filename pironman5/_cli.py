@@ -1,8 +1,10 @@
+# PYTHON_ARGCOMPLETE_OK
 
 import argparse
 import json
 import sys
 import os
+import argcomplete
 from importlib.resources import files as resource_files
 
 from ._launch_browser import run as launch_browser
@@ -114,6 +116,8 @@ def main():
     update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
     uninstall_parser = subparsers.add_parser("uninstall", help="Uninstall Pironman5 completely")
     uninstall_parser.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
+
+    argcomplete.autocomplete(parser)
 
     # parse args
     # -----------------------------------------------------------
