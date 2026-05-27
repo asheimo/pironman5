@@ -661,6 +661,10 @@ def main():
     # uninstall
     # ----------------------------------------
     if args.subcommand == 'uninstall':
+        if os.geteuid() != 0:
+            print("Error: uninstall requires root privileges. Run with: sudo pironman5 uninstall")
+            sys.exit(1)
+
         def _confirm(prompt):
             if args.yes:
                 return True
@@ -676,8 +680,8 @@ def main():
             quit()
 
         print("Stopping service...")
-        os.system('systemctl stop pironman5.service 2>/dev/null')
-        os.system('systemctl disable pironman5.service 2>/dev/null')
+        os.system('systemctl stop pironman5.service')
+        os.system('systemctl disable pironman5.service')
         service_file = '/etc/systemd/system/pironman5.service'
         if os.path.exists(service_file):
             os.remove(service_file)
