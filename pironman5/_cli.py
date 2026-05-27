@@ -109,6 +109,9 @@ def main():
     stop_parser = subparsers.add_parser("stop", help="Stop Pironman5")
     launch_browser_parser = subparsers.add_parser("launch-browser", help="Launch browser")
     launch_browser_parser.add_argument("-a", "--auto-start", nargs='?', default='', help="Auto start browser on boot")
+    update_parser = subparsers.add_parser("update", help="Update Pironman5 to latest version")
+    update_parser.add_argument("--variant", nargs='?', default='', help="Override variant (base/mini/max/pro-max/ups/nas)")
+    update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
 
     # parse args
     # -----------------------------------------------------------
@@ -606,6 +609,48 @@ def main():
             except FileNotFoundError:
                 print("Error: pipower5 command not found, please make sure it is installed and in the environment variables", file=sys.stderr)
                 sys.exit(1)
+
+    # update
+    # ----------------------------------------
+    if args.subcommand == 'update':
+        variant = args.variant if args.variant else ''
+        if not variant:
+            try:
+                with open('/opt/pironman5/.variant', 'r') as f:
+                    variant = f.read().strip()
+            except FileNotFoundError:
+                print("Error: Cannot detect variant. /opt/pironman5/.variant not found.")
+                print("Specify variant manually: pironman5 update --variant base")
+                sys.exit(1)
+
+        if not variant:
+            print("Error: Empty variant. Specify manually: pironman5 update --variant base")
+            sys.exit(1)
+
+        use_pipower5 = args.pipower5
+        if not use_pipower5:
+            try:
+                with open('/opt/pironman5/.custom_module', 'r') as f:
+                    if 'pipower5' in f.read():
+                        use_pipower5 = True
+            except FileNotFoundError:
+                pass
+
+        installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
+        cmd_parts = ["curl -sSL", installer_url, "| sudo bash -s -- --variant", variant, "--plain-text"]
+        if use_pipower5:
+            cmd_parts.append("--pipower5")
+
+        cmd = ' '.join(cmd_parts)
+        print(f"Updating Pironman 5 ({variant})...")
+        print(f"Running: {cmd}")
+        ret = os.system(cmd)
+        if ret != 0:
+            print(f"Update failed with exit code {ret}", file=sys.stderr)
+            sys.exit(1)
+        print("Update complete. Restarting service...")
+        os.system('systemctl restart pironman5.service')
+        quit()
 
     # Update settings
     # ----------------------------------------
