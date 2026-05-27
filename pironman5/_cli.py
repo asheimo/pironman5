@@ -643,7 +643,7 @@ def main():
                 pass
 
         installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
-        cmd_parts = ["curl -sSL", installer_url, "| sudo bash -s -- --variant", variant, "--plain-text"]
+        cmd_parts = ["curl -sSL", installer_url, "| sudo bash -s -- --variant", variant]
         if use_pipower5:
             cmd_parts.append("--pipower5")
 
