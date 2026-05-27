@@ -704,8 +704,8 @@ def main():
         if sudo_user:
             os.system(f'rm -rf /home/{sudo_user}/pironman5')
 
-        if _confirm("Uninstall InfluxDB database too?"):
-            os.system('apt-get purge influxdb -y')
+        if _confirm("Remove InfluxDB data (pironman5 database)?"):
+            os.system('influx -execute "DROP DATABASE pironman5" 2>/dev/null')
 
         print("Pironman 5 has been uninstalled.")
         quit()
