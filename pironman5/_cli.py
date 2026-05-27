@@ -112,6 +112,8 @@ def main():
     update_parser = subparsers.add_parser("update", help="Update Pironman5 to latest version")
     update_parser.add_argument("--variant", nargs='?', default='', help="Override variant (base/mini/max/pro-max/ups/nas)")
     update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
+    uninstall_parser = subparsers.add_parser("uninstall", help="Uninstall Pironman5 completely")
+    uninstall_parser.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
 
     # parse args
     # -----------------------------------------------------------
@@ -650,6 +652,50 @@ def main():
             sys.exit(1)
         print("Update complete. Restarting service...")
         os.system('systemctl restart pironman5.service')
+        quit()
+
+    # uninstall
+    # ----------------------------------------
+    if args.subcommand == 'uninstall':
+        def _confirm(prompt):
+            if args.yes:
+                return True
+            while True:
+                resp = input(prompt + " [y/N] ")
+                if resp.lower() in ('y', 'yes'):
+                    return True
+                elif resp.lower() in ('', 'n', 'no'):
+                    return False
+
+        if not _confirm("This will completely remove Pironman 5 and all its data. Continue?"):
+            print("Uninstall cancelled.")
+            quit()
+
+        print("Stopping service...")
+        os.system('systemctl stop pironman5.service 2>/dev/null')
+        os.system('systemctl disable pironman5.service 2>/dev/null')
+        service_file = '/etc/systemd/system/pironman5.service'
+        if os.path.exists(service_file):
+            os.remove(service_file)
+            os.system('systemctl daemon-reload')
+
+        print("Removing symlinks...")
+        symlink_path = '/usr/local/bin/pironman5'
+        if os.path.exists(symlink_path):
+            os.remove(symlink_path)
+
+        print("Removing user and group...")
+        os.system('userdel pironman5 2>/dev/null')
+        os.system('groupdel pironman5 2>/dev/null')
+
+        print("Removing directories...")
+        os.system('rm -rf /opt/pironman5/')
+        os.system('rm -rf /var/log/pironman5/')
+
+        if _confirm("Uninstall InfluxDB database too?"):
+            os.system('apt-get purge influxdb -y')
+
+        print("Pironman 5 has been uninstalled.")
         quit()
 
     # Update settings
