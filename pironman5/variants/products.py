@@ -71,7 +71,8 @@ PRODUCT_DEFINITIONS = {
         "id": "pironman5-pro-max",
         "product_version": "",
         "modules": [
-            "core", "history", "oled", "ws2812",
+            "core", "network_info", "history", "oled", "ws2812",
+            "pwm_fan", "gpio_fan",
             "pi5_power_button",
         ],
         "config_overrides": {
