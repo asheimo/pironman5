@@ -5,7 +5,14 @@ import os
 from typing import List
 import json
 
-from ._constants import CONFIG_PATH
+try:
+    from ._constants import CONFIG_PATH
+except ImportError:
+    # Running as a script (not as a package module)
+    _here = os.path.dirname(os.path.abspath(__file__))
+    _parent = os.path.dirname(_here)
+    sys.path.insert(0, _parent)
+    from pironman5._constants import CONFIG_PATH
 
 URL = "http://localhost:34001"
 
