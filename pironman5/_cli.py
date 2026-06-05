@@ -116,6 +116,10 @@ def main():
     update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
     uninstall_parser = subparsers.add_parser("uninstall", help="Uninstall Pironman5 completely")
     uninstall_parser.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
+    variant_parser = subparsers.add_parser("variant", help="Show or switch product variant")
+    variant_parser.add_argument("variant_name", nargs="?", default=None, help="Variant name to switch to (base/mini/max/pro-max/nas)")
+    variant_parser.add_argument("--list", action="store_true", help="List available variants")
+    variant_parser.add_argument("--current", action="store_true", help="Show current variant")
 
     argcomplete.autocomplete(parser)
 
@@ -709,6 +713,54 @@ def main():
 
         print("Pironman 5 has been uninstalled.")
         quit()
+
+    # variant
+    # ----------------------------------------
+    if args.subcommand == 'variant':
+        VARIANT_CHOICES = ["base", "mini", "max", "pro-max", "nas"]
+        VARIANT_LABELS = {
+            "base": "Pironman 5",
+            "mini": "Pironman 5 Mini",
+            "max": "Pironman 5 Max",
+            "pro-max": "Pironman 5 Pro Max",
+            "nas": "Pironman 5 NAS",
+        }
+        variant_path = "/opt/pironman5/.variant"
+        current = None
+        if os.path.exists(variant_path):
+            with open(variant_path, "r") as f:
+                current = f.read().strip()
+
+        if args.list:
+            print("Available variants:")
+            for v in VARIANT_CHOICES:
+                marker = " *" if v == current else ""
+                print(f"  {v:<10} {VARIANT_LABELS.get(v, '')}{marker}")
+            quit()
+
+        if args.current or (not args.variant_name and not args.list):
+            label = VARIANT_LABELS.get(current, "Unknown") if current else "Unknown"
+            print(f"Current variant: {current} ({label})" if current else "Current variant: not set (default: base)")
+            if not args.current:
+                print(f"Switch variant: pironman5 variant <name>")
+                print(f"Available: {', '.join(VARIANT_CHOICES)}")
+            quit()
+
+        if args.variant_name:
+            if args.variant_name not in VARIANT_CHOICES:
+                print(f"Invalid variant: {args.variant_name}")
+                print(f"Available: {', '.join(VARIANT_CHOICES)}")
+                sys.exit(1)
+            os.makedirs(os.path.dirname(variant_path), exist_ok=True)
+            with open(variant_path, "w") as f:
+                f.write(args.variant_name)
+            try:
+                os.chmod(variant_path, 0o664)
+            except Exception:
+                pass
+            print(f"Switched to {args.variant_name} ({VARIANT_LABELS.get(args.variant_name, '')})")
+            print("Restart pironman5 to apply: sudo systemctl restart pironman5.service")
+            quit()
 
     # Update settings
     # ----------------------------------------
