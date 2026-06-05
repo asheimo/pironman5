@@ -57,9 +57,9 @@ def main():
     parser.add_argument("-rd", "--remove-dashboard", action="store_true", help="Remove dashboard")
     parser.add_argument("-cp", "--config-path", nargs='?', default='', help="Config path")
     parser.add_argument("-eh", "--enable-history", nargs='?', default='', help="Enable history, True/true/on/On/1 or False/false/off/Off/0")
-    # ws2812
-    if is_included(PERIPHERALS, "ws2812"):
-        from pm_auto.addons.ws2812 import RGB_STYLES
+    # ws2812 / sf_rgb_led
+    if is_included(PERIPHERALS, "ws2812") or is_included(PERIPHERALS, "sf_rgb_led"):
+        from pm_auto.libs.sunfounder_rgb_led import RGB_STYLES, MAX_LEDS
         parser.add_argument("-re", "--rgb-enable", nargs='?', default='', help="RGB enable True/False")
         parser.add_argument("-rs", "--rgb-style", nargs='?', default='', help=f"RGB style: {RGB_STYLES}")
         parser.add_argument("-rc", "--rgb-color", nargs='?', default='', help='RGB color in hex format without # (e.g. 00aabb)')
@@ -231,9 +231,9 @@ def main():
                 print(f"Invalid value for enable history, it should be True/true/on/On/1 or False/false/off/Off/0")
                 quit()
 
-    # ws2812 settings
+    # ws2812 / sf_rgb_led settings
     # ----------------------------------------
-    if is_included(PERIPHERALS, "ws2812"):
+    if is_included(PERIPHERALS, "ws2812") or is_included(PERIPHERALS, "sf_rgb_led"):
         # ws2812 rgb_color
         if args.rgb_color != '':
             if args.rgb_color == None:
@@ -312,7 +312,7 @@ def main():
                 else:
                     print(f"Invalid value for RGB enable, it should be True or False")
                     quit()
-        # ws2812 rgb_led_count
+        # ws2812 / sf_rgb_led rgb_led_count
         if args.rgb_led_count != '':
             if args.rgb_led_count == None:
                 print(f"RGB LED count: {current_config['system']['rgb_led_count']}")
@@ -324,6 +324,9 @@ def main():
                     quit()
                 if args.rgb_led_count < 1:
                     print(f"Invalid value for RGB LED count, it should be greater than 0")
+                    quit()
+                if is_included(PERIPHERALS, "sf_rgb_led") and args.rgb_led_count > MAX_LEDS:
+                    print(f"Invalid value for RGB LED count, it should be less than or equal to {MAX_LEDS}")
                     quit()
                 new_sys_config['rgb_led_count'] = args.rgb_led_count
                 print(f"Set RGB LED count: {args.rgb_led_count}")
