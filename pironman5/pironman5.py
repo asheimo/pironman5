@@ -134,8 +134,11 @@ class Pironman5:
                                             log=log)
             self.pm_dashboard.set_read_data(self.pm_auto.read)
             self.pm_dashboard.set_read_config(self.read_config)
+            self.pm_dashboard.set_get_ip_data(self.pm_auto.get_ip_data)
             if 'send_email' in self.peripherals:
                 self.pm_dashboard.set_test_smtp(self.pm_auto.test_smtp)
+            if 'pipower5' in self.peripherals:
+                self.pm_dashboard.set_play_pipower5_buzzer(self.pm_auto.play_pipower5_buzzer)
             self.pm_dashboard.set_on_config_changed(self.update_config)
             self.pm_dashboard.set_on_restart_service(restart_service)
 
