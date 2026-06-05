@@ -717,13 +717,14 @@ def main():
     # variant
     # ----------------------------------------
     if args.subcommand == 'variant':
-        VARIANT_CHOICES = ["base", "mini", "max", "pro-max", "nas"]
+        VARIANT_CHOICES = ["base", "mini", "max", "pro-max", "nas", "ups"]
         VARIANT_LABELS = {
             "base": "Pironman 5",
             "mini": "Pironman 5 Mini",
             "max": "Pironman 5 Max",
             "pro-max": "Pironman 5 Pro Max",
             "nas": "Pironman 5 NAS",
+            "ups": "Pironman 5 UPS",
         }
         variant_path = "/opt/pironman5/.variant"
         current = None
