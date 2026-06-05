@@ -120,6 +120,13 @@ def main():
     variant_parser.add_argument("variant_name", nargs="?", default=None, help="Variant name to switch to (base/mini/max/pro-max/nas)")
     variant_parser.add_argument("--list", action="store_true", help="List available variants")
     variant_parser.add_argument("--current", action="store_true", help="Show current variant")
+    plugin_parser = subparsers.add_parser("plugin", help="Manage plugins (e.g. pipower5)")
+    plugin_sub = plugin_parser.add_subparsers(dest="plugin_action")
+    plugin_list = plugin_sub.add_parser("list", help="List installed plugins")
+    plugin_install = plugin_sub.add_parser("install", help="Install a plugin")
+    plugin_install.add_argument("plugin_name", help="Plugin name (e.g. pipower5)")
+    plugin_remove = plugin_sub.add_parser("remove", help="Remove a plugin")
+    plugin_remove.add_argument("plugin_name", help="Plugin name (e.g. pipower5)")
 
     argcomplete.autocomplete(parser)
 
@@ -761,6 +768,83 @@ def main():
                 pass
             print(f"Switched to {args.variant_name} ({VARIANT_LABELS.get(args.variant_name, '')})")
             print("Restart pironman5 to apply: sudo systemctl restart pironman5.service")
+            quit()
+
+    # plugin
+    # ----------------------------------------
+    if args.subcommand == 'plugin':
+        CUSTOM_PATH = "/opt/pironman5/.custom_module"
+        PLUGIN_SCRIPTS = {
+            "pipower5": {
+                "label": "PiPower 5 UPS",
+                "installer_args": "--pipower5",
+            },
+        }
+
+        def _read_plugins():
+            if not os.path.exists(CUSTOM_PATH):
+                return []
+            with open(CUSTOM_PATH, "r") as f:
+                return [line.strip() for line in f if line.strip() and not line.strip().startswith("#")]
+
+        def _write_plugins(plugins):
+            os.makedirs(os.path.dirname(CUSTOM_PATH), exist_ok=True)
+            with open(CUSTOM_PATH, "w") as f:
+                f.write("\n".join(plugins) + "\n")
+
+        if args.plugin_action == "list":
+            installed = _read_plugins()
+            if installed:
+                print("Installed plugins:")
+                for p in installed:
+                    label = PLUGIN_SCRIPTS.get(p, {}).get("label", p)
+                    print(f"  {p}  ({label})")
+            else:
+                print("No plugins installed.")
+            quit()
+
+        plugin_name = args.plugin_name
+        if plugin_name not in PLUGIN_SCRIPTS:
+            print(f"Unknown plugin: {plugin_name}")
+            print(f"Available: {', '.join(PLUGIN_SCRIPTS.keys())}")
+            sys.exit(1)
+
+        if args.plugin_action == "install":
+            installed = _read_plugins()
+            if plugin_name in installed:
+                print(f"Plugin '{plugin_name}' is already installed.")
+                quit()
+            installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
+            installer_args = PLUGIN_SCRIPTS[plugin_name]["installer_args"]
+            # Detect current variant for installer
+            variant = "base"
+            variant_path = "/opt/pironman5/.variant"
+            if os.path.exists(variant_path):
+                with open(variant_path, "r") as f:
+                    v = f.read().strip()
+                    if v:
+                        variant = v
+            cmd = f"curl -sSL {installer_url} | sudo bash -s -- --variant {variant} {installer_args}"
+            print(f"Installing {plugin_name}...")
+            ret = os.system(cmd)
+            if ret != 0:
+                print(f"Plugin install failed with exit code {ret}", file=sys.stderr)
+                sys.exit(1)
+            print(f"Plugin '{plugin_name}' installed. Restart pironman5 to apply:")
+            print("  sudo systemctl restart pironman5.service")
+            quit()
+
+        if args.plugin_action == "remove":
+            installed = _read_plugins()
+            if plugin_name not in installed:
+                print(f"Plugin '{plugin_name}' is not installed.")
+                quit()
+            installed.remove(plugin_name)
+            _write_plugins(installed)
+            # Also uninstall the python package
+            os.system(f"/opt/pironman5/venv/bin/pip uninstall -y {plugin_name} 2>/dev/null")
+            print(f"Plugin '{plugin_name}' removed. Restart pironman5 to apply:")
+            print("  sudo systemctl restart pironman5.service")
             quit()
 
     # Update settings
