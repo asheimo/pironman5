@@ -777,7 +777,7 @@ def main():
         PLUGIN_SCRIPTS = {
             "pipower5": {
                 "label": "PiPower 5 UPS",
-                "installer_args": "--pipower5",
+                "installer_args": "--plugin pipower5",
             },
         }
 
@@ -816,15 +816,7 @@ def main():
                 quit()
             installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
             installer_args = PLUGIN_SCRIPTS[plugin_name]["installer_args"]
-            # Detect current variant for installer
-            variant = "base"
-            variant_path = "/opt/pironman5/.variant"
-            if os.path.exists(variant_path):
-                with open(variant_path, "r") as f:
-                    v = f.read().strip()
-                    if v:
-                        variant = v
-            cmd = f"curl -sSL {installer_url} | sudo bash -s -- --variant {variant} {installer_args}"
+            cmd = f"curl -sSL {installer_url} | sudo bash -s -- {installer_args}"
             print(f"Installing {plugin_name}...")
             ret = os.system(cmd)
             if ret != 0:
