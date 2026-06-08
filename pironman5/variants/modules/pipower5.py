@@ -19,6 +19,8 @@ register(Module(
         'default_on',
         'power-failure-simulation',
         'send_email',
+        'pipower5_buzzer_volume',
+        'pipower5_buzz_on',
         'data_interval',
         'oled_page_battery',
         'oled_page_input',
