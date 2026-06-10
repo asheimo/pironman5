@@ -59,7 +59,7 @@ def main():
     parser.add_argument("-eh", "--enable-history", nargs='?', default='', help="Enable history, True/true/on/On/1 or False/false/off/Off/0")
     # ws2812 / sf_rgb_led
     if is_included(PERIPHERALS, "ws2812") or is_included(PERIPHERALS, "sf_rgb_led"):
-        from pm_auto.libs.sunfounder_rgb_led import RGB_STYLES, MAX_LEDS
+        from pm_auto.libs.sunfounder_rgb_led import RGB_STYLES
         parser.add_argument("-re", "--rgb-enable", nargs='?', default='', help="RGB enable True/False")
         parser.add_argument("-rs", "--rgb-style", nargs='?', default='', help=f"RGB style: {RGB_STYLES}")
         parser.add_argument("-rc", "--rgb-color", nargs='?', default='', help='RGB color in hex format without # (e.g. 00aabb)')
@@ -335,9 +335,6 @@ def main():
                     quit()
                 if args.rgb_led_count < 1:
                     print(f"Invalid value for RGB LED count, it should be greater than 0")
-                    quit()
-                if is_included(PERIPHERALS, "sf_rgb_led") and args.rgb_led_count > MAX_LEDS:
-                    print(f"Invalid value for RGB LED count, it should be less than or equal to {MAX_LEDS}")
                     quit()
                 new_sys_config['rgb_led_count'] = args.rgb_led_count
                 print(f"Set RGB LED count: {args.rgb_led_count}")
