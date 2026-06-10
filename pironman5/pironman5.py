@@ -64,8 +64,6 @@ class Pironman5:
                 config = json.load(f)
             config = self.upgrade_config(config)
             self.config = merge_dict(self.config, config)
-        with open(self.config_path, 'w') as f:
-            json.dump(self.config, f, indent=4)
 
         # Set debug level
         # -----------------------------------------
