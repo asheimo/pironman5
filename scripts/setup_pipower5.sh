@@ -91,7 +91,7 @@ rm -rf email_templates.zip email_templates/
 
 # create pipower5 user
 if ! id -u pipower5 > /dev/null 2>&1; then
-    useradd -m pipower5
+    useradd -m -g pipower5 pipower5
 fi
 #create udev rules
 if [ ! -d /etc/udev/rules.d ]; then
