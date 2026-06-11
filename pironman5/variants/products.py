@@ -61,6 +61,7 @@ PRODUCT_DEFINITIONS = {
         ],
         "config_overrides": {
             "debug_level": "INFO",
+            "enable_history": True,
             "oled_pages": ["mix", "battery", "input", "rpi_power"],
         },
         "event_map_overrides": {},

@@ -105,5 +105,8 @@ register(Module(
         'pipower5_button_long_press_released': 'shutdown',
         'pipower5_low_battery_shutdown': 'shutdown',
         'pipower5_low_voltage_shutdown': 'shutdown',
+        'pipower5_button_shutdown': 'shutdown',
+        'pipower5_input_plugged_in': 'oled_wake_page_next',
+        'pipower5_input_unplugged': 'oled_wake_page_next',
     },
 ))
