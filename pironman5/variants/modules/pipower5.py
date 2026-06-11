@@ -2,8 +2,12 @@ from . import Module, register
 
 register(Module(
     name="pipower5",
+    depends_on=['oled_ups_pages'],
     peripherals=[
         'pipower5',
+        'pipower5_buzzer',
+        'pipower5_buzzer_volume',
+        'pipower5_buzz_on',
         'input_voltage',
         'input_current',
         'is_input_plugged_in',
