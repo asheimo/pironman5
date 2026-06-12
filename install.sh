@@ -332,19 +332,21 @@ if [ -n "$INSTALL_PLUGIN" ] && [ -z "$ARG_VARIANT" ]; then
         RUN "apt-get install -y linux-headers-\$(uname -r)" "Install kernel headers"
         RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko"
 
-        TITLE "Install PiPower5 Python package"
-        RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
+        if [ -f "${VENV_PIP}" ]; then
+            TITLE "Install PiPower5 Python package"
+            RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
 
-        TITLE "Copy email templates"
-        RUN "mkdir -p /opt/pironman5/email_templates" "Create email template dir"
-        RUN "cp -r ${PIPOWER5_SRC}/email_templates/* /opt/pironman5/email_templates/" "Copy email templates"
+            TITLE "Copy email templates"
+            RUN "mkdir -p /opt/pironman5/email_templates" "Create email template dir"
+            RUN "cp -r ${PIPOWER5_SRC}/email_templates/* /opt/pironman5/email_templates/" "Copy email templates"
 
-        TITLE "Create symlinks"
-        RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
+            TITLE "Create symlinks"
+            RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
+        fi
 
         TITLE "Setup PiPower5 groups"
-        RUN "getent group i2c > /dev/null 2>&1 || groupadd -r i2c; usermod -aG i2c pironman5" "Setup i2c group"
-        RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5; usermod -aG pipower5 pironman5" "Setup pipower5 group"
+        RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5" "Create pipower5 group"
+        RUN "usermod -aG i2c pironman5 2>/dev/null; usermod -aG pipower5 pironman5 2>/dev/null; true" "Add pironman5 to i2c+pipower5"
 
         TITLE "Copy udev rules"
     RUN "cp ${PIPOWER5_SRC}/rules/99-pipower5.rules /etc/udev/rules.d/" "Copy udev rules"
