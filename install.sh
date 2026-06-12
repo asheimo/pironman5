@@ -376,26 +376,28 @@ fi
 
 # --- PiPower 5 standalone install ---
 if [ "$variant" = "pipower5" ]; then
-    echo ""
-    echo "========================================="
-    echo "  PiPower 5  (standalone)"
-    echo "========================================="
-    echo ""
-
     PM_AUTO_BRANCH="v2"
     DASHBOARD_BRANCH="v2"
     SF_RPI_STATUS_BRANCH="main"
     GIT_REPO="https://github.com/sunfounder/"
     VENV_DIR="/opt/pipower5"
     VENV_PIP="${VENV_DIR}/venv/bin/pip3"
+    PIPOWER5_BRANCH="feature/native-driver"
+    PIPOWER5_SRC="${HOME}/pipower5"
 
-    TITLE "Install PiPower 5 driver"
-    RUN "apt-get update" "Update package list"
-    if [ -d "${HOME}/pironman5/driver" ]; then
-        RUN "cd ${HOME}/pironman5/driver && bash install.sh" "Install kernel driver"
+    TITLE "Clone PiPower 5 source"
+    if [ -d "${PIPOWER5_SRC}" ]; then
+        RUN "cd ${PIPOWER5_SRC} && git fetch origin && git checkout ${PIPOWER5_BRANCH} && git pull origin ${PIPOWER5_BRANCH}" "Update PiPower 5 source"
     else
-        RUN "curl -fsSL https://raw.githubusercontent.com/sunfounder/pipower5/feature/native-driver/driver/install.sh | bash" "Download and install kernel driver"
+        RUN "git clone -b ${PIPOWER5_BRANCH} ${GIT_REPO}pipower5.git ${PIPOWER5_SRC}" "Clone PiPower 5 source"
     fi
+
+    TITLE "Install kernel driver dependencies"
+    RUN "apt-get update" "Update APT"
+    RUN "apt-get install -y linux-headers-\$(uname -r) dkms i2c-tools kmod lsof" "Install driver dependencies"
+
+    TITLE "Build and install kernel driver"
+    RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko"
 
     TITLE "Create working directory"
     RUN "mkdir -p ${VENV_DIR} /var/log/pipower5" "Create directories"
@@ -403,25 +405,15 @@ if [ "$variant" = "pipower5" ]; then
 
     TITLE "Install Python packages"
     RUN "${VENV_PIP} install pip setuptools build requests psutil" "Install base packages"
-    RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
+    RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
     RUN "${VENV_PIP} install git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
     RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
     RUN "${VENV_PIP} install git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
     RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
 
-    TITLE "Install system dependencies"
-    RUN "DEBIAN_FRONTEND=noninteractive apt-get install -y influxdb i2c-tools kmod lsof" "Install APT packages"
-
     TITLE "Setup email templates"
     RUN "mkdir -p ${VENV_DIR}/email_templates" "Create email template dir"
-    if [ -d "${HOME}/pironman5/email_templates" ]; then
-        RUN "cp -r ${HOME}/pironman5/email_templates/* ${VENV_DIR}/email_templates/" "Copy email templates"
-    fi
-
-    TITLE "Setup InfluxDB"
-    if [ -f "${HOME}/pironman5/scripts/install_influxdb.sh" ]; then
-        RUN "bash ${HOME}/pironman5/scripts/install_influxdb.sh" "Setup InfluxDB"
-    fi
+    RUN "cp -r ${PIPOWER5_SRC}/email_templates/* ${VENV_DIR}/email_templates/" "Copy email templates"
 
     TITLE "Setup user and groups"
     RUN "getent group pipower5 > /dev/null || groupadd -r pipower5" "Create pipower5 group"
@@ -431,9 +423,8 @@ if [ "$variant" = "pipower5" ]; then
     RUN "ln -sf ${VENV_DIR}/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 
     TITLE "Setup auto-start"
-    RUN "cp ${HOME}/pironman5/bin/pipower5.service /etc/systemd/system/" "Install service file"
+    RUN "cp ${PIPOWER5_SRC}/bin/pipower5.service /etc/systemd/system/" "Install service file"
     RUN "systemctl enable pipower5.service" "Enable pipower5 service"
-    RUN "systemctl daemon-reload" "Reload systemd"
 
     TITLE "Copy device tree overlay"
     OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
@@ -442,25 +433,14 @@ if [ "$variant" = "pipower5" ]; then
         if [ -d "$p" ]; then OVERLAY_PATH="$p"; break; fi
     done
     if [ -n "$OVERLAY_PATH" ]; then
-        RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Copy PiPower5 DT overlay"
+        RUN "cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy DT overlay"
         DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
     fi
 
     TITLE "Configure kernel modules"
     RUN "echo i2c-dev >> /etc/modules-load.d/modules.conf" "Add i2c-dev module"
 
-    echo ""
-    echo "========================================="
-    echo "  PiPower 5 installed!"
-    echo "  Reboot to complete: sudo reboot"
-    echo "========================================="
-    echo ""
-
-    if [ "$IS_PLAIN_TEXT" = true ]; then
-        installer_install --plain-text
-    else
-        installer_install
-    fi
+    installer_install
     exit 0
 fi
 
