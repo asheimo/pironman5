@@ -88,8 +88,7 @@ cat <<BANNER
 ██║     ██║██║  ██║╚██████╔╝██║ ╚████║██║ ╚═╝ ██║██║  ██║██║ ╚████║    ███████║
 ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝    ╚══════╝
 
-        Pironman 5 Installer v${VERSION}
-        Supports: 5 | 5 Mini | 5 Max | 5 Pro Max | 5 NAS | 5 UPS
+Pironman 5 Installer v${VERSION}
 
 BANNER
 echo -e "\033[0m"
