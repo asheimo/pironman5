@@ -394,15 +394,20 @@ if [ "$variant" = "pipower5" ]; then
 
     TITLE "Install kernel driver dependencies"
     RUN "apt-get update" "Update APT"
-    RUN "apt-get install -y linux-headers-\$(uname -r) dkms i2c-tools kmod lsof 2>/dev/null || apt-get install -y linux-headers-\$(uname -r) i2c-tools kmod lsof" "Install driver dependencies"
+    if ! apt-get install -y dkms 2>/dev/null; then
+        cat > /etc/apt/sources.list.d/debian-trixie.sources <<'APTEOF'
+Types: deb
+URIs: http://deb.debian.org/debian/
+Suites: trixie trixie-updates
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.pgp
+APTEOF
+        RUN "apt-get update" "Update APT with non-free-firmware"
+    fi
+    RUN "apt-get install -y linux-headers-\$(uname -r) dkms i2c-tools kmod lsof" "Install driver dependencies"
 
     TITLE "Build and install kernel driver"
-    if command -v dkms >/dev/null 2>&1; then
-        RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko (DKMS)"
-    else
-        RUN "cd ${PIPOWER5_SRC}/driver && make clean && make" "Build pipower5.ko"
-        RUN "cp ${PIPOWER5_SRC}/driver/pipower5.ko /lib/modules/\$(uname -r)/extra/ && depmod -a" "Install pipower5.ko manually"
-    fi
+    RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko (DKMS)"
 
     TITLE "Create working directory"
     RUN "mkdir -p ${VENV_DIR} /var/log/pipower5" "Create directories"
