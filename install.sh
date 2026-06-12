@@ -385,6 +385,20 @@ fi
 if [ "$variant" = "pipower5" ]; then
     INSTALL_PIPOWER5=true
     INSTALL_PLUGIN="pipower5"
+
+    TITLE "PiPower 5"
+    # Check for old standalone installation
+    if [ -d /opt/pipower5 ] || [ -f /etc/systemd/system/pipower5.service ]; then
+        echo "  Detected previous PiPower 5 standalone installation."
+        echo "  This will be removed and replaced with the new pironman5-based install."
+        echo ""
+        RUN "systemctl stop pipower5 2>/dev/null; systemctl disable pipower5 2>/dev/null; rm -f /etc/systemd/system/pipower5.service" "Remove old pipower5 service"
+        RUN "rm -rf /opt/pipower5 /var/log/pipower5" "Remove old /opt/pipower5"
+        RUN "rmmod pipower5_driver 2>/dev/null; rm -f /lib/modules/*/kernel/drivers/misc/pipower5_driver.ko*" "Remove old kernel module"
+        RUN "systemctl daemon-reload" "Reload systemd"
+        echo "  Old PiPower 5 removed."
+        echo ""
+    fi
 fi
 
 # --- Clone repository ---
