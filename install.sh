@@ -318,12 +318,6 @@ if [ -n "$INSTALL_PLUGIN" ]; then
     branch="${BRANCH_OVERRIDE:-1.3.x}"
 
     if [ "$INSTALL_PLUGIN" = "pipower5" ]; then
-        echo ""
-        echo "========================================="
-        echo "  Plugin: PiPower 5 UPS"
-        echo "========================================="
-        echo ""
-
         TITLE "Clone PiPower 5 source"
         PIPOWER5_BRANCH="feature/native-driver"
         PIPOWER5_SRC="${HOME}/pipower5"
