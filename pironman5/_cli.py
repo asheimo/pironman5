@@ -715,6 +715,26 @@ def main():
         if sudo_user:
             os.system(f'rm -rf /home/{sudo_user}/pironman5')
 
+        # Check if pipower5 is installed
+        pipower5_installed = False
+        if os.path.exists('/sys/module/pipower5') or os.path.exists('/sys/class/pipower5'):
+            pipower5_installed = True
+        elif os.path.exists('/opt/pironman5/venv/bin/pipower5'):
+            pipower5_installed = True
+
+        if pipower5_installed:
+            if _confirm("PiPower5 UPS module detected. Uninstall it as well?"):
+                print("Uninstalling PiPower5...")
+                pipower5_bin = '/opt/pironman5/venv/bin/pipower5'
+                if os.path.exists(pipower5_bin):
+                    os.system(f'{pipower5_bin} uninstall')
+                else:
+                    print("  pipower5 CLI not found, skipping.")
+                # Remove pipower5 user/group
+                os.system('userdel pipower5 2>/dev/null')
+                os.system('groupdel pipower5 2>/dev/null')
+                print("  PiPower5 uninstalled.")
+
         if _confirm("Remove InfluxDB data (pironman5 database)?"):
             os.system('influx -execute "DROP DATABASE pironman5" 2>/dev/null')
 
