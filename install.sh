@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# Pironman 5 Installer v2.0.0
+# Pironman 5 Installer v2.1.0
 # Supports: Pironman 5, Pironman 5 Mini, Pironman 5 Max, Pironman 5 Pro Max, Pironman 5 NAS, Pironman 5 UPS
 #
 # Usage:
@@ -10,7 +10,7 @@
 # (Safe to run directly — interactive prompts read from /dev/tty)
 # ============================================================
 
-VERSION="2.0.0"
+VERSION="2.1.0"
 
 # Source Installer framework — use local path when available (e.g. Docker build),
 # otherwise curl from GitHub.
