@@ -394,11 +394,8 @@ if [ "$variant" = "pipower5" ]; then
 
     TITLE "Install kernel driver dependencies"
     RUN "apt-get update" "Update APT"
-    if ! apt-get install -y dkms >/dev/null 2>&1; then
-        RUN "printf 'Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: trixie trixie-updates\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.pgp\n' > /etc/apt/sources.list.d/debian-trixie.sources" "Add non-free-firmware source"
-        RUN "apt-get update" "Update APT with non-free-firmware"
-    fi
-    RUN "apt-get install -y linux-headers-\$(uname -r) dkms i2c-tools kmod lsof" "Install driver dependencies"
+    RUN "apt-get install -y dkms 2>/dev/null || { printf 'Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: trixie trixie-updates\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.pgp\n' > /etc/apt/sources.list.d/debian-trixie.sources && apt-get update && apt-get install -y dkms; }" "Install DKMS"
+    RUN "apt-get install -y linux-headers-\$(uname -r) i2c-tools kmod lsof" "Install driver dependencies"
 
     TITLE "Build and install kernel driver"
     RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko (DKMS)"
