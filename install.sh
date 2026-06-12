@@ -40,7 +40,7 @@ ARG_VARIANT=""
 INSTALL_PLUGIN=""
 while [ $# -gt 0 ]; do
     case "$1" in
-        --pipower5) INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5" ;;
+        --pipower5) INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5"; SKIP_MENU=false ;;
         --container) IS_CONTAINER=true; IS_PLAIN_TEXT=true ;;
         --plain-text) IS_PLAIN_TEXT=true ;;
         --variant=*) ARG_VARIANT="${1#*=}" ;;
@@ -51,7 +51,8 @@ while [ $# -gt 0 ]; do
 done
 
 # --plugin mode: skip variant menu, detect from existing install
-if [ -n "$INSTALL_PLUGIN" ]; then
+# --pipower5 flag also sets INSTALL_PLUGIN but should still show menu
+if [ -n "$INSTALL_PLUGIN" ] && [ "$SKIP_MENU" != "false" ]; then
     if [ -z "$ARG_VARIANT" ]; then
         if [ -f /opt/pironman5/.variant ]; then
             ARG_VARIANT=$(cat /opt/pironman5/.variant)
