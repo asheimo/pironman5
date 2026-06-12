@@ -249,9 +249,6 @@ else
         PRE_SCRIPTS="$PRE_SCRIPTS install_lgpio.sh fix_kali_gpio_spi.sh"
     fi
     PRE_SCRIPTS="$PRE_SCRIPTS install_influxdb.sh"
-    if [ "$INSTALL_PIPOWER5" = true ]; then
-        PRE_SCRIPTS="$PRE_SCRIPTS setup_pipower5.sh"
-    fi
 fi
 # Deduplicate
 PRE_SCRIPTS=$(echo "$PRE_SCRIPTS" | tr ' ' '\n' | awk 'NF' | sort -u | tr '\n' ' ')
@@ -327,41 +324,43 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         echo "========================================="
         echo ""
 
-        TITLE "Install PiPower5 pre-install script"
-        if [ -f /tmp/pironman5/scripts/setup_pipower5.sh ]; then
-            RUN "bash /tmp/pironman5/scripts/setup_pipower5.sh" "Run setup_pipower5.sh"
+        TITLE "Clone PiPower 5 source"
+        PIPOWER5_BRANCH="feature/native-driver"
+        PIPOWER5_SRC="${HOME}/pipower5"
+        if [ -d "${PIPOWER5_SRC}" ]; then
+            RUN "cd ${PIPOWER5_SRC} && git fetch origin && git checkout ${PIPOWER5_BRANCH} && git pull origin ${PIPOWER5_BRANCH}" "Update PiPower 5 source"
         else
-            RUN "curl -fsSL https://raw.githubusercontent.com/sunfounder/pironman5/${branch}/scripts/setup_pipower5.sh -o /tmp/setup_pipower5.sh && bash /tmp/setup_pipower5.sh" "Download and run setup_pipower5.sh"
+            RUN "git clone -b ${PIPOWER5_BRANCH} ${GIT_REPO}pipower5.git ${PIPOWER5_SRC}" "Clone PiPower 5 source"
         fi
 
+        TITLE "Build and install kernel driver"
+        RUN "apt-get install -y dkms 2>/dev/null || { printf 'Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: trixie trixie-updates\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.pgp\n' > /etc/apt/sources.list.d/debian-trixie.sources && apt-get update && apt-get install -y dkms; }" "Install DKMS"
+        RUN "apt-get install -y linux-headers-\$(uname -r)" "Install kernel headers"
+        RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko"
+
         TITLE "Install PiPower5 Python package"
-        RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
-        RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
+        RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
+
+        TITLE "Create symlinks"
         RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 
         TITLE "Setup PiPower5 groups"
         RUN "getent group i2c > /dev/null 2>&1 || groupadd -r i2c; usermod -aG i2c pironman5" "Setup i2c group"
         RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5; usermod -aG pipower5 pironman5" "Setup pipower5 group"
 
-        TITLE "Copy PiPower5 device tree overlay"
+        TITLE "Copy device tree overlay"
         OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
         OVERLAY_PATH=""
         for p in $OVERLAY_SEARCH_PATHS; do
             if [ -d "$p" ]; then OVERLAY_PATH="$p"; break; fi
         done
         if [ -n "$OVERLAY_PATH" ]; then
-            RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Copy PiPower5 DT overlay"
+            RUN "cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy DT overlay"
             DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
         fi
 
         TITLE "Enable PiPower5 plugin"
-        RUN "mkdir -p /opt/pironman5" "Ensure work directory exists"
         RUN "echo pipower5 >> /opt/pironman5/.custom_module" "Write custom module"
-
-        echo ""
-        echo "========================================="
-        echo "  PiPower 5 plugin installed!"
-        echo "  Restart to apply: sudo systemctl restart pironman5.service"
         echo "========================================="
         echo ""
     fi
