@@ -25,10 +25,8 @@ Quick Links:
 
 ## Installation
 
-Execute the installation script
-
 ```bash
-curl -sSL "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh" | sudo bash
+curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/promax/install.sh" | sudo bash
 ```
 
 ## Auto launch dashboard on browser
