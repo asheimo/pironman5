@@ -404,6 +404,7 @@ if [ "$variant" = "pipower5" ]; then
     TITLE "Install Python packages"
     RUN "${VENV_PIP} install pip setuptools build requests psutil" "Install base packages"
     RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
+    RUN "${VENV_PIP} install git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
     RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
     RUN "${VENV_PIP} install git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
     RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
