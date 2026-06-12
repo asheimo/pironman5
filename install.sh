@@ -107,7 +107,7 @@ PRODUCTS=(
     "Pironman 5 Pro Max|pro_max|1.3.x"
     "Pironman 5 NAS|nas|1.3.x"
     "Pironman 5 UPS|ups|1.3.x"
-    "PiPower 5|pipower5|ups"
+    "PiPower 5|pipower5|v2"
 )
 
 # --- Peripherals per variant ---
