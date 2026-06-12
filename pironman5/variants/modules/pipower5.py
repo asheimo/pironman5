@@ -44,7 +44,7 @@ register(Module(
         'smtp_server': '',
         'smtp_port': 465,
         'smtp_security': 'ssl',
-        'pipower5_buzzer_volume': 50,
+        'pipower5_buzzer_volume': 5,
         'pipower5_buzz_on': [
             "battery_activated",
             "low_battery",
