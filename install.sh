@@ -389,16 +389,12 @@ if [ "$variant" = "pipower5" ]; then
     TITLE "PiPower 5"
     # Check for old standalone installation
     if [ -d /opt/pipower5 ] || [ -f /etc/systemd/system/pipower5.service ]; then
-        echo "  Detected previous PiPower 5 standalone installation."
-        echo "  This will be removed and replaced with the new pironman5-based install."
-        echo ""
-        RUN "systemctl stop pipower5 2>/dev/null; systemctl disable pipower5 2>/dev/null; rm -f /etc/systemd/system/pipower5.service" "Stop and remove old pipower5 service"
-        RUN "rm -rf /opt/pipower5 /var/log/pipower5 /root/.config/pipower5" "Remove old pipower5 directories"
+        RUN "true" "Detected old PiPower 5 — will remove before new install"
+        RUN "systemctl stop pipower5 2>/dev/null; systemctl disable pipower5 2>/dev/null; rm -f /etc/systemd/system/pipower5.service" "Remove old pipower5 service"
+        RUN "rm -rf /opt/pipower5 /var/log/pipower5 /root/.config/pipower5" "Remove old /opt/pipower5"
         RUN "rm -f /usr/local/bin/pipower5" "Remove old pipower5 symlink"
-        RUN "rmmod pipower5_driver 2>/dev/null; rmmod pipower5 2>/dev/null; dkms remove -m pipower5 --all 2>/dev/null; dkms remove -m pipower5_driver --all 2>/dev/null; find /lib/modules -name 'pipower5*.ko*' -delete 2>/dev/null; rm -f /etc/modules-load.d/pipower5*.conf; depmod -a" "Remove old kernel driver (DKMS + files + modules-load)"
+        RUN "rmmod pipower5_driver 2>/dev/null; rmmod pipower5 2>/dev/null; dkms remove -m pipower5 --all 2>/dev/null; dkms remove -m pipower5_driver --all 2>/dev/null; find /lib/modules -name 'pipower5*.ko*' -delete 2>/dev/null; rm -f /etc/modules-load.d/pipower5*.conf; depmod -a" "Remove old kernel driver"
         RUN "systemctl daemon-reload" "Reload systemd"
-        echo "  Old PiPower 5 removed."
-        echo ""
     fi
 fi
 
