@@ -341,6 +341,10 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         TITLE "Install PiPower5 Python package"
         RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
 
+        TITLE "Copy email templates"
+        RUN "mkdir -p /opt/pironman5/email_templates" "Create email template dir"
+        RUN "cp -r ${PIPOWER5_SRC}/email_templates/* /opt/pironman5/email_templates/" "Copy email templates"
+
         TITLE "Create symlinks"
         RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 
@@ -407,7 +411,6 @@ if [ "$variant" = "pipower5" ]; then
     RUN "${VENV_PIP} install pip setuptools build requests psutil" "Install base packages"
     RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
     RUN "${VENV_PIP} install git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
-    RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
     RUN "${VENV_PIP} install git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
     RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
 
@@ -526,7 +529,6 @@ RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "I
 if [ "$INSTALL_PIPOWER5" = true ]; then
     TITLE "Install PiPower5"
     RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
-    RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
     RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 fi
 
