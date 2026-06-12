@@ -312,7 +312,7 @@ fi
 # ============================================================
 
 # --- Plugin-only install (incremental, only when no --variant given) ---
-if [ -n "$INSTALL_PLUGIN" ]; then
+if [ -n "$INSTALL_PLUGIN" ] && [ -z "$ARG_VARIANT" ]; then
     VENV_PIP="/opt/pironman5/venv/bin/pip3"
     GIT_REPO="https://github.com/sunfounder/"
     branch="${BRANCH_OVERRIDE:-1.3.x}"
@@ -333,7 +333,7 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko"
 
         TITLE "Install PiPower5 Python package"
-        RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" ${PIPOWER5_SRC}" "Install pipower5 from local source"
+        RUN "${VENV_PIP} install ${PIPOWER5_SRC}" "Install pipower5 from local source"
 
         TITLE "Copy email templates"
         RUN "mkdir -p /opt/pironman5/email_templates" "Create email template dir"
@@ -343,8 +343,8 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 
         TITLE "Setup PiPower5 groups"
-        RUN "getent group i2c > /dev/null 2>&1 || groupadd -r i2c; usermod -aG i2c pironman5 2>/dev/null || true" "Setup i2c group"
-        RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5; usermod -aG pipower5 pironman5 2>/dev/null || true" "Setup pipower5 group"
+        RUN "getent group i2c > /dev/null 2>&1 || groupadd -r i2c; usermod -aG i2c pironman5" "Setup i2c group"
+        RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5; usermod -aG pipower5 pironman5" "Setup pipower5 group"
 
         TITLE "Copy udev rules"
     RUN "cp ${PIPOWER5_SRC}/rules/99-pipower5.rules /etc/udev/rules.d/" "Copy udev rules"
@@ -461,19 +461,19 @@ fi
 
 # --- Install pip dependencies ---
 TITLE "Install Python dependencies"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" --upgrade ${PIP_DEPS}" "Install Python packages"
+RUN "${VENV_PIP} install --upgrade ${PIP_DEPS}" "Install Python packages"
 
 # --- Install Python source packages ---
 TITLE "Install Python packages from source"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" ./ " "Install pironman5"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
+RUN "${VENV_PIP} install ./ " "Install pironman5"
+RUN "${VENV_PIP} install git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
+RUN "${VENV_PIP} install git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
+RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
 
 # --- Install PiPower5 ---
 if [ "$INSTALL_PIPOWER5" = true ]; then
     TITLE "Install PiPower5"
-    RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
+    RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
     RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
 fi
 
@@ -483,7 +483,7 @@ RUN "ln -sf /opt/pironman5/venv/bin/pironman5 /usr/local/bin/pironman5" "Create 
 
 # --- Shell completion ---
 TITLE "Setup shell completion"
-RUN "test -f ${VENV_PIP} && ${VENV_PIP} install || echo pip3 not ready yet" argcomplete" "Install argcomplete"
+RUN "${VENV_PIP} install argcomplete" "Install argcomplete"
 RUN "/opt/pironman5/venv/bin/register-python-argcomplete pironman5 > /etc/bash_completion.d/pironman5" "Register bash completion"
 
 # --- Systemd auto-start ---
