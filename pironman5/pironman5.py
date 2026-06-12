@@ -137,6 +137,10 @@ class Pironman5:
                 self.pm_dashboard.set_test_smtp(self.pm_auto.test_smtp)
             if 'pipower5' in self.peripherals:
                 self.pm_dashboard.set_play_pipower5_buzzer(self.pm_auto.play_pipower5_buzzer)
+            if 'power-failure-simulation' in self.peripherals:
+                if hasattr(self.pm_dashboard, 'set_power_failure_simulation'):
+                    self.pm_dashboard.set_power_failure_simulation(
+                        self.pm_auto.power_failure_simulation)
             self.pm_dashboard.set_on_config_changed(self.update_config)
             self.pm_dashboard.set_on_restart_service(restart_service)
 
