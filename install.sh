@@ -352,7 +352,11 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         RUN "getent group i2c > /dev/null 2>&1 || groupadd -r i2c; usermod -aG i2c pironman5" "Setup i2c group"
         RUN "getent group pipower5 > /dev/null 2>&1 || groupadd -r pipower5; usermod -aG pipower5 pironman5" "Setup pipower5 group"
 
-        TITLE "Copy device tree overlay"
+        TITLE "Copy udev rules"
+    RUN "cp ${PIPOWER5_SRC}/rules/99-pipower5.rules /etc/udev/rules.d/" "Copy udev rules"
+    RUN "udevadm control --reload-rules" "Reload udev"
+
+    TITLE "Copy device tree overlay"
         OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
         OVERLAY_PATH=""
         for p in $OVERLAY_SEARCH_PATHS; do
@@ -428,6 +432,10 @@ if [ "$variant" = "pipower5" ]; then
     TITLE "Setup auto-start"
     RUN "cp ${PIPOWER5_SRC}/bin/pipower5.service /etc/systemd/system/" "Install service file"
     RUN "systemctl enable pipower5.service" "Enable pipower5 service"
+
+    TITLE "Copy udev rules"
+    RUN "cp ${PIPOWER5_SRC}/rules/99-pipower5.rules /etc/udev/rules.d/" "Copy udev rules"
+    RUN "udevadm control --reload-rules" "Reload udev"
 
     TITLE "Copy device tree overlay"
     OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
