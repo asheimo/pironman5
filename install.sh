@@ -5,8 +5,7 @@
 #
 # Usage:
 #   curl -sSL https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh | sudo bash
-#   curl -sSL https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh | sudo bash -s -- --pipower5
-#   curl -sSL https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh | sudo bash -s -- --variant base --pipower5 --container
+#   curl -sSL https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh | sudo bash -s -- --variant base --container
 # (Safe to run directly — interactive prompts read from /dev/tty)
 # ============================================================
 
@@ -40,7 +39,6 @@ ARG_VARIANT=""
 INSTALL_PLUGIN=""
 while [ $# -gt 0 ]; do
     case "$1" in
-        --pipower5) INSTALL_PIPOWER5=true ;;
         --container) IS_CONTAINER=true; IS_PLAIN_TEXT=true ;;
         --plain-text) IS_PLAIN_TEXT=true ;;
         --variant=*) ARG_VARIANT="${1#*=}" ;;
@@ -64,10 +62,10 @@ fi
 # Validate --variant
 if [ -n "$ARG_VARIANT" ]; then
     case "$ARG_VARIANT" in
-        base|mini|max|pro-max|pro_max|nas|ups|pipower5)
+        base|mini|max|pro-max|pro_max|nas|ups)
             # Normalize pro-max to pro_max for internal key
             [ "$ARG_VARIANT" = "pro-max" ] && ARG_VARIANT="pro_max" ;;
-        *) echo "Invalid variant: $ARG_VARIANT. Valid: base, mini, max, pro-max, nas, ups, pipower5"; exit 1 ;;
+        *) echo "Invalid variant: $ARG_VARIANT. Valid: base, mini, max, pro-max, nas, ups"; exit 1 ;;
     esac
 fi
 
@@ -107,7 +105,6 @@ PRODUCTS=(
     "Pironman 5 Pro Max|pro_max|1.3.x"
     "Pironman 5 NAS|nas|1.3.x"
     "Pironman 5 UPS|ups|1.3.x"
-    "PiPower 5|pipower5|1.3.x"
 )
 
 # --- Peripherals per variant ---
@@ -365,96 +362,6 @@ if [ -n "$INSTALL_PLUGIN" ]; then
         echo "========================================="
         echo ""
     fi
-
-    if [ "$IS_PLAIN_TEXT" = true ]; then
-        installer_install --plain-text
-    else
-        installer_install
-    fi
-    exit 0
-fi
-
-# --- PiPower 5 standalone install ---
-if [ "$variant" = "pipower5" ]; then
-    echo ""
-    echo "========================================="
-    echo "  PiPower 5  (standalone)"
-    echo "========================================="
-    echo ""
-
-    PM_AUTO_BRANCH="fix/pipower5-ups-compat"  # TODO: revert to v2 after PR merge
-    DASHBOARD_BRANCH="v2"
-    SF_RPI_STATUS_BRANCH="main"
-    GIT_REPO="https://github.com/sunfounder/"
-    VENV_DIR="/opt/pipower5"
-    VENV_PIP="${VENV_DIR}/venv/bin/pip3"
-
-    TITLE "Install PiPower 5 driver"
-    RUN "apt-get update" "Update package list"
-    if [ -d "${HOME}/pironman5/driver" ]; then
-        RUN "cd ${HOME}/pironman5/driver && bash install.sh" "Install kernel driver"
-    else
-        RUN "curl -fsSL https://raw.githubusercontent.com/sunfounder/pipower5/feature/native-driver/driver/install.sh | bash" "Download and install kernel driver"
-    fi
-
-    TITLE "Create working directory"
-    RUN "mkdir -p ${VENV_DIR} /var/log/pipower5" "Create directories"
-    RUN "python3 -m venv ${VENV_DIR}/venv --system-site-packages" "Create virtual environment"
-
-    TITLE "Install Python packages"
-    RUN "${VENV_PIP} install pip setuptools build requests psutil" "Install base packages"
-    RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
-    RUN "${VENV_PIP} install git+${GIT_REPO}pm_auto.git@${PM_AUTO_BRANCH}" "Install pm_auto"
-    RUN "${VENV_PIP} install git+${GIT_REPO}spc.git" "Install spc"
-    RUN "${VENV_PIP} install git+${GIT_REPO}sf_rpi_status.git@${SF_RPI_STATUS_BRANCH}" "Install sf_rpi_status"
-    RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "Install pm_dashboard"
-
-    TITLE "Install system dependencies"
-    RUN "DEBIAN_FRONTEND=noninteractive apt-get install -y influxdb i2c-tools kmod lsof" "Install APT packages"
-
-    TITLE "Setup email templates"
-    RUN "mkdir -p ${VENV_DIR}/email_templates" "Create email template dir"
-    if [ -d "${HOME}/pironman5/email_templates" ]; then
-        RUN "cp -r ${HOME}/pironman5/email_templates/* ${VENV_DIR}/email_templates/" "Copy email templates"
-    fi
-
-    TITLE "Setup InfluxDB"
-    if [ -f "${HOME}/pironman5/scripts/install_influxdb.sh" ]; then
-        RUN "bash ${HOME}/pironman5/scripts/install_influxdb.sh" "Setup InfluxDB"
-    fi
-
-    TITLE "Setup user and groups"
-    RUN "getent group pipower5 > /dev/null || groupadd -r pipower5" "Create pipower5 group"
-    RUN "usermod -aG i2c,pipower5 ${USERNAME}" "Add user to groups"
-
-    TITLE "Create symlinks"
-    RUN "ln -sf ${VENV_DIR}/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
-
-    TITLE "Setup auto-start"
-    RUN "cp ${HOME}/pironman5/bin/pipower5.service /etc/systemd/system/" "Install service file"
-    RUN "systemctl enable pipower5.service" "Enable pipower5 service"
-    RUN "systemctl daemon-reload" "Reload systemd"
-
-    TITLE "Copy device tree overlay"
-    OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
-    OVERLAY_PATH=""
-    for p in $OVERLAY_SEARCH_PATHS; do
-        if [ -d "$p" ]; then OVERLAY_PATH="$p"; break; fi
-    done
-    if [ -n "$OVERLAY_PATH" ]; then
-        RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Copy PiPower5 DT overlay"
-        DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
-    fi
-
-    TITLE "Configure kernel modules"
-    RUN "echo i2c-dev >> /etc/modules-load.d/modules.conf" "Add i2c-dev module"
-
-    echo ""
-    echo "========================================="
-    echo "  PiPower 5 installed!"
-    echo "  Reboot to complete: sudo reboot"
-    echo "========================================="
-    echo ""
 
     if [ "$IS_PLAIN_TEXT" = true ]; then
         installer_install --plain-text
