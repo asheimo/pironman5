@@ -567,6 +567,11 @@ if [ "$IS_CONTAINER" = false ]; then
     fi
 fi
 
+# Auto-detect headless session (SSH, no desktop)
+if [ -z "$DISPLAY" ] && [ "$XDG_SESSION_TYPE" != "x11" ] && [ "$XDG_SESSION_TYPE" != "wayland" ]; then
+    IS_PLAIN_TEXT=true
+fi
+
 # ============================================================
 # Execute Installation
 # ============================================================
