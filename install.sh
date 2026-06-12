@@ -452,6 +452,7 @@ if [ "$variant" = "pipower5" ]; then
     RUN "echo i2c-dev >> /etc/modules-load.d/modules.conf" "Add i2c-dev module"
 
     installer_install
+    installer_prompt_reboot
     exit 0
 fi
 
