@@ -173,7 +173,7 @@ fi
 # ============================================================
 # Package Versions
 # ============================================================
-PM_AUTO_BRANCH="fix/pipower5-ups-compat"  # TODO: revert to v2 after PR merge
+PM_AUTO_BRANCH="v2"
 DASHBOARD_BRANCH="v2"
 SF_RPI_STATUS_BRANCH="main"
 
@@ -382,7 +382,7 @@ if [ "$variant" = "pipower5" ]; then
     echo "========================================="
     echo ""
 
-    PM_AUTO_BRANCH="fix/pipower5-ups-compat"  # TODO: revert to v2 after PR merge
+    PM_AUTO_BRANCH="v2"
     DASHBOARD_BRANCH="v2"
     SF_RPI_STATUS_BRANCH="main"
     GIT_REPO="https://github.com/sunfounder/"
