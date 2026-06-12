@@ -363,7 +363,7 @@ if [ -n "$INSTALL_PLUGIN" ]; then
             if [ -d "$p" ]; then OVERLAY_PATH="$p"; break; fi
         done
         if [ -n "$OVERLAY_PATH" ]; then
-            RUN "cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy DT overlay"
+            RUN "cp ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy DT overlay"
             DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
         fi
 
