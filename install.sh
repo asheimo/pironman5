@@ -311,8 +311,8 @@ fi
 # Build Declarative Install Commands (DSL)
 # ============================================================
 
-# --- Plugin-only install (incremental) ---
-if [ -n "$INSTALL_PLUGIN" ]; then
+# --- Plugin-only install (incremental, only when no --variant given) ---
+if [ -n "$INSTALL_PLUGIN" ] && [ -z "$ARG_VARIANT" ]; then
     VENV_PIP="/opt/pironman5/venv/bin/pip3"
     GIT_REPO="https://github.com/sunfounder/"
     branch="${BRANCH_OVERRIDE:-1.3.x}"
