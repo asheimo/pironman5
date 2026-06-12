@@ -40,12 +40,12 @@ ARG_VARIANT=""
 INSTALL_PLUGIN=""
 while [ $# -gt 0 ]; do
     case "$1" in
-        --pipower5) INSTALL_PIPOWER5=true ;;
+        --pipower5) INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5" ;;
         --container) IS_CONTAINER=true; IS_PLAIN_TEXT=true ;;
         --plain-text) IS_PLAIN_TEXT=true ;;
         --variant=*) ARG_VARIANT="${1#*=}" ;;
         --variant) shift; ARG_VARIANT="$1" ;;
-        --plugin) shift; INSTALL_PLUGIN="$1"; INSTALL_PIPOWER5=true ;;
+        --plugin) shift; INSTALL_PLUGIN="$1"; INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5" ;;
     esac
     shift
 done
