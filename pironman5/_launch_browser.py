@@ -77,9 +77,9 @@ def get_url() -> str:
     config = None
     with open(CONFIG_PATH, 'r') as f:
         config = json.load(f)
-    dashboard_page = config['system']['default_dashboard_page']
-    url = f"{URL}/{dashboard_page}"
-    return url
+    sys_cfg = config.get('system', config)
+    dashboard_page = sys_cfg.get('default_dashboard_page', '')
+    return f"{URL}/{dashboard_page}" if dashboard_page else URL
 
 def get_browser_fullscreen_args(browser: str) -> List[str]:
     """
