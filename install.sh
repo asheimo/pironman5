@@ -10,7 +10,7 @@
 # (Safe to run directly — interactive prompts read from /dev/tty)
 # ============================================================
 
-VERSION="2.1.1"
+VERSION="2.1.2"
 
 # Source Installer framework — use local path when available (e.g. Docker build),
 # otherwise curl from GitHub.
