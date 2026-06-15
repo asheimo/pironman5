@@ -611,7 +611,8 @@ if [ "$IS_CONTAINER" = false ] && [ "$variant" = "pro_max" ]; then
     echo ""
     read -p "Auto-launch dashboard on 4.3\" screen at startup? [Y/n]: " install_browser < /dev/tty
     if [[ "$install_browser" =~ ^[Yy]?$ ]]; then
-        # Create XDG autostart entry
+        LAUNCH_CMD='/opt/pironman5/venv/bin/python3 -c "from pironman5._launch_browser import run; run()"'
+        # XDG autostart (GNOME/KDE/XFCE)
         AUTOSTART_DIR="${HOME}/.config/autostart"
         mkdir -p "$AUTOSTART_DIR"
         cat > "${AUTOSTART_DIR}/pironman5-dashboard.desktop" << EOF
@@ -619,15 +620,21 @@ if [ "$IS_CONTAINER" = false ] && [ "$variant" = "pro_max" ]; then
 Type=Application
 Name=Pironman 5 Dashboard
 Comment=Auto-launch Pironman 5 dashboard on the 4.3" screen
-Exec=/opt/pironman5/venv/bin/python3 -c "from pironman5._launch_browser import run; run()"
+Exec=${LAUNCH_CMD}
 X-GNOME-Autostart-enabled=true
 EOF
         chown "${USERNAME}:${USERNAME}" "${AUTOSTART_DIR}/pironman5-dashboard.desktop"
+        # labwc autostart (Raspberry Pi OS Wayland)
+        LABWC_DIR="${HOME}/.config/labwc"
+        mkdir -p "$LABWC_DIR"
+        grep -q 'pironman5' "${LABWC_DIR}/autostart" 2>/dev/null || \
+            echo "${LAUNCH_CMD} &" >> "${LABWC_DIR}/autostart"
+        chown "${USERNAME}:${USERNAME}" "${LABWC_DIR}/autostart" 2>/dev/null || true
         echo "Autostart entry created. Dashboard will launch on next desktop login."
 
         # Try to launch immediately if desktop is available
-        if [ -n "$DISPLAY" ]; then
-            /opt/pironman5/venv/bin/python3 -c "from pironman5._launch_browser import run; run()"
+        if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ] || [ -S /run/user/1000/wayland-0 ]; then
+            /opt/pironman5/venv/bin/python3 -c "from pironman5._launch_browser import run; run()" 2>/dev/null || true
         fi
     fi
 fi
