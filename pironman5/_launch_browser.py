@@ -66,14 +66,20 @@ def find_available_browsers() -> List[str]:
 
 def get_url() -> str:
     """
-    Get the URL to open in the browser
+    Get the URL to open in the browser. Reads from API (not config file)
+    to avoid race conditions with config file writes during startup.
     """
-    config = None
-    with open(CONFIG_PATH, 'r') as f:
-        config = json.load(f)
-    sys_cfg = config.get('system', config)
-    dashboard_page = sys_cfg.get('default_dashboard_page', '')
-    return f"{URL}/{dashboard_page}" if dashboard_page else URL
+    import urllib.request
+    try:
+        req = urllib.request.Request(f"{URL}/api/v1.0/get-config", headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=5) as r:
+            config = json.loads(r.read().decode())
+        dashboard_page = config.get('data', config).get('system', {}).get('default_dashboard_page', '')
+        if dashboard_page:
+            return f"{URL}/{dashboard_page}"
+    except Exception:
+        pass
+    return URL
 
 def get_browser_fullscreen_args(browser: str) -> List[str]:
     """
