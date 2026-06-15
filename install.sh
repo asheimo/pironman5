@@ -585,10 +585,6 @@ if [ "$IS_CONTAINER" = false ]; then
         DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
     fi
 fi
-if [ "$IS_CONTAINER" = false ] && has "ws2812"; then
-    TITLE "Enable SPI for WS2812"
-    RUN "sed -i 's/^#\s*dtparam=spi=on/dtparam=spi=on/' /boot/firmware/config.txt /boot/config.txt 2>/dev/null; grep -qs '^dtparam=spi=on' /boot/firmware/config.txt /boot/config.txt 2>/dev/null || echo 'dtparam=spi=on' >> /boot/firmware/config.txt" "Enable SPI (dtparam=spi=on)"
-fi
 
 # Auto-detect non-TTY output (pipe, container); keep colors for interactive terminals
 if [ ! -t 1 ]; then
