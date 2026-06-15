@@ -53,6 +53,18 @@ Verify status / logs:
 - Long press: `oled_show_shutdown_screen`
 - Long press release: `shutdown`
 
+## PiPower5 UPS (when installed with --pipower5)
+- Battery status overview: `pironman5 pipower5 -a`
+- Shutdown percentage: `pironman5 pipower5 -sp 20` (set) or `pironman5 pipower5 -sp` (read)
+- Input voltage: `pironman5 pipower5 -iv`
+- Battery voltage: `pironman5 pipower5 -bv`
+- Battery percentage: `pironman5 pipower5 -bp`
+- Is input plugged in: `pironman5 pipower5 -ii`
+- Buzzer volume 0–10: `pironman5 pipower5 -bzv 5`
+- Power failure simulation: `pironman5 pipower5 -pfs 60`
+- UPS service: `pironman5 pipower5 start|stop`
+- Full UPS help: `pironman5 pipower5 --help`
+
 ## Dashboard
 - Reach web UI at `http://<device-ip>:34001`
 - Mandatory for Home Assistant images (CLI restricted)
