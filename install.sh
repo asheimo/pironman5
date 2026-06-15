@@ -227,8 +227,8 @@ echo "  pm_auto          ${PM_AUTO_BRANCH}  (v${PM_AUTO_VER})"
 echo "  pm_dashboard     ${DASHBOARD_BRANCH}  (v${DASHBOARD_VER})"
 echo "  sf_rpi_status    ${SF_RPI_STATUS_BRANCH}  (v${SF_RPI_STATUS_VER})"
 if [ "$INSTALL_PIPOWER5" = true ]; then
-    PIPOWER5_VER=$(_fetch_comp_version "pipower5" "feature/native-driver")
-    echo "  pipower5         feature/native-driver  (v${PIPOWER5_VER})"
+    PIPOWER5_VER=$(_fetch_comp_version "pipower5" "v2")
+    echo "  pipower5         v2  (v${PIPOWER5_VER})"
 fi
 echo "========================================="
 echo ""
@@ -316,7 +316,7 @@ if [ "$_PLUGIN_ONLY" = true ]; then
 
     if [ "$INSTALL_PLUGIN" = "pipower5" ]; then
         TITLE "Clone PiPower 5 source"
-        PIPOWER5_BRANCH="feature/native-driver"
+        PIPOWER5_BRANCH="v2"
         PIPOWER5_SRC="${HOME}/pipower5"
         if [ -d "${PIPOWER5_SRC}" ]; then
             RUN "cd ${PIPOWER5_SRC} && git fetch origin && git checkout ${PIPOWER5_BRANCH} && git pull origin ${PIPOWER5_BRANCH}" "Update PiPower 5 source"
@@ -471,7 +471,7 @@ RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "I
 
 # --- Install PiPower5 ---
 if [ "$INSTALL_PIPOWER5" = true ]; then
-    PIPOWER5_BRANCH="feature/native-driver"
+    PIPOWER5_BRANCH="v2"
     PIPOWER5_SRC="${HOME}/pipower5"
 
     TITLE "Clone PiPower5 source"
