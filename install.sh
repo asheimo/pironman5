@@ -10,7 +10,7 @@
 # (Safe to run directly — interactive prompts read from /dev/tty)
 # ============================================================
 
-VERSION="2.1.2"
+VERSION="2.1.3"
 
 # Source Installer framework — use local path when available (e.g. Docker build),
 # otherwise curl from GitHub.
@@ -212,9 +212,6 @@ echo "========================================="
 echo "  ${product_name}  v${PIRONMAN5_VERSION}"
 echo "  Branch: ${branch}"
 echo "  Source: ${INSTALLER_GIT_SOURCE}"
-if [ "$INSTALL_PIPOWER5" = true ]; then
-    echo "  PiPower5 UPS: enabled"
-fi
 echo "  ---------------------------------------"
 # Fetch component versions from GitHub
 _fetch_comp_version() {
@@ -229,6 +226,10 @@ SF_RPI_STATUS_VER=$(_fetch_comp_version "sf_rpi_status" "$SF_RPI_STATUS_BRANCH")
 echo "  pm_auto          ${PM_AUTO_BRANCH}  (v${PM_AUTO_VER})"
 echo "  pm_dashboard     ${DASHBOARD_BRANCH}  (v${DASHBOARD_VER})"
 echo "  sf_rpi_status    ${SF_RPI_STATUS_BRANCH}  (v${SF_RPI_STATUS_VER})"
+if [ "$INSTALL_PIPOWER5" = true ]; then
+    PIPOWER5_VER=$(_fetch_comp_version "pipower5" "feature/native-driver")
+    echo "  pipower5         feature/native-driver  (v${PIPOWER5_VER})"
+fi
 echo "========================================="
 echo ""
 
