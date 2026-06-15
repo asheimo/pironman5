@@ -33,12 +33,6 @@ def check_desktop_environment() -> bool:
         print("Error: Wayland session detected but WAYLAND_DISPLAY is not set.", file=sys.stderr)
         return False
     
-    # Optional check: Confirm desktop environment identifier (GNOME/KDE/XFCE etc.)
-    desktop_env = os.getenv("XDG_CURRENT_DESKTOP", "")
-    if not desktop_env:
-        print("Warning: No explicit desktop environment identifier (e.g., GNOME/KDE) detected. Browser may not launch properly.", file=sys.stderr)
-        # Only warn, not exit - some minimal desktops may lack this variable
-    
     return True
 
 def find_available_browsers() -> List[str]:
