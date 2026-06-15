@@ -105,7 +105,7 @@ echo -e "\033[0m"
 PRODUCTS=(
     "Pironman 5|base|1.3.x"
     "Pironman 5 Max|max|1.3.x"
-    "Pironman 5 Pro Max|pro_max|1.3.x"
+    "Pironman 5 Pro Max|pro_max|promax"
 )
 
 # --- Peripherals per variant ---
@@ -119,6 +119,7 @@ declare -A PM5_OVERLAYS
 PM5_OVERLAYS[base]="sunfounder-pironman5.dtbo"
 PM5_OVERLAYS[max]="sunfounder-pironman5.dtbo"
 PM5_OVERLAYS[pro_max]="sunfounder-pironman5promax.dtbo"
+PM5_OVERLAYS[nas]="sunfounder-pironman5nas.dtbo"
 
 # ============================================================
 if [ -n "$ARG_VARIANT" ]; then
@@ -585,11 +586,9 @@ fi
 # --- Write dtoverlay to config.txt ---
 if [ "$IS_CONTAINER" = false ]; then
     TITLE "Configure device tree overlays"
-    for overlay in ${HOME}/pironman5/overlays/*.dtbo; do
-            [ -f "$overlay" ] || continue
-            overlay_name=$(basename "$overlay")
-            DTOVERLAY_ADD "$overlay_name"
-    done
+    if [ -n "${PM5_OVERLAYS[$variant]}" ] && [ "${PM5_OVERLAYS[$variant]}" != "" ]; then
+        DTOVERLAY_ADD "${PM5_OVERLAYS[$variant]}"
+    fi
     if [ "$INSTALL_PIPOWER5" = true ]; then
         DTOVERLAY_ADD "sunfounder-pipower5.dtbo"
     fi
