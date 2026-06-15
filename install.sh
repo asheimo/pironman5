@@ -105,7 +105,7 @@ echo -e "\033[0m"
 PRODUCTS=(
     "Pironman 5|base|1.3.x"
     "Pironman 5 Max|max|1.3.x"
-    "Pironman 5 Pro Max|pro_max|promax"
+    "Pironman 5 Pro Max|pro_max|1.3.x"
 )
 
 # --- Peripherals per variant ---
@@ -119,7 +119,6 @@ declare -A PM5_OVERLAYS
 PM5_OVERLAYS[base]="sunfounder-pironman5.dtbo"
 PM5_OVERLAYS[max]="sunfounder-pironman5.dtbo"
 PM5_OVERLAYS[pro_max]="sunfounder-pironman5promax.dtbo"
-PM5_OVERLAYS[nas]="sunfounder-pironman5nas.dtbo"
 
 # ============================================================
 if [ -n "$ARG_VARIANT" ]; then
