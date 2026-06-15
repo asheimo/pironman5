@@ -21,15 +21,16 @@ def check_desktop_environment() -> bool:
     Check if the current environment is a desktop environment (prevent failure in SSH/pure console environments)
     Return: True = desktop environment, False = non-desktop environment
     """
-    # Core check 1: DISPLAY environment variable (required for X11/Wayland)
-    if not os.getenv("DISPLAY"):
-        print("Error: DISPLAY environment variable not detected. Current environment may be SSH/pure console.", file=sys.stderr)
-        return False
-    
-    # Core check 2: Session type (distinguish desktop/console)
+    # Core check 1: DISPLAY or WAYLAND_DISPLAY (X11 or Wayland)
     session_type = os.getenv("XDG_SESSION_TYPE", "")
     if session_type not in ["x11", "wayland"]:
-        print(f"Error: Current session type is {session_type}. Only x11/wayland desktop sessions are supported.", file=sys.stderr)
+        print(f"Error: Current session type is '{session_type}'. Only x11/wayland desktop sessions are supported.", file=sys.stderr)
+        return False
+    if session_type == "x11" and not os.getenv("DISPLAY"):
+        print("Error: X11 session detected but DISPLAY is not set.", file=sys.stderr)
+        return False
+    if session_type == "wayland" and not os.getenv("WAYLAND_DISPLAY"):
+        print("Error: Wayland session detected but WAYLAND_DISPLAY is not set.", file=sys.stderr)
         return False
     
     # Optional check: Confirm desktop environment identifier (GNOME/KDE/XFCE etc.)
