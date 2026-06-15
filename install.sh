@@ -10,7 +10,7 @@
 # (Safe to run directly — interactive prompts read from /dev/tty)
 # ============================================================
 
-VERSION="2.1.7"
+VERSION="2.1.8"
 
 # Source Installer framework — use local path when available (e.g. Docker build),
 # otherwise curl from GitHub.
@@ -542,11 +542,9 @@ if [ "$IS_CONTAINER" = false ]; then
     if [ -z "$OVERLAY_PATH" ]; then
         installer_log_failed "Device tree overlay directory not found. Checked: ${OVERLAY_SEARCH_PATHS}"
     else
-        for overlay in ${HOME}/pironman5/overlays/*.dtbo; do
-            [ -f "$overlay" ] || continue
-            overlay_name=$(basename "$overlay")
-            RUN "cp ${overlay} ${OVERLAY_PATH}/" "Copy ${overlay_name}"
-        done
+        if [ -n "${PM5_OVERLAYS[$variant]}" ] && [ "${PM5_OVERLAYS[$variant]}" != "" ]; then
+            RUN "cp ${HOME}/pironman5/overlays/${PM5_OVERLAYS[$variant]} ${OVERLAY_PATH}/" "Copy ${PM5_OVERLAYS[$variant]}"
+        fi
         if [ "$INSTALL_PIPOWER5" = true ]; then
             # Copy pipower5 DT overlay at runtime (after make dtbo has built it)
             RUN "if [ -f ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ]; then cp ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/; elif [ -f ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ]; then cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/; else curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo; fi" "Copy PiPower5 device tree overlay"
