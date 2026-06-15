@@ -52,8 +52,10 @@ done
 
 # --plugin mode: skip variant menu, detect from existing install
 # --pipower5 flag also sets INSTALL_PLUGIN but should still show menu
+_PLUGIN_ONLY=false
 if [ -n "$INSTALL_PLUGIN" ] && [ "$SKIP_MENU" != "false" ]; then
     if [ -z "$ARG_VARIANT" ]; then
+        _PLUGIN_ONLY=true
         if [ -f /opt/pironman5/.variant ]; then
             ARG_VARIANT=$(cat /opt/pironman5/.variant)
         else
@@ -115,7 +117,7 @@ declare -A PM5_PERIPHERALS
 PM5_PERIPHERALS[base]="storage cpu network memory history log cpu_temperature gpu_temperature temperature_unit oled oled_sleep ws2812 pwm_fan_speed gpio_fan_state gpio_fan_mode pi5_power_button"
 PM5_PERIPHERALS[mini]="storage cpu network memory history log cpu_temperature gpu_temperature temperature_unit ws2812 pwm_fan_speed gpio_fan_state gpio_fan_mode gpio_fan_led"
 PM5_PERIPHERALS[max]="storage cpu network memory history log cpu_temperature gpu_temperature temperature_unit oled ws2812 pwm_fan_speed gpio_fan_state gpio_fan_mode gpio_fan_led pi5_power_button oled_sleep"
-PM5_PERIPHERALS[pro_max]="storage cpu network memory history log cpu_temperature gpu_temperature temperature_unit ip_address mac_address oled oled_sleep ws2812 pwm_fan_speed gpio_fan_state gpio_fan_mode pi5_power_button"
+PM5_PERIPHERALS[pro_max]="storage cpu network memory history log cpu_temperature gpu_temperature temperature_unit ip_address mac_address oled oled_sleep ws2812 pi5_power_button"
 
 # --- DT overlays per variant ---
 declare -A PM5_OVERLAYS
@@ -312,7 +314,7 @@ fi
 # ============================================================
 
 # --- Plugin-only install (incremental, only when no --variant given) ---
-if [ -n "$INSTALL_PLUGIN" ] && [ -z "$ARG_VARIANT" ]; then
+if [ "$_PLUGIN_ONLY" = true ]; then
     VENV_PIP="/opt/pironman5/venv/bin/pip3"
     GIT_REPO="https://github.com/sunfounder/"
     branch="${BRANCH_OVERRIDE:-1.3.x}"
@@ -330,7 +332,7 @@ if [ -n "$INSTALL_PLUGIN" ] && [ -z "$ARG_VARIANT" ]; then
         TITLE "Build and install kernel driver"
         RUN "apt-get install -y dkms 2>/dev/null || { printf 'Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: trixie trixie-updates\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.pgp\n' > /etc/apt/sources.list.d/debian-trixie.sources && apt-get update && apt-get install -y dkms; }" "Install DKMS"
         RUN "apt-get install -y linux-headers-\$(uname -r)" "Install kernel headers"
-        RUN "cd ${PIPOWER5_SRC}/driver && make clean && make && make install" "Build and install pipower5.ko"
+        RUN "cd ${PIPOWER5_SRC}/driver && make clean && make module && make dkms_install && make dtbo" "Build and install pipower5.ko"
 
         if [ -f "${VENV_PIP}" ]; then
             TITLE "Install PiPower5 Python package"
@@ -474,9 +476,36 @@ RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "I
 
 # --- Install PiPower5 ---
 if [ "$INSTALL_PIPOWER5" = true ]; then
-    TITLE "Install PiPower5"
-    RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@feature/native-driver" "Install pipower5"
+    PIPOWER5_BRANCH="feature/native-driver"
+    PIPOWER5_SRC="${HOME}/pipower5"
+
+    TITLE "Clone PiPower5 source"
+    if [ -d "${PIPOWER5_SRC}" ]; then
+        RUN "cd ${PIPOWER5_SRC} && git fetch origin && git checkout ${PIPOWER5_BRANCH} && git pull origin ${PIPOWER5_BRANCH}" "Update PiPower5 source"
+    else
+        RUN "git clone -b ${PIPOWER5_BRANCH} ${GIT_REPO}pipower5.git ${PIPOWER5_SRC}" "Clone PiPower5 source"
+    fi
+
+    TITLE "Install PiPower5 build dependencies"
+    RUN "apt-get install -y dkms 2>/dev/null || { printf 'Types: deb\nURIs: http://deb.debian.org/debian/\nSuites: trixie trixie-updates\nComponents: main contrib non-free non-free-firmware\nSigned-By: /usr/share/keyrings/debian-archive-keyring.pgp\n' > /etc/apt/sources.list.d/debian-trixie.sources && apt-get update && apt-get install -y dkms; }" "Install DKMS"
+    RUN "apt-get install -y linux-headers-\$(uname -r)" "Install kernel headers"
+
+    TITLE "Build and install PiPower5 kernel driver"
+    RUN "cd ${PIPOWER5_SRC}/driver && make clean && make module && make dkms_install && make dtbo && make install-overlay" "Build and install pipower5.ko"
+
+    TITLE "Install PiPower5 Python package"
+    RUN "${VENV_PIP} install git+${GIT_REPO}pipower5.git@${PIPOWER5_BRANCH}" "Install pipower5"
     RUN "ln -sf /opt/pironman5/venv/bin/pipower5 /usr/local/bin/pipower5" "Create pipower5 symlink"
+
+    if [ "$IS_CONTAINER" = false ]; then
+        TITLE "Setup PiPower5 udev rules"
+        RUN "cp ${PIPOWER5_SRC}/rules/99-pipower5.rules /etc/udev/rules.d/" "Copy udev rules"
+        RUN "udevadm control --reload-rules" "Reload udev"
+    fi
+
+    TITLE "Copy PiPower5 email templates"
+    RUN "mkdir -p /opt/pironman5/email_templates" "Create email template dir"
+    RUN "cp -r ${PIPOWER5_SRC}/email_templates/* /opt/pironman5/email_templates/" "Copy email templates"
 fi
 
 # --- Symlinks ---
@@ -518,12 +547,20 @@ if [ "$IS_CONTAINER" = false ]; then
     if [ -z "$OVERLAY_PATH" ]; then
         installer_log_failed "Device tree overlay directory not found. Checked: ${OVERLAY_SEARCH_PATHS}"
     else
-        for overlay in overlays/*.dtbo; do
+        for overlay in ${HOME}/pironman5/overlays/*.dtbo; do
+            [ -f "$overlay" ] || continue
             overlay_name=$(basename "$overlay")
             RUN "cp ${overlay} ${OVERLAY_PATH}/" "Copy ${overlay_name}"
         done
         if [ "$INSTALL_PIPOWER5" = true ]; then
-            RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Copy PiPower5 device tree overlay"
+            # DT overlay already installed by driver make install; copy from source as fallback
+            if [ -f "${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo" ]; then
+                RUN "cp ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy PiPower5 device tree overlay"
+            elif [ -f "${PIPOWER5_SRC}/sunfounder-pipower5.dtbo" ]; then
+                RUN "cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy PiPower5 device tree overlay"
+            else
+                RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Download PiPower5 device tree overlay"
+            fi
         fi
     fi
 fi
@@ -554,7 +591,8 @@ fi
 # --- Write dtoverlay to config.txt ---
 if [ "$IS_CONTAINER" = false ]; then
     TITLE "Configure device tree overlays"
-    for overlay in overlays/*.dtbo; do
+    for overlay in ${HOME}/pironman5/overlays/*.dtbo; do
+            [ -f "$overlay" ] || continue
             overlay_name=$(basename "$overlay")
             DTOVERLAY_ADD "$overlay_name"
     done
@@ -563,10 +601,12 @@ if [ "$IS_CONTAINER" = false ]; then
     fi
 fi
 
-# Auto-detect headless session (SSH, no desktop)
-if [ -z "$DISPLAY" ] && [ "$XDG_SESSION_TYPE" != "x11" ] && [ "$XDG_SESSION_TYPE" != "wayland" ]; then
+# Auto-detect non-TTY output (pipe, container); keep colors for interactive terminals
+if [ ! -t 1 ]; then
     IS_PLAIN_TEXT=true
 fi
+# Suppress tput errors when TERM is unset
+export TERM="${TERM:-xterm-256color}"
 
 # ============================================================
 # Execute Installation
