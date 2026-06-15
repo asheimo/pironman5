@@ -140,22 +140,39 @@ def launch_browser() -> bool:
         print(f"Failed to launch browser: {str(e)}", file=sys.stderr)
         return False
 
+def wait_for_dashboard(timeout=30):
+    """Wait for dashboard HTTP server to be ready before launching browser."""
+    import urllib.request
+    import time
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            urllib.request.urlopen(f"{URL}/api/v1.0/get-device-info", timeout=2)
+            return True
+        except Exception:
+            time.sleep(1)
+    print(f"Warning: Dashboard not ready after {timeout}s, launching anyway.", file=sys.stderr)
+    return False
+
 def run():
     """Main function"""
     # 1. Check if system is Linux
     if not sys.platform.startswith("linux"):
         print("Error: This script only supports Linux systems.", file=sys.stderr)
         sys.exit(1)
-    
+
     # 2. New: Check if in desktop environment (core modification)
     if not check_desktop_environment():
         sys.exit(1)
-    
+
     # 3. Warning: Avoid running with root privileges
     if os.geteuid() == 0:
         print("Warning: Running browsers as root is not recommended, may cause permission/security issues.", file=sys.stderr)
-    
-    # 4. Launch browser
+
+    # 4. Wait for dashboard to be ready
+    wait_for_dashboard()
+
+    # 5. Launch browser
     if not launch_browser():
         sys.exit(1)
 
