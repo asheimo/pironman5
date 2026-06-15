@@ -548,14 +548,8 @@ if [ "$IS_CONTAINER" = false ]; then
             RUN "cp ${overlay} ${OVERLAY_PATH}/" "Copy ${overlay_name}"
         done
         if [ "$INSTALL_PIPOWER5" = true ]; then
-            # DT overlay already installed by driver make install; copy from source as fallback
-            if [ -f "${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo" ]; then
-                RUN "cp ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy PiPower5 device tree overlay"
-            elif [ -f "${PIPOWER5_SRC}/sunfounder-pipower5.dtbo" ]; then
-                RUN "cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/" "Copy PiPower5 device tree overlay"
-            else
-                RUN "curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo" "Download PiPower5 device tree overlay"
-            fi
+            # Copy pipower5 DT overlay at runtime (after make dtbo has built it)
+            RUN "if [ -f ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ]; then cp ${PIPOWER5_SRC}/driver/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/; elif [ -f ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ]; then cp ${PIPOWER5_SRC}/sunfounder-pipower5.dtbo ${OVERLAY_PATH}/; else curl -fsSL https://github.com/sunfounder/pipower5/raw/refs/heads/main/sunfounder-pipower5.dtbo -o ${OVERLAY_PATH}/sunfounder-pipower5.dtbo; fi" "Copy PiPower5 device tree overlay"
         fi
     fi
 fi
