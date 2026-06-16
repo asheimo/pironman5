@@ -34,9 +34,7 @@ To install PiPower5 as a plugin alongside Pironman 5, append `--pipower5`:
 curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh" | sudo bash -s -- --pipower5
 ```
 
-### Pro Max
-
-> **💡 Touchscreen mode:** We recommend changing the touchscreen mode to **Multitouch** instead of Mouse Emulation.
+> **For Pro Max:** The Pro Max includes a 4.3" touchscreen and can auto-launch the dashboard on boot. We recommend switching the touchscreen mode from the default **Mouse Emulation** to **Multitouch** — this enables phone/tablet-like touch gestures and makes the dashboard much easier to use.
 >
 > 1. **Raspberry Pi Icon** >> **Preferences** >> **Control Centre**
 > 2. Select **Screen** tab
