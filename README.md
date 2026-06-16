@@ -8,7 +8,6 @@ Quick Links:
   - [About Pironman5](#about-pironman5)
   - [Links](#links)
   - [Installation](#installation)
-  - [Auto launch dashboard on browser](#auto-launch-dashboard-on-browser)
   - [Update](#update)
   - [Compatible Systems](#compatible-systems)
     - [Ubuntu 24.04 server eth0 and wifi not work](#ubuntu-2404-server-eth0-and-wifi-not-work)
@@ -26,21 +25,21 @@ Quick Links:
 ## Installation
 
 ```bash
-curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/promax/install.sh" | sudo bash
+curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh" | sudo bash
 ```
 
-## Auto launch dashboard on browser
+To install PiPower5 as a plugin alongside Pironman 5, append `--pipower5`:
 
 ```bash
-pironman5 launch-browser --auto-start=on
+curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh" | sudo bash -s -- --pipower5
 ```
 
-You also want to change touchscreen mode to Multitouch instead of Mouse Emulation.
-
-1. **Raspberry Pi Icon** >> **Preferences** >> **Control Centre**.
-2. Select **Screen** tab.
-3. Long press/right click on **DSI-2**, 
-4. Select **Touchscreen** >> **Mode** >> **Multitouch**.
+> **For Pro Max:** The Pro Max includes a 4.3" touchscreen and can auto-launch the dashboard on boot. We recommend switching the touchscreen mode from the default **Mouse Emulation** to **Multitouch** — this enables phone/tablet-like touch gestures and makes the dashboard much easier to use.
+>
+> 1. **Raspberry Pi Icon** >> **Preferences** >> **Control Centre**
+> 2. Select **Screen** tab
+> 3. Long press / right click on **DSI-2**
+> 4. Select **Touchscreen** >> **Mode** >> **Multitouch**
 
 ## Update
 
