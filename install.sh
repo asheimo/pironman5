@@ -316,7 +316,7 @@ if [ "$_PLUGIN_ONLY" = true ]; then
 
     if [ "$INSTALL_PLUGIN" = "pipower5" ]; then
         TITLE "Clone PiPower 5 source"
-        PIPOWER5_BRANCH="v2"
+        PIPOWER5_BRANCH="${PIPOWER5_BRANCH:-v2}"
         PIPOWER5_SRC="${HOME}/pipower5"
         if [ -d "${PIPOWER5_SRC}" ]; then
             RUN "cd ${PIPOWER5_SRC} && git fetch origin && git checkout ${PIPOWER5_BRANCH} && git pull origin ${PIPOWER5_BRANCH}" "Update PiPower 5 source"
@@ -471,7 +471,7 @@ RUN "${VENV_PIP} install git+${GIT_REPO}pm_dashboard.git@${DASHBOARD_BRANCH}" "I
 
 # --- Install PiPower5 ---
 if [ "$INSTALL_PIPOWER5" = true ]; then
-    PIPOWER5_BRANCH="v2"
+    PIPOWER5_BRANCH="${PIPOWER5_BRANCH:-v2}"
     PIPOWER5_SRC="${HOME}/pipower5"
 
     TITLE "Clone PiPower5 source"
@@ -509,7 +509,7 @@ RUN "ln -sf /opt/pironman5/venv/bin/pironman5 /usr/local/bin/pironman5" "Create 
 
 # --- Shell completion ---
 TITLE "Setup shell completion"
-RUN "${VENV_PIP} install argcomplete" "Install argcomplete"
+RUN "${VENV_PIP} install --ignore-installed argcomplete" "Install argcomplete"
 RUN "/opt/pironman5/venv/bin/register-python-argcomplete pironman5 > /etc/bash_completion.d/pironman5" "Register bash completion"
 
 # --- Systemd auto-start ---
