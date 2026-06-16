@@ -350,7 +350,7 @@ if [ "$_PLUGIN_ONLY" = true ]; then
     RUN "udevadm control --reload-rules" "Reload udev"
 
     TITLE "Copy device tree overlay"
-        OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
+        OVERLAY_SEARCH_PATHS="/boot/firmware/current/overlays /boot/firmware/overlays /boot/overlays"
         OVERLAY_PATH=""
         for p in $OVERLAY_SEARCH_PATHS; do
             if [ -d "$p" ]; then OVERLAY_PATH="$p"; break; fi
@@ -531,7 +531,7 @@ fi
 # --- Device tree overlays ---
 if [ "$IS_CONTAINER" = false ]; then
     TITLE "Copy device tree overlays"
-    OVERLAY_SEARCH_PATHS="/boot/firmware/overlays /boot/overlays /boot/firmware/current/overlays"
+    OVERLAY_SEARCH_PATHS="/boot/firmware/current/overlays /boot/firmware/overlays /boot/overlays"
     OVERLAY_PATH=""
     for p in $OVERLAY_SEARCH_PATHS; do
         if [ -d "$p" ]; then
