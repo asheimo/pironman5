@@ -38,11 +38,13 @@ IS_CONTAINER=false
 IS_PLAIN_TEXT=false
 ARG_VARIANT=""
 INSTALL_PLUGIN=""
+NO_AUTOLOGIN=false
 while [ $# -gt 0 ]; do
     case "$1" in
         --pipower5) INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5"; SKIP_MENU=false ;;
         --container) IS_CONTAINER=true; IS_PLAIN_TEXT=true ;;
         --plain-text) IS_PLAIN_TEXT=true ;;
+        --no-autologin) NO_AUTOLOGIN=true ;;
         --variant=*) ARG_VARIANT="${1#*=}" ;;
         --variant) shift; ARG_VARIANT="$1" ;;
         --plugin) shift; INSTALL_PLUGIN="$1"; INSTALL_PIPOWER5=true; INSTALL_PLUGIN="pipower5" ;;
@@ -629,6 +631,39 @@ EOF
             echo "${LAUNCH_CMD} &" >> "${LABWC_DIR}/autostart"
         chown "${USERNAME}:${USERNAME}" "${LABWC_DIR}/autostart" 2>/dev/null || true
         echo "Autostart entry created. Dashboard will launch on next desktop login."
+
+        # --- Configure auto-login on non-Pi systems (Pi OS has it by default) ---
+        if [ "$NO_AUTOLOGIN" = false ] && [ ! -f /usr/bin/raspi-config ]; then
+            echo ""
+            read -p "Enable auto-login so dashboard starts without password? [Y/n]: " setup_autologin < /dev/tty
+            if [[ "$setup_autologin" =~ ^[Yy]?$ ]]; then
+                if [ -f /etc/gdm3/custom.conf ]; then
+                    if ! grep -q 'AutomaticLoginEnable\s*=\s*[Tt]rue' /etc/gdm3/custom.conf 2>/dev/null; then
+                        cp /etc/gdm3/custom.conf /etc/gdm3/custom.conf.bak 2>/dev/null
+                        sed -i '/^\[daemon\]/a AutomaticLoginEnable=True\nAutomaticLogin='"${USERNAME}" /etc/gdm3/custom.conf
+                        echo "  ✓ Auto-login configured for ${USERNAME} (GDM3)"
+                    else
+                        echo "  - Auto-login already enabled (GDM3)"
+                    fi
+                elif command -v lightdm >/dev/null 2>&1 || [ -d /etc/lightdm ]; then
+                    LIGHTDM_CONF="/etc/lightdm/lightdm.conf"
+                    mkdir -p /etc/lightdm
+                    if ! grep -q "autologin-user=${USERNAME}" "$LIGHTDM_CONF" 2>/dev/null; then
+                        cp "$LIGHTDM_CONF" "${LIGHTDM_CONF}.bak" 2>/dev/null || true
+                        if grep -q '\[Seat:\*\]' "$LIGHTDM_CONF" 2>/dev/null; then
+                            sed -i '/^\[Seat:\*\]/a autologin-user='"${USERNAME}" "$LIGHTDM_CONF"
+                        else
+                            echo -e "\n[Seat:*]\nautologin-user=${USERNAME}" >> "$LIGHTDM_CONF"
+                        fi
+                        echo "  ✓ Auto-login configured for ${USERNAME} (LightDM)"
+                    else
+                        echo "  - Auto-login already enabled (LightDM)"
+                    fi
+                else
+                    echo "  ⚠ Display manager not detected. Please configure auto-login in system settings."
+                fi
+            fi
+        fi
 
         # Try to launch immediately if desktop is available
         if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ] || [ -S /run/user/1000/wayland-0 ]; then
