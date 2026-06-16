@@ -28,6 +28,12 @@ Quick Links:
 curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh" | sudo bash
 ```
 
+To install PiPower5 as a plugin alongside Pironman 5, append `--pipower5`:
+
+```bash
+curl -sSL "https://raw.githubusercontent.com/sunfounder/pironman5/1.3.x/install.sh" | sudo bash -s -- --pipower5
+```
+
 ### Pro Max
 
 > **💡 Touchscreen mode:** We recommend changing the touchscreen mode to **Multitouch** instead of Mouse Emulation.
