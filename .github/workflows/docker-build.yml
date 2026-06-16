@@ -22,9 +22,6 @@ jobs:
           - variant: base
             pipower5: "false"
             suffix: ""
-          - variant: mini
-            pipower5: "false"
-            suffix: ""
           - variant: max
             pipower5: "false"
             suffix: ""
@@ -38,12 +35,16 @@ jobs:
         with:
           path: pironman5
 
-      - name: Checkout installer-scripts
+      - name: Checkout installer-scripts (tools only)
         uses: actions/checkout@v4
         with:
           repository: sunfounder/sunfounder-installer-scripts
           ref: main
           path: installer-scripts
+          sparse-checkout: tools
+
+      - name: Copy framework tools into build context
+        run: cp -r installer-scripts/tools pironman5/docker-tools
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -70,8 +71,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: installer-scripts
-          file: installer-scripts/pironman5/Dockerfile
+          context: pironman5
+          file: pironman5/Dockerfile
           platforms: linux/arm64,linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
