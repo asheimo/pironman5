@@ -35,17 +35,6 @@ jobs:
         with:
           path: pironman5
 
-      - name: Checkout installer-scripts (tools only)
-        uses: actions/checkout@v4
-        with:
-          repository: sunfounder/sunfounder-installer-scripts
-          ref: main
-          path: installer-scripts
-          sparse-checkout: tools
-
-      - name: Copy framework tools into build context
-        run: cp -r installer-scripts/tools pironman5/docker-tools
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 

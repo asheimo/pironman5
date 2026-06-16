@@ -11,7 +11,6 @@ ENV USER=root
 ENV HOME=/root
 
 COPY install.sh /tmp/install.sh
-COPY docker-tools /tmp/installer-tools
 
 RUN if [ "$PIPOWER5" = "true" ]; then \
         bash /tmp/install.sh --variant "$VARIANT" --container --pipower5; \
@@ -19,7 +18,7 @@ RUN if [ "$PIPOWER5" = "true" ]; then \
         bash /tmp/install.sh --variant "$VARIANT" --container; \
     fi
 
-RUN rm -rf /tmp/install.sh /tmp/installer-tools
+RUN rm -rf /tmp/install.sh
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
