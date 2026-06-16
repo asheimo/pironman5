@@ -21,22 +21,17 @@ def check_desktop_environment() -> bool:
     Check if the current environment is a desktop environment (prevent failure in SSH/pure console environments)
     Return: True = desktop environment, False = non-desktop environment
     """
-    # Core check 1: DISPLAY environment variable (required for X11/Wayland)
-    if not os.getenv("DISPLAY"):
-        print("Error: DISPLAY environment variable not detected. Current environment may be SSH/pure console.", file=sys.stderr)
-        return False
-    
-    # Core check 2: Session type (distinguish desktop/console)
+    # Core check 1: DISPLAY or WAYLAND_DISPLAY (X11 or Wayland)
     session_type = os.getenv("XDG_SESSION_TYPE", "")
     if session_type not in ["x11", "wayland"]:
-        print(f"Error: Current session type is {session_type}. Only x11/wayland desktop sessions are supported.", file=sys.stderr)
+        print(f"Error: Current session type is '{session_type}'. Only x11/wayland desktop sessions are supported.", file=sys.stderr)
         return False
-    
-    # Optional check: Confirm desktop environment identifier (GNOME/KDE/XFCE etc.)
-    desktop_env = os.getenv("XDG_CURRENT_DESKTOP", "")
-    if not desktop_env:
-        print("Warning: No explicit desktop environment identifier (e.g., GNOME/KDE) detected. Browser may not launch properly.", file=sys.stderr)
-        # Only warn, not exit - some minimal desktops may lack this variable
+    if session_type == "x11" and not os.getenv("DISPLAY"):
+        print("Error: X11 session detected but DISPLAY is not set.", file=sys.stderr)
+        return False
+    if session_type == "wayland" and not os.getenv("WAYLAND_DISPLAY"):
+        print("Error: Wayland session detected but WAYLAND_DISPLAY is not set.", file=sys.stderr)
+        return False
     
     return True
 
@@ -71,14 +66,20 @@ def find_available_browsers() -> List[str]:
 
 def get_url() -> str:
     """
-    Get the URL to open in the browser
+    Get the URL to open in the browser. Reads from API (not config file)
+    to avoid race conditions with config file writes during startup.
     """
-    config = None
-    with open(CONFIG_PATH, 'r') as f:
-        config = json.load(f)
-    dashboard_page = config['system']['default_dashboard_page']
-    url = f"{URL}/{dashboard_page}"
-    return url
+    import urllib.request
+    try:
+        req = urllib.request.Request(f"{URL}/api/v1.0/get-config", headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=5) as r:
+            config = json.loads(r.read().decode())
+        dashboard_page = config.get('data', config).get('system', {}).get('default_dashboard_page', '')
+        if dashboard_page:
+            return f"{URL}/{dashboard_page}"
+    except Exception:
+        pass
+    return URL
 
 def get_browser_fullscreen_args(browser: str) -> List[str]:
     """
@@ -145,22 +146,39 @@ def launch_browser() -> bool:
         print(f"Failed to launch browser: {str(e)}", file=sys.stderr)
         return False
 
+def wait_for_dashboard(timeout=30):
+    """Wait for dashboard HTTP server to be ready before launching browser."""
+    import urllib.request
+    import time
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        try:
+            urllib.request.urlopen(f"{URL}/api/v1.0/get-device-info", timeout=2)
+            return True
+        except Exception:
+            time.sleep(1)
+    print(f"Warning: Dashboard not ready after {timeout}s, launching anyway.", file=sys.stderr)
+    return False
+
 def run():
     """Main function"""
     # 1. Check if system is Linux
     if not sys.platform.startswith("linux"):
         print("Error: This script only supports Linux systems.", file=sys.stderr)
         sys.exit(1)
-    
+
     # 2. New: Check if in desktop environment (core modification)
     if not check_desktop_environment():
         sys.exit(1)
-    
+
     # 3. Warning: Avoid running with root privileges
     if os.geteuid() == 0:
         print("Warning: Running browsers as root is not recommended, may cause permission/security issues.", file=sys.stderr)
-    
-    # 4. Launch browser
+
+    # 4. Wait for dashboard to be ready
+    wait_for_dashboard()
+
+    # 5. Launch browser
     if not launch_browser():
         sys.exit(1)
 

@@ -64,8 +64,6 @@ class Pironman5:
                 config = json.load(f)
             config = self.upgrade_config(config)
             self.config = merge_dict(self.config, config)
-        with open(self.config_path, 'w') as f:
-            json.dump(self.config, f, indent=4)
 
         # Set debug level
         # -----------------------------------------
@@ -134,8 +132,15 @@ class Pironman5:
                                             log=log)
             self.pm_dashboard.set_read_data(self.pm_auto.read)
             self.pm_dashboard.set_read_config(self.read_config)
+            self.pm_dashboard.set_get_ip_data(self.pm_auto.get_ip_data)
             if 'send_email' in self.peripherals:
                 self.pm_dashboard.set_test_smtp(self.pm_auto.test_smtp)
+            if 'pipower5' in self.peripherals:
+                self.pm_dashboard.set_play_pipower5_buzzer(self.pm_auto.play_pipower5_buzzer)
+            if 'power-failure-simulation' in self.peripherals:
+                if hasattr(self.pm_dashboard, 'set_power_failure_simulation'):
+                    self.pm_dashboard.set_power_failure_simulation(
+                        self.pm_auto.power_failure_simulation)
             self.pm_dashboard.set_on_config_changed(self.update_config)
             self.pm_dashboard.set_on_restart_service(restart_service)
 

@@ -59,7 +59,7 @@ def main():
     parser.add_argument("-eh", "--enable-history", nargs='?', default='', help="Enable history, True/true/on/On/1 or False/false/off/Off/0")
     # ws2812 / sf_rgb_led
     if is_included(PERIPHERALS, "ws2812") or is_included(PERIPHERALS, "sf_rgb_led"):
-        from pm_auto.libs.sunfounder_rgb_led import RGB_STYLES, MAX_LEDS
+        from pm_auto.libs.sunfounder_rgb_led import RGB_STYLES
         parser.add_argument("-re", "--rgb-enable", nargs='?', default='', help="RGB enable True/False")
         parser.add_argument("-rs", "--rgb-style", nargs='?', default='', help=f"RGB style: {RGB_STYLES}")
         parser.add_argument("-rc", "--rgb-color", nargs='?', default='', help='RGB color in hex format without # (e.g. 00aabb)')
@@ -116,6 +116,17 @@ def main():
     update_parser.add_argument("--pipower5", action="store_true", help="Include PiPower5 support")
     uninstall_parser = subparsers.add_parser("uninstall", help="Uninstall Pironman5 completely")
     uninstall_parser.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
+    variant_parser = subparsers.add_parser("variant", help="Show or switch product variant")
+    variant_parser.add_argument("variant_name", nargs="?", default=None, help="Variant name to switch to (base/mini/max/pro-max/nas)")
+    variant_parser.add_argument("--list", action="store_true", help="List available variants")
+    variant_parser.add_argument("--current", action="store_true", help="Show current variant")
+    plugin_parser = subparsers.add_parser("plugin", help="Manage plugins (e.g. pipower5)")
+    plugin_sub = plugin_parser.add_subparsers(dest="plugin_action")
+    plugin_list = plugin_sub.add_parser("list", help="List installed plugins")
+    plugin_install = plugin_sub.add_parser("install", help="Install a plugin")
+    plugin_install.add_argument("plugin_name", help="Plugin name (e.g. pipower5)")
+    plugin_remove = plugin_sub.add_parser("remove", help="Remove a plugin")
+    plugin_remove.add_argument("plugin_name", help="Plugin name (e.g. pipower5)")
 
     argcomplete.autocomplete(parser)
 
@@ -324,9 +335,6 @@ def main():
                     quit()
                 if args.rgb_led_count < 1:
                     print(f"Invalid value for RGB LED count, it should be greater than 0")
-                    quit()
-                if is_included(PERIPHERALS, "sf_rgb_led") and args.rgb_led_count > MAX_LEDS:
-                    print(f"Invalid value for RGB LED count, it should be less than or equal to {MAX_LEDS}")
                     quit()
                 new_sys_config['rgb_led_count'] = args.rgb_led_count
                 print(f"Set RGB LED count: {args.rgb_led_count}")
@@ -707,11 +715,149 @@ def main():
         if sudo_user:
             os.system(f'rm -rf /home/{sudo_user}/pironman5')
 
+        # Check if pipower5 is installed
+        pipower5_installed = False
+        if os.path.exists('/sys/module/pipower5') or os.path.exists('/sys/class/pipower5'):
+            pipower5_installed = True
+        elif os.path.exists('/opt/pironman5/venv/bin/pipower5'):
+            pipower5_installed = True
+
+        if pipower5_installed:
+            if _confirm("PiPower5 UPS module detected. Uninstall it as well?"):
+                print("Uninstalling PiPower5...")
+                pipower5_bin = '/opt/pironman5/venv/bin/pipower5'
+                if os.path.exists(pipower5_bin):
+                    os.system(f'{pipower5_bin} uninstall')
+                else:
+                    print("  pipower5 CLI not found, skipping.")
+                # Remove pipower5 user/group
+                os.system('userdel pipower5 2>/dev/null')
+                os.system('groupdel pipower5 2>/dev/null')
+                print("  PiPower5 uninstalled.")
+
         if _confirm("Remove InfluxDB data (pironman5 database)?"):
             os.system('influx -execute "DROP DATABASE pironman5" 2>/dev/null')
 
         print("Pironman 5 has been uninstalled.")
         quit()
+
+    # variant
+    # ----------------------------------------
+    if args.subcommand == 'variant':
+        VARIANT_CHOICES = ["base", "mini", "max", "pro-max", "nas", "ups"]
+        VARIANT_LABELS = {
+            "base": "Pironman 5",
+            "mini": "Pironman 5 Mini",
+            "max": "Pironman 5 Max",
+            "pro-max": "Pironman 5 Pro Max",
+            "nas": "Pironman 5 NAS",
+            "ups": "Pironman 5 UPS",
+        }
+        variant_path = "/opt/pironman5/.variant"
+        current = None
+        if os.path.exists(variant_path):
+            with open(variant_path, "r") as f:
+                current = f.read().strip()
+
+        if args.list:
+            print("Available variants:")
+            for v in VARIANT_CHOICES:
+                marker = " *" if v == current else ""
+                print(f"  {v:<10} {VARIANT_LABELS.get(v, '')}{marker}")
+            quit()
+
+        if args.current or (not args.variant_name and not args.list):
+            label = VARIANT_LABELS.get(current, "Unknown") if current else "Unknown"
+            print(f"Current variant: {current} ({label})" if current else "Current variant: not set (default: base)")
+            if not args.current:
+                print(f"Switch variant: pironman5 variant <name>")
+                print(f"Available: {', '.join(VARIANT_CHOICES)}")
+            quit()
+
+        if args.variant_name:
+            if args.variant_name not in VARIANT_CHOICES:
+                print(f"Invalid variant: {args.variant_name}")
+                print(f"Available: {', '.join(VARIANT_CHOICES)}")
+                sys.exit(1)
+            os.makedirs(os.path.dirname(variant_path), exist_ok=True)
+            with open(variant_path, "w") as f:
+                f.write(args.variant_name)
+            try:
+                os.chmod(variant_path, 0o664)
+            except Exception:
+                pass
+            print(f"Switched to {args.variant_name} ({VARIANT_LABELS.get(args.variant_name, '')})")
+            print("Restart pironman5 to apply: sudo systemctl restart pironman5.service")
+            quit()
+
+    # plugin
+    # ----------------------------------------
+    if args.subcommand == 'plugin':
+        CUSTOM_PATH = "/opt/pironman5/.custom_module"
+        PLUGIN_SCRIPTS = {
+            "pipower5": {
+                "label": "PiPower 5 UPS",
+                "installer_args": "--plugin pipower5",
+            },
+        }
+
+        def _read_plugins():
+            if not os.path.exists(CUSTOM_PATH):
+                return []
+            with open(CUSTOM_PATH, "r") as f:
+                return [line.strip() for line in f if line.strip() and not line.strip().startswith("#")]
+
+        def _write_plugins(plugins):
+            os.makedirs(os.path.dirname(CUSTOM_PATH), exist_ok=True)
+            with open(CUSTOM_PATH, "w") as f:
+                f.write("\n".join(plugins) + "\n")
+
+        if args.plugin_action == "list":
+            installed = _read_plugins()
+            if installed:
+                print("Installed plugins:")
+                for p in installed:
+                    label = PLUGIN_SCRIPTS.get(p, {}).get("label", p)
+                    print(f"  {p}  ({label})")
+            else:
+                print("No plugins installed.")
+            quit()
+
+        plugin_name = args.plugin_name
+        if plugin_name not in PLUGIN_SCRIPTS:
+            print(f"Unknown plugin: {plugin_name}")
+            print(f"Available: {', '.join(PLUGIN_SCRIPTS.keys())}")
+            sys.exit(1)
+
+        if args.plugin_action == "install":
+            installed = _read_plugins()
+            if plugin_name in installed:
+                print(f"Plugin '{plugin_name}' is already installed.")
+                quit()
+            installer_url = "https://raw.githubusercontent.com/sunfounder/sunfounder-installer-scripts/main/pironman5/install.sh"
+            installer_args = PLUGIN_SCRIPTS[plugin_name]["installer_args"]
+            cmd = f"curl -sSL {installer_url} | sudo bash -s -- {installer_args}"
+            print(f"Installing {plugin_name}...")
+            ret = os.system(cmd)
+            if ret != 0:
+                print(f"Plugin install failed with exit code {ret}", file=sys.stderr)
+                sys.exit(1)
+            print(f"Plugin '{plugin_name}' installed. Restart pironman5 to apply:")
+            print("  sudo systemctl restart pironman5.service")
+            quit()
+
+        if args.plugin_action == "remove":
+            installed = _read_plugins()
+            if plugin_name not in installed:
+                print(f"Plugin '{plugin_name}' is not installed.")
+                quit()
+            installed.remove(plugin_name)
+            _write_plugins(installed)
+            # Also uninstall the python package
+            os.system(f"/opt/pironman5/venv/bin/pip uninstall -y {plugin_name} 2>/dev/null")
+            print(f"Plugin '{plugin_name}' removed. Restart pironman5 to apply:")
+            print("  sudo systemctl restart pironman5.service")
+            quit()
 
     # Update settings
     # ----------------------------------------

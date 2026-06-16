@@ -61,7 +61,22 @@ PRODUCT_DEFINITIONS = {
         ],
         "config_overrides": {
             "debug_level": "INFO",
+            "enable_history": True,
             "oled_pages": ["mix", "battery", "input", "rpi_power"],
+        },
+        "event_map_overrides": {},
+        "dt_overlays": [],
+    },
+    "pipower5": {
+        "name": "PiPower 5",
+        "id": "pipower5",
+        "product_version": "",
+        "modules": [
+            "core", "network_info", "history", "pipower5",
+        ],
+        "config_overrides": {
+            "debug_level": "INFO",
+            "enable_history": True,
         },
         "event_map_overrides": {},
         "dt_overlays": [],
@@ -72,7 +87,6 @@ PRODUCT_DEFINITIONS = {
         "product_version": "",
         "modules": [
             "core", "network_info", "history", "oled", "ws2812",
-            "pwm_fan", "gpio_fan",
             "pi5_power_button",
         ],
         "config_overrides": {

@@ -23,6 +23,9 @@ register(Module(
         'default_on',
         'power-failure-simulation',
         'send_email',
+        'pipower5_buzzer',
+        'pipower5_buzzer_volume',
+        'pipower5_buzz_on',
         'data_interval',
         'oled_page_battery',
         'oled_page_input',
@@ -106,5 +109,8 @@ register(Module(
         'pipower5_button_long_press_released': 'shutdown',
         'pipower5_low_battery_shutdown': 'shutdown',
         'pipower5_low_voltage_shutdown': 'shutdown',
+        'pipower5_button_shutdown': 'shutdown',
+        'pipower5_input_plugged_in': 'oled_wake_page_next',
+        'pipower5_input_unplugged': 'oled_wake_page_next',
     },
 ))
